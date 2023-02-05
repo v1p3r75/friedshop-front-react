@@ -1,9 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
 
   return (
-    <div>
+    <div className="header bg-white">
         <div className="d-lg-flex justify-content-between font-light fd-bg-secondary px-5 py-2">
             <div className="d-flex header-contacts gap-3">
                 <span><i className='bi bi-envelope fd-color-primary'></i>&nbsp; elfriedv16@gmail.com</span>
@@ -33,24 +34,34 @@ const Header = () => {
         </div>
         <div className="navigation font-regular fw-500 mx-5 py-4">
             <nav className='navbar navbar-expand-lg'>
-                <a className='navbar-brand' href='#'><img src="/src/assets/img/logo.png" alt="Logo" /></a>
+                <a className='navbar-brand me-5' href='#'><img src="/src/assets/img/logo.png" alt="Logo" /></a>
                 <button className="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#headerNavbar">
                     <span className="navbar-icon-toggler"><i className="bi bi-list"></i></span>
                 </button>
                 <nav className="collapse navbar-collapse" id="headerNavbar">
                     <div className="container-fluid d-lg-flex justify-content-between">
                         <ul className="navbar-nav d-lg-flex gap-3">
-                            <li className="navbar-item"><a href="/" className="navbar-link text-dark">Home</a></li>
-                            <li className="navbar-item"><a href="/" className="navbar-link text-dark">Shop</a></li>
-                            <li className="navbar-item"><a href="/" className="navbar-link text-dark">Blog</a></li>
-                            <li className="navbar-item"><a href="/" className="navbar-link text-dark">Contact Us</a></li>
-                            <li className="navbar-item"><a href="/" className="navbar-link text-dark">Faq</a></li>
+                            <li className="navbar-item">
+                                <Link to={'/'} className="navbar-link text-dark">Home</Link>
+                            </li>
+                            <li className="navbar-item">
+                                <Link to={'/'} className="navbar-link text-dark">Shop</Link>
+                            </li>
+                            <li className="navbar-item">
+                                <Link to={'/'} className="navbar-link text-dark">Blog</Link>
+                            </li>
+                            <li className="navbar-item">
+                                <Link to={'/'} className="navbar-link text-dark">Contact US</Link>
+                            </li>
+                            <li className="navbar-item">
+                                <Link to={'/'} className="navbar-link text-dark">Faq</Link>
+                            </li>
                         </ul>
                         <ul className="navbar-nav d-lg-flex gap-2">
-                            <li className="navbar-item"><a href="#" className="navbar-link text-dark"><i className="bi bi-cart3"></i></a></li>
-                            <li className="navbar-item"><a href="#" className="navbar-link text-dark"><i className="bi bi-heart"></i></a></li>
-                            <li className="navbar-item"><a href="#" className="navbar-link text-dark"><i className="bi bi-search"></i></a></li>
-                            <li className="navbar-item"><a href="#" className="navbar-link text-dark"><i className="bi bi-person"></i></a></li>
+                            <li className="navbar-item"><Link to="/cart" className="navbar-link position-relative border-3 shadow border-light py-2 px-3 text-dark"><i className="bi bi-cart3"></i><span className="position-absolute top-0">2</span></Link></li>
+                            <li className="navbar-item"><Link to="/wishlist" className="navbar-link position-relative border-3 shadow border-light py-2 px-3 text-dark"><i className="bi bi-heart"></i><span className="position-absolute top-0">3</span></Link></li>
+                            <li className="navbar-item"><Link to="/search" className="navbar-link position-relative border-3 shadow border-light py-2 px-3 text-dark"><i className="bi bi-search"></i></Link></li>
+                            <li className="navbar-item"><Link to="/account" className="navbar-link position-relative border-3 shadow border-light py-2 px-3 text-dark"><i className="bi bi-person"></i></Link></li>
                         </ul>
                     </div>
                 </nav>
