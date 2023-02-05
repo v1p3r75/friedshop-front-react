@@ -1,0 +1,20 @@
+@import url('./fonts.css');
+
+:root {
+
+  --fd-color-white: #fff;
+  --fd-color-dark: #10111E;
+  --fd-color-secondary: #0B2B3C;
+  --fd-color-primary: #7BAE00;
+  --fd-color-red: #DE0808;
+  --fd-color-silver: #D9D9D9;
+  --fd-color-yellow: #FFCC00;
+  --fd-color-bg: #F2F3F9;
+
+}
+
+body { font-family: "Poppins Regular", sans-serif!important;  margin: 0; padding: 0; color: var(--fd-color-white)!important; background-color: var(--fd-color-bg)!important; }
+ul, li {margin: 0!important; padding: 0!important; list-style: none;}
+a {color: #fff!important; text-decoration: none!important;}
+.fd-color-primary {color: var(--fd-color-primary);} .fd-bg-primary {background-color: var(--fd-color-primary)}
+.fd-color-secondary {color: var(--fd-color-secondary);} .fd-bg-secondary {background-color: var(--fd-color-secondary)}

@@ -1,0 +1,25 @@
+@font-face {
+    font-family: "Poppins Bold";
+    src: url("../fonts/Poppins-Bold.ttf");
+}
+  
+  @font-face {
+    font-family: "Poppins Regular";
+    src: url("../fonts/Poppins-Regular.ttf");
+  }
+
+  @font-face {
+    font-family: "Poppins Italic";
+    src: url("../fonts/Poppins-Italic.ttf");
+}
+
+@font-face {
+    font-family: "Poppins Light";
+    src: url("../fonts/Poppins-Light.ttf");
+}
+
+
+.font-bold { font-family: "Poppins Bold"; }
+.font-regular { font-family: "Poppins Regular"; }
+.font-italic { font-family: "Poppins Italic"; }
+.font-light { font-family: "Poppins Light"; }
