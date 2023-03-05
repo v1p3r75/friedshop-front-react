@@ -7,6 +7,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import 'animate.css/animate.min.css'
 import '@fortawesome/fontawesome-free/css/all.min.css'
+import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { BrowserRouter, RouterProvider } from 'react-router-dom';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
