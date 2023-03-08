@@ -1,6 +1,13 @@
 import React, { FC } from 'react'
 import SlideShow from '../../components/SlideShow';
 import ProductCart from '../../components/ProductCart'
+import ProductSort from '../../components/ProductSort';
+import ProductOfDay from '../../components/ProductOfDay';
+
+type CategoryType = {
+  category_id: string | number,
+  name: string,
+}[];
 
 const apiSlidesInfo = [
   { url: '/src/assets/img/slider3.jpg', alt: 'Banner 1', text: "<h2>Fresh Food & Healthly Organic Food</h2>" },
@@ -10,9 +17,29 @@ const apiSlidesInfo = [
 
 const productsTest = [
   
-  { img : '/src/assets/img/slider3.jpg', reviews : 4, name: 'Image Name', price : 90, oldPrice : 100 },
-  { img : '/src/assets/img/slider3.jpg', reviews : 4, name: 'Image Name 2', price : 100, oldPrice : 150 },
-  { img : '/src/assets/img/slider3.jpg', reviews : 4, name: 'Image Name 3', price : 120, oldPrice : 200 },
+  { img : '/src/assets/img/product/1.png', reviews : 4, name: 'Product Name 1', price : 90, oldPrice : 100 },
+  { img : '/src/assets/img/product/2.png', reviews : 4, name: 'Product Name 2', price : 100, oldPrice : 150, reduction: '-33%'},
+  { img : '/src/assets/img/product/3.png', reviews : 4, name: 'Product Name 3', price : 120, oldPrice : 200 },
+  { img : '/src/assets/img/product/4.png', reviews : 4, name: 'Product Name 4', price : 120, oldPrice : 200 },
+  { img : '/src/assets/img/product/5.png', reviews : 4, name: 'Product Name 5', price : 120, oldPrice : 200 },
+  { img : '/src/assets/img/product/6.png', reviews : 4, name: 'Product Name 6', price : 120, oldPrice : 200 },
+  { img : '/src/assets/img/product/7.png', reviews : 4, name: 'Product Name 7', price : 120, oldPrice : 200 },
+  { img : '/src/assets/img/product/8.png', reviews : 4, name: 'Product Name 8', price : 120, oldPrice : 200 },
+
+]
+
+const dailyTest = { img : '/src/assets/img/product/1.png', reviews : 4, name: 'Product Name 1', price : 90, oldPrice : 100, description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed earum nemo, officia maiores corporis eveniet ratione magnam facere voluptates consequuntur cumque."
+}
+
+
+
+const sortProduct = [
+  
+  { img : '/src/assets/img/product/1.png', reviews : 4, name: 'Product Name 1', price : 90, oldPrice : 100 },
+  { img : '/src/assets/img/product/2.png', reviews : 4, name: 'Product Name 2', price : 100, oldPrice : 150, reduction: '-33%'},
+  { img : '/src/assets/img/product/3.png', reviews : 4, name: 'Product Name 3', price : 120, oldPrice : 200 },
+  { img : '/src/assets/img/product/4.png', reviews : 4, name: 'Product Name 4', price : 120, oldPrice : 200 },
+  { img : '/src/assets/img/product/5.png', reviews : 4, name: 'Product Name 5', price : 120, oldPrice : 200 },
 
 ]
 
@@ -26,10 +53,6 @@ const apiCategory = [
   { category_id: 7, name: 'Fresh Meat' },
 ]
 
-type CategoryType = {
-  category_id: string | number,
-  name: string,
-}[];
 
 const AllCategory = (props: { categoryList: CategoryType }) => {
 
@@ -92,6 +115,27 @@ const Promotion : FC = () => {
 
 }
 
+const PopularProducts : FC = () => {
+
+  return (
+    <div className="d-flex flex-wrap gap-2">
+      {
+        productsTest.map((product) => <ProductCart {...product} key={product.name}/>)
+      }
+    </div>
+  )
+}
+
+const SortProducts = () => {
+
+  return (
+    <div>
+      {
+        sortProduct.map((product) => <ProductSort {...product} key={product.name}/>)
+      }
+    </div>
+  );
+}
 
 const Section = () => {
 
@@ -105,10 +149,30 @@ const Section = () => {
           </div>
             <About />
             <Promotion />
-            <div className="products-list d-flex gap-2">
-              {
-                productsTest.map((product) => <ProductCart {...product}/>)
-              }
+            <div className="popular-products text-black my-5">
+              <div className="d-flex justify-content-between mb-5">
+                <h4>Popular Products</h4>
+                <div><a href="#" className="fd-btn fw-bold">View All <i className="mdi mdi-right"></i></a></div>
+              </div>
+              <PopularProducts />
+            </div>
+            <div className="day-deals-rated d-flex text-black gap-3" style={{minHeight: "400px"}}>
+              <div className="day-deals w-75 bg-white p-3 shadow">
+                <div className="d-flex border-bottom-2">
+                  <h5>Deals Hot Of The Day</h5>
+                  <div className="deals-direction d-flex gap-2">
+                    <i className="bi bi-left"></i>
+                    <i className="bi bi-right"></i>
+                  </div>
+                </div><hr />
+                <div>
+                  <ProductOfDay {...dailyTest}/>
+                </div>
+              </div>
+              <div className="top-rated bg-white w-25 shadow p-3">
+                <h5>Top Rated Products</h5><hr />
+                <SortProducts />
+              </div>
             </div>
         </div>
       </div>
