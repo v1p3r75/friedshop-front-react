@@ -16,9 +16,10 @@
 body { font-family: "Poppins Regular", sans-serif!important;  margin: 0; padding: 0; color: var(--fd-color-white)!important; background-color: var(--fd-color-bg)!important; }
 ul, li {margin: 0!important; padding: 0!important; list-style: none;}
 a {color: #fff!important; text-decoration: none!important;}
-.fd-color-primary {color: var(--fd-color-primary);} .fd-bg-primary {background-color: var(--fd-color-primary)}
+.fd-color-primary {color: var(--fd-color-primary)!important;} .fd-bg-primary {background-color: var(--fd-color-primary)}
 .fd-color-secondary {color: var(--fd-color-secondary);} .fd-bg-secondary {background-color: var(--fd-color-secondary)}
 .fd-hover-color-primary:hover { color: var(--fd-color-primary)!important} .fd-hover-bg-primary:hover { background-color: var(--fd-color-primary); color: #fff!important}
 .fd-btn { display: block; color: #fff; padding: 10px 20px; background-color: var(--fd-color-primary) }
 .fd-btn-red { display: block; color: #fff; padding: 8px;  background-color: var(--fd-color-red) }
-.w-20 {width: 20!important}
+.w-20 {width: 20!important} .w-30 {width: 30%!important;} .justify-content-space-between {justify-content: space-between;}
+.outline-none {outline: none;}
