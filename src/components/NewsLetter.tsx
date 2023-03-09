@@ -12,7 +12,7 @@ const NewsLetter = () => {
               </div>
           </div>
           <form action="" className='d-flex'>
-                <input type="text" placeholder='ENTER YOUR EMAIL ADDRESS' className='form-control d-block fw-bold bg-dark border-0'/>
+                <input type="text" placeholder='ENTER YOUR EMAIL ADDRESS' className='form-control d-block fw-bold bg-dark border-0 text-white opacity-50'/>
                 <a href="#" className="fd-btn text-white" style={{lineHeight : '50px'}}>SUBSCRIBE</a>
             </form>
       </div>

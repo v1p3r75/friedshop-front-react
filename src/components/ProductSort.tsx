@@ -15,7 +15,7 @@ const ProductSort = (props : ProductType) => {
 
     return (
         <div className="d-flex w-100 gap-3 h-25 mb-3 bg-white">
-            <div className="w-25">
+            <div className="w-25 border-1 border">
                 <img src={props.img} alt={props.name} className="w-100 h-100"/>
             </div>
             <div className="w-75">

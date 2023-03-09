@@ -29,7 +29,7 @@ const ProductOfDay = (props : ProductType) => {
                     <h6 className="align-self-end" style={{textDecoration : "line-through"}}>${props.oldPrice}</h6>
                 </div>
                 <Reviews rating={props.reviews}/>
-                <div className="product-desc">
+                <div className="product-desc fw-bold opacity-75">
                     <p>{props.description}</p>
                 </div>
                 <div className='d-flex gap-2'>

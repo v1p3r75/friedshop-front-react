@@ -14,7 +14,7 @@ const ProductCart = (props : ProductType) => {
     
   
     return (
-        <div className="position-relative bg-white w-20 mt-4" style={{height: "400px"}}>
+        <div className="position-relative bg-white w-20 mt-4 border-1 border" style={{height: "400px"}}>
             <div className="h-75">
                 <img src={props.img} alt={props.name} className="h-100"/>
             </div>

@@ -17,7 +17,7 @@ const SlideShow = (props : {slidesInfo : SlideProps, options? : Object}) => {
   const data = props.slidesInfo;
   
   return (
-    <Carousel autoPlay={true} showArrows={false} showStatus={false} showThumbs={false} swipeable={true}>
+    <Carousel autoPlay={true} showArrows={false} showStatus={false} showThumbs={false} swipeable={true} infiniteLoop={true} interval={3000}>
         { data.map((slide) => {
           return <div className='f-slide position-relative shadow' key={slide.alt}>
             <img src={slide.url} alt={slide.alt} className="w-100 h-100"/>
