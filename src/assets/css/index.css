@@ -21,5 +21,6 @@ a {color: #fff!important; text-decoration: none!important;}
 .fd-hover-color-primary:hover { color: var(--fd-color-primary)!important} .fd-hover-bg-primary:hover { background-color: var(--fd-color-primary); color: #fff!important}
 .fd-btn { display: block; color: #fff; padding: 10px 20px; background-color: var(--fd-color-primary) }
 .fd-btn-red { display: block; color: #fff; padding: 8px;  background-color: var(--fd-color-red) }
-.w-20 {width: 20!important} .w-30 {width: 30%!important;} .justify-content-space-between {justify-content: space-between;}
-.f-content {line-height: 35px;}
+.w-70 {width: 70%!important} .w-30 {width: 30%!important;} .justify-content-space-between {justify-content: space-between;}
+.f-content {line-height: 35px;} .dot {margin: 0 10px 10px 0!important;}
+.control-dots {text-align: start!important; left : 10%!important}

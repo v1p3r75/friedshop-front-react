@@ -12,9 +12,9 @@ type CategoryType = {
 }[];
 
 const apiSlidesInfo = [
-  { url: '/src/assets/img/slider3.jpg', alt: 'Banner 1', text: "<h2>Fresh Food & Healthly Organic Food</h2>" },
-  { url: '/src/assets/img/slider4.jpg', alt: 'Banner 2', text: '' },
-  { url: '/src/assets/img/slider5.jpg', alt: 'Banner 3', text: '' },
+  { url: '/src/assets/img/slider5.jpg', alt: 'Banner 1', text: "<h2>Fresh Food & Healthly Organic Food</h2>" },
+  { url: '/src/assets/img/slider3.jpg', alt: 'Banner 2', text: '' },
+  { url: '/src/assets/img/slider4.jpg', alt: 'Banner 3', text: '' },
 ];
 
 const blogInfo = [
@@ -71,9 +71,9 @@ const apiCategory = [
 
 const AllCategory = (props: { categoryList: CategoryType }) => {
 
-  return <div className="all-category border-1 border-light col-lg-3">
-    <h5 className="fd-bg-primary p-2">ALL CATEGORIES</h5>
-    <div className="category-list d-flex flex-column gap-3 p-2">
+  return <div className="all-category w-25 shadow border-1 border-light p-0">
+    <h6 className="fd-bg-primary p-3 fw-bold rounded-top-3">ALL CATEGORIES</h6>
+    <div className="category-list d-flex flex-column gap-3 py-2 px-3">
       {
         props.categoryList.map((category) => {
           return <div key={category.category_id} className="category text-dark">
@@ -222,9 +222,9 @@ const Section = () => {
   return (
     <section>
       <div className="container-fluid">
-        <div className="row d-lg-flex px-5 my-5">
+        <div className="row d-flex justify-content-between px-5 my-5 gap-3">
           <AllCategory categoryList={apiCategory} />
-          <div className="fd-slideshow col-lg-9 shadow rounded-3 p-0">
+          <div className="fd-slideshow w-70 p-0">
             <SlideShow slidesInfo={apiSlidesInfo} />
           </div>
         </div>
