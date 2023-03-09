@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import DateCount from './DateCount';
 import NumberCount from './NumberCount';
+import Reviews from './Reviews';
 
 type ProductType = {
     img : string,
@@ -27,10 +28,7 @@ const ProductOfDay = (props : ProductType) => {
                     <h3 className="fd-color-primary fw-bold">${props.price}</h3>
                     <h6 className="align-self-end" style={{textDecoration : "line-through"}}>${props.oldPrice}</h6>
                 </div>
-                <div className="products-reviews my-3 d-flex gap-2">
-                    <i className="bi bi-star"></i><i className="bi bi-star"></i><i className="bi bi-star"></i><i className="bi bi-star"></i><i className="bi bi-star"></i>
-                    <span> ( <i>20</i> Reviews )</span>
-                </div>
+                <Reviews rating={props.reviews}/>
                 <div className="product-desc">
                     <p>{props.description}</p>
                 </div>

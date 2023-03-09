@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import Reviews from './Reviews';
 
 type ProductType = {
     img : string,
@@ -21,10 +22,10 @@ const ProductCart = (props : ProductType) => {
             <a className="position-absolute top-0 start-0 fd-btn-red" style={{padding: '5px 20px'}}> {props.reduction} </a>
            }
            <a className="position-absolute fd-btn rounded-5" style={{padding: '5px 10px', top: '10px', right: '10px'}}> <i className="bi bi-heart"></i></a>
-           <div className="products-reviews d-flex justify-content-center gap-2">
-            <i className="bi bi-star"></i><i className="bi bi-star"></i><i className="bi bi-star"></i><i className="bi bi-star"></i><i className="bi bi-star"></i>
-           </div>
-           <h5 className="product-name my-2 text-center">{props.name}</h5>
+           <h6 className="product-name my-2 fw-bold text-center">{props.name}</h6>
+           <div className='d-flex justify-content-center'>
+               <Reviews rating={props.reviews}/>
+            </div>
            <div className="d-flex justify-content-center">
             <h5 className="fd-color-primary">${props.price}</h5>
             <h6 className="align-self-end" style={{textDecoration : "line-through"}}>${props.oldPrice}</h6>

@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 
-const Reviews = () => {
+const Reviews = ({rating} : {rating : number}) => {
+
+    let content = document.createElement('div');
+    const star = document.createElement('i');
+    star.classList.add('bi', 'bi-star');
+
+    for (let i = 0; i < 5; i++) {
+        content.appendChild(star);
+    }
 
 
     return (

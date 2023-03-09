@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import Reviews from './Reviews';
 
 type ProductType = {
     img : string,
@@ -18,10 +19,8 @@ const ProductSort = (props : ProductType) => {
                 <img src={props.img} alt={props.name} className="w-100 h-100"/>
             </div>
             <div className="w-75">
-                <span className="product-name my-2 fw-bold opacity-75">{props.name}</span>
-                <div className="products-reviews d-flex gap-2">
-                    <i className="bi bi-star"></i><i className="bi bi-star"></i><i className="bi bi-star"></i><i className="bi bi-star"></i><i className="bi bi-star"></i>
-                </div>
+                <h6 className="product-name my-2 fw-bold opacity-75">{props.name}</h6>
+                <Reviews rating={props.reviews}/>
                 <div className="d-flex">
                     <span className="fd-color-primary fw-bold me-1">${props.price}</span>
                     <span className="align-self-end" style={{textDecoration : "line-through"}}>${props.oldPrice}</span>
