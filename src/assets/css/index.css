@@ -22,4 +22,4 @@ a {color: #fff!important; text-decoration: none!important;}
 .fd-btn { display: block; color: #fff; padding: 10px 20px; background-color: var(--fd-color-primary) }
 .fd-btn-red { display: block; color: #fff; padding: 8px;  background-color: var(--fd-color-red) }
 .w-20 {width: 20!important} .w-30 {width: 30%!important;} .justify-content-space-between {justify-content: space-between;}
-.outline-none {outline: none;}
+.f-content {line-height: 35px;}
