@@ -18,9 +18,11 @@ ul, li {margin: 0!important; padding: 0!important; list-style: none;}
 a {color: #fff!important; text-decoration: none!important;}
 .fd-color-primary {color: var(--fd-color-primary)!important;} .fd-bg-primary {background-color: var(--fd-color-primary)}
 .fd-color-secondary {color: var(--fd-color-secondary);} .fd-bg-secondary {background-color: var(--fd-color-secondary)}
-.fd-hover-color-primary:hover { color: var(--fd-color-primary)!important} .fd-hover-bg-primary:hover { background-color: var(--fd-color-primary); color: #fff!important}
+.fd-hover-color-primary:hover { color: var(--fd-color-primary)!important} .fd-hover-bg-primary:hover { background-color: var(--fd-color-primary)!important; color: #fff!important}
+.fd-hover-border-primary:hover {border-color: var(--fd-color-primary)!important}
 .fd-btn { display: block; color: #fff; padding: 10px 20px; background-color: var(--fd-color-primary) }
 .fd-btn-red { display: block; color: #fff; padding: 8px;  background-color: var(--fd-color-red) }
 .w-70 {width: 70%!important} .w-30 {width: 30%!important;} .justify-content-space-between {justify-content: space-between;}
-.f-content {line-height: 35px;} .dot {margin: 0 10px 10px 0!important;}
+.f-content {line-height: 35px;} .dot {margin: 0 10px 10px 0!important;} .cursor-pointer {cursor: pointer}
 .control-dots {text-align: start!important; left : 10%!important}
+.product-cart:hover .show {display: block!important}

@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import { Link } from 'react-router-dom';
 
 type BlogType = {
     date : string,
@@ -21,14 +22,14 @@ const Blog = (props : BlogType) => {
                 </div>
             </div>
            <div className='p-3'>
-            <h6 className='fw-bold'>{props.title}</h6>
+           <Link to={"/blog/1"} className="blog-title my-2 fw-bold text-dark">{props.title}</Link>
             <p className='opacity-75'>{props.content}</p>
             <div className="d-flex justify-content-between">
                 <div className='d-flex gap-2'>
                     <img src={props.authorImg} alt={props.authorName} className="rounded-5" style={{width : '40px', height : '40px'}}/>
                     <h6 className='align-self-center'>{props.authorName}</h6>
                 </div>
-                <a href="#" className="fd-btn rounded-5 p-2 px-3 text-center"> <i className="bi bi-plus"></i> </a>
+                <Link to={"/blog/1"} className="fd-btn rounded-5 p-2 px-3 text-center">More</Link>
             </div>
            </div>
         </div>

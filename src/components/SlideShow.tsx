@@ -12,7 +12,7 @@ type SlideOptions = {
   status : boolean
 }
 
-const SlideShow = (props : {slidesInfo : SlideProps, options? : Object}) => {
+const SlideShow = (props : {slidesInfo : SlideProps, options? : {}}) => {
   
   const data = props.slidesInfo;
   
@@ -25,7 +25,7 @@ const SlideShow = (props : {slidesInfo : SlideProps, options? : Object}) => {
               <div>
                 <h1 className='fw-bold'>Fresh Food & Healthly Organic Foods</h1>
                 <h5 className='my-3 fw-bold'>Free Shipping on all Your Order</h5>
-                <a href="#" className="fd-btn w-30 p-3">SHOP NOW</a>
+                <a href="#" className="fd-btn w-30 p-3">SHOP NOW <i className="bi bi-angle-right"></i></a>
               </div>
             </div>
           </div>
