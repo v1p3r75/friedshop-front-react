@@ -61,3 +61,13 @@
     { category_id: 7, name: 'Fresh Meat' },
   ]
   
+  export const archives = [
+    
+    { archive_id: 1, date: 'September 2021' },
+    { archive_id: 2, date: 'October 2020' },
+    { archive_id: 3, date: 'July 2019' },
+    { archive_id: 4, date: 'September 2021' },
+    { archive_id: 5, date: 'October 2020' },
+    { archive_id: 6, date: 'July 2019' },
+
+  ]

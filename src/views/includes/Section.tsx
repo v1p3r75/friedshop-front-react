@@ -6,19 +6,24 @@ import ProductOfDay from '../../components/ProductOfDay';
 import Blog from '../../components/Blog';
 import Testimonial from '../../components/Testimonial';
 import  {CategoryType, apiCategory, apiSlidesInfo, blogInfo, testimonialInfo, productsTest, dailyTest, sortProduct} from '../VitualData';
+import { Link } from 'react-router-dom';
 
+
+const Category = ({category, arrow = 'left'} : {category : any, arrow? : string}) => {
+  return <div key={category.category_id} className="category text-dark">
+        {arrow === 'left' ? <i className='bi bi-caret-right me-2'></i> : null}
+        <Link to={"/"} className='text-dark'>{category.name}</Link>
+        {arrow === 'right' ? <i className='bi bi-caret-right float-end opacity-75 me-2'></i> : null}
+    </div>
+}
 
 const AllCategory = (props: { categoryList: CategoryType }) => {
 
   return <div className="all-category w-25 shadow border-1 border-light p-0">
     <h6 className="fd-bg-primary p-3 fw-bold rounded-top-3">ALL CATEGORIES</h6>
-    <div className="category-list d-flex flex-column gap-3 py-2 px-3">
+    <div className="category-list d-flex flex-column gap-4 py-2 px-3">
       {
-        props.categoryList.map((category) => {
-          return <div key={category.category_id} className="category text-dark">
-            <span>{category.name}</span>
-          </div>
-        })
+        props.categoryList.map((category) => <Category category={category} arrow='right' key={category.category_id}/>)
       }
     </div>
   </div>
@@ -31,19 +36,19 @@ const About : FC = () => {
       <div className="container-fluid">
         <div className="row">
           <div className="col-3 d-flex gap-2">
-            <div className='w-25 text-center align-self-center'><i className="bi bi-heart fa-2x bg-"></i></div>
+            <div className='w-25 text-center align-self-center'><i className="bi bi-bus-front fa-2x bg-"></i></div>
             <div><h6 className='fw-bold'>Free Shipping</h6><span className="font-light opacity-75">Free UK shipping when you spend £30.</span></div>
           </div>
           <div className="col-3 d-flex gap-2">
-            <div className='w-25 text-center align-self-center'><i className="bi bi-heart fa-2x bg-"></i></div>
+            <div className='w-25 text-center align-self-center'><i className="bi bi-flower2 fa-2x bg-"></i></div>
             <div><h6 className='fw-bold'>Get Fresh Products</h6><span className="font-light opacity-75">Find a range of best online organic food.</span></div>
           </div>
           <div className="col-3 d-flex gap-2">
-            <div className='w-25 text-center align-self-center'><i className="bi bi-heart fa-2x bg-"></i></div>
+            <div className='w-25 text-center align-self-center'><i className="bi bi-currency-dollar fa-2x bg-"></i></div>
             <div><h6 className='fw-bold'>Moneyback Offer</h6><span className="font-light opacity-75">Free UK shipping when you spend £30.</span></div>
           </div>
           <div className="col-3 d-flex gap-2">
-            <div className='w-25 text-center align-self-center'><i className="bi bi-shield-fill fa-2x bg-"></i></div>
+            <div className='w-25 text-center align-self-center'><i className="bi bi-shield-x fa-2x bg-"></i></div>
             <div><h6 className='fw-bold'>Safe Payment</h6><span className="font-light opacity-75">We are using secure payment methods.</span></div>
           </div>
         </div>
@@ -105,10 +110,10 @@ const Promotion3 = () => {
 }
 
 
-const PopularProducts = () => {
+const PopularProducts = ( {grid = 3} : {grid? : number} ) => {
 
   return (
-    <div className="d-flex flex-wrap gap-5">
+    <div className={"d-grid grid-" + grid + " gap-5"}>
       {
         productsTest.map((product) => <ProductCart {...product} key={product.name}/>)
       }
@@ -178,7 +183,7 @@ const Section = () => {
                 <h4>Popular Products</h4>
                 <div><a href="#" className="fd-btn fw-bold">View All <i className="mdi mdi-right"></i></a></div>
               </div>
-              <PopularProducts />
+              <PopularProducts grid={4} />
             </div>
             <div className="day-deals-rated d-flex text-black gap-3" style={{minHeight: "400px"}}>
               <div className="day-deals w-75 bg-white p-3 border-1 border">
@@ -219,7 +224,7 @@ const Section = () => {
                 <h4>Featured Products</h4>
                 <div><a href="#" className="fd-btn fw-bold">View All <i className="mdi mdi-right"></i></a></div>
               </div>
-              <PopularProducts />
+              <PopularProducts grid={4} />
             </div>
           </div>
           <MakeCall />
@@ -242,4 +247,4 @@ const Section = () => {
   )
 }
 
-export { Section, PopularProducts };
+export { Section, PopularProducts, SortProducts, Category};

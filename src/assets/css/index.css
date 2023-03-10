@@ -13,6 +13,7 @@
 
 }
 
+* {outline: none;}
 body { font-family: "Poppins Regular", sans-serif!important;  margin: 0; padding: 0; color: var(--fd-color-white)!important; background-color: var(--fd-color-bg)!important; }
 ul, li {margin: 0!important; padding: 0!important; list-style: none;}
 a {color: #fff!important; text-decoration: none!important;}
@@ -26,3 +27,4 @@ a {color: #fff!important; text-decoration: none!important;}
 .f-content {line-height: 35px;} .dot {margin: 0 10px 10px 0!important;} .cursor-pointer {cursor: pointer}
 .control-dots {text-align: start!important; left : 10%!important}
 .product-cart:hover .show {display: block!important}
+.grid-3 { grid-template-columns: 3fr 3fr 3fr;} .grid-4 { grid-template-columns: 3fr 3fr 3fr 3fr;}
