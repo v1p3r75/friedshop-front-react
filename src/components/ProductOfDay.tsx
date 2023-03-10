@@ -27,11 +27,11 @@ const ProductOfDay = (props: ProductType) => {
             <div className="w-75">
                 <DateCount />
                 <Link to={"/product/1"} className="product-name my-2 fw-bold text-dark">{props.name}</Link>
-                <div className="d-flex gap-1">
+                <div className="d-flex gap-1 mt-2">
                     <h3 className="fd-color-primary fw-bold">${props.price}</h3>
                     <h6 className="align-self-end" style={{ textDecoration: "line-through" }}>${props.oldPrice}</h6>
                 </div>
-                <Reviews rating={props.reviews} />
+                <div className="my-3 d-flex gap-2"><Reviews rating={props.reviews} /><span className='fd-color-primary'>(25 Reviews)</span></div>
                 <div className="product-desc fw-bold opacity-75">
                     <p>{props.description}</p>
                 </div>

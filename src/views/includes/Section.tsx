@@ -181,17 +181,17 @@ const Section = () => {
             <div className="popular-products text-black my-5">
               <div className="d-flex justify-content-between mb-5">
                 <h4>Popular Products</h4>
-                <div><a href="#" className="fd-btn fw-bold">View All <i className="mdi mdi-right"></i></a></div>
+                <div><a href="#" className="fd-btn fw-bold">View All <i className="bi bi-arrow-right"></i></a></div>
               </div>
               <PopularProducts grid={4} />
             </div>
             <div className="day-deals-rated d-flex text-black gap-3" style={{minHeight: "400px"}}>
               <div className="day-deals w-75 bg-white p-3 border-1 border">
-                <div className="d-flex border-bottom-2">
+                <div className="d-flex justify-content-between border-bottom-2">
                   <h5>Deals Hot Of The Day</h5>
                   <div className="deals-direction d-flex gap-2">
-                    <i className="bi bi-left"></i>
-                    <i className="bi bi-right"></i>
+                    <a href='#' className='text-dark'><i className="bi bi-arrow-left"></i></a>
+                    <a href='#' className='text-dark'><i className="bi bi-arrow-right"></i></a>
                   </div>
                 </div><hr />
                 <div>
@@ -222,7 +222,7 @@ const Section = () => {
             <div className="featured-products text-black my-5">
               <div className="d-flex justify-content-between mb-5">
                 <h4>Featured Products</h4>
-                <div><a href="#" className="fd-btn fw-bold">View All <i className="mdi mdi-right"></i></a></div>
+                <div><a href="#" className="fd-btn fw-bold">View All <i className="bi bi-arrow-right"></i></a></div>
               </div>
               <PopularProducts grid={4} />
             </div>
@@ -231,14 +231,14 @@ const Section = () => {
         <div className="blog-news text-black px-5 my-5">
           <div className="d-flex justify-content-between mb-5">
             <h4>Latest Blog & News</h4>
-            <div><a href="#" className="fd-btn fw-bold">View All <i className="mdi mdi-right"></i></a></div>
+            <div><a href="#" className="fd-btn fw-bold">View All <i className="bi bi-arrow-right"></i></a></div>
           </div>
           <BlogAndNews />
         </div>
         <div className="testimonials text-black px-5 my-5">
           <div className="d-flex justify-content-between">
             <h4>Our Awesome Testimonial</h4>
-            <div><a href="#" className="fd-btn fw-bold">View All <i className="mdi mdi-right"></i></a></div>
+            <div><a href="#" className="fd-btn fw-bold">View All <i className="bi bi-arrow-right"></i></a></div>
           </div>
           <Testimonials />
         </div>
