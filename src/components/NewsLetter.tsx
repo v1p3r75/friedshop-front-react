@@ -5,7 +5,7 @@ const NewsLetter = () => {
   return (
       <div className='fd-bg-secondary d-flex justify-content-between p-5'>
           <div className='d-flex gap-2'>
-              <div className='align-self-center'><i className='bi bi-envelope fa-3x'></i></div>
+              <div className='align-self-center'><img src="/src/assets/img/subscribe.png" alt="subscribe img" /></div>
               <div>
                   <h5 className='fw-bold'>Newsletter</h5>
                   <p className="opacity-75">Subscribe here to get every single updates</p>

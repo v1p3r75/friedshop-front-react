@@ -18,11 +18,11 @@ const Testimonial = (props : TestimonialType) => {
                     <div><img src={props.authorImg} className="rounded-5" style={{width : '50px', height : '50px'}}/></div>
                     <div className="authorNames align-self-center">
                         <h5>{props.authorName}</h5>
-                        <Reviews />
+                        <Reviews rating={5}/>
                     </div>
                 </div>
                 <div>
-                    <i className="bi bi-quotes fa-3x"></i>
+                    <img src="/src/assets/img/qoute.png" alt="" />
                 </div>
             </div>
             <p className='my-3 opacity-75 fw-bold'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam velit, amet consequatur illum culpa a ut dolorum cum. Debitis molestias tempora ut nostrum dicta mollitia officia illum, eos nobis eligendi!</p>

@@ -29,7 +29,7 @@ const Blog = (props : BlogType) => {
                     <img src={props.authorImg} alt={props.authorName} className="rounded-5" style={{width : '40px', height : '40px'}}/>
                     <h6 className='align-self-center'>{props.authorName}</h6>
                 </div>
-                <Link to={"/blog/1"} className="fd-btn rounded-5 p-2 px-3 text-center">More</Link>
+                <Link to={"/blog/1"} className="fd-btn rounded-5 p-2 px-3 text-center"><i className="bi bi-arrow-right"></i></Link>
             </div>
            </div>
         </div>

@@ -41,7 +41,7 @@ const Header = () => {
                                 <Link to={'/'} className="navbar-link fd-hover-color-primary text-dark">Home</Link>
                             </li>
                             <li className="navbar-item">
-                                <Link to={'/'} className="navbar-link fd-hover-color-primary text-dark">Shop</Link>
+                                <Link to={'/shop'} className="navbar-link fd-hover-color-primary text-dark">Shop</Link>
                             </li>
                             <li className="navbar-item">
                                 <Link to={'/'} className="navbar-link fd-hover-color-primary text-dark">Blog</Link>

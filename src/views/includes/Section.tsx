@@ -83,7 +83,7 @@ const Promotion2 = () => {
       <h2>SUMMER SALE</h2>
       <h1 className='fw-bold'><span className='fd-color-primary'>39%</span> OFF</h1>
       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab explicabo voluptatem iste, sequi qua.</p>
-      <a href="#" className='fd-btn w-50 rounded-5 text-center'>Shop now</a>
+      <a href="#" className='fd-btn w-50 rounded-5 text-center'>Shop now <i className="bi bi-arrow-right"></i></a>
     </div>
   </div>
 }
@@ -99,7 +99,7 @@ const Promotion3 = () => {
       <h4>85% Hat Free</h4>
       <h3>Low-Fat Meet</h3>
       <h4 className='fw-bold my-3'>Started at <span className='fd-color-primary'>$79.99</span></h4>
-      <a href="#" className='fd-btn w-50 rounded-5 text-center'>Shop now</a>
+      <a href="#" className='fd-btn w-50 rounded-5 text-center'>Shop now <i className="bi bi-arrow-right"></i></a>
     </div>
   </div>
 }
@@ -242,4 +242,4 @@ const Section = () => {
   )
 }
 
-export { Section };
+export { Section, PopularProducts };
