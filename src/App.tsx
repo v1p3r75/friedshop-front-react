@@ -6,6 +6,7 @@ import SignUp from "./views/SignUp"
 import PageNotFound from "./views/PageNotFound"
 import Shop from "./views/Shop"
 import ViewProduct from "./views/ViewProduct"
+import BlogPage from "./views/BlogPage"
 
 function App() {
 
@@ -13,10 +14,11 @@ function App() {
     <Routes>
 
       <Route path="/" element={<Home />}></Route>
+      <Route path="/shop" element={<Shop />}></Route>
+      <Route path="/blog" element={<BlogPage />}></Route>
       <Route path="/login" element={<Login />}></Route>
       <Route path="/signup" element={<SignUp />}></Route>
       <Route path="/reset-password" element={<ForgotPassword />}></Route>
-      <Route path="/shop" element={<Shop />}></Route>
       <Route path="/product/:id" element={<ViewProduct />}></Route>
       <Route path="*" element={<PageNotFound />}></Route>
 
