@@ -13,6 +13,7 @@ import ShoppingCart from "./views/ShoppingCart"
 import Checkout from "./views/Checkout"
 import TeamMembers from "./views/TeamMembers"
 import PostView from "./views/PostView"
+import UserAccount from "./views/UserAccount"
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
       <Route path="/signup" element={<SignUp />}></Route>
       <Route path="/reset-password" element={<ForgotPassword />}></Route>
       <Route path="/product/:id" element={<ViewProduct />}></Route>
+      <Route path="/myaccount" element={<UserAccount />}></Route>
       <Route path="*" element={<PageNotFound />}></Route>
 
     </Routes>

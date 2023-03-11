@@ -28,4 +28,5 @@ a {color: #fff!important; text-decoration: none!important;}
 .control-dots {text-align: start!important; left : 10%!important} .p-custom {padding: 5px 20px}
 .product-cart:hover .show {display: block!important}
 .grid-3 { grid-template-columns: 3fr 3fr 3fr;} .grid-4 { grid-template-columns: 3fr 3fr 3fr 3fr;} .z-1 { z-index: 1}
-.p-color {display: block; width : 20px; height : 20px; border-radius : 30px; cursor: pointer};
+.p-color {display: block; width : 20px; height : 20px; border-radius : 30px; cursor: pointer}
+.user-page a:focus {background-color: var(--fd-color-primary)!important; color : #fff!important}

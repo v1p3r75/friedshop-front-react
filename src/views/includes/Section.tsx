@@ -11,9 +11,9 @@ import { Link } from 'react-router-dom';
 
 const Category = ({category, arrow = 'left'} : {category : any, arrow? : string}) => {
   return <div key={category.category_id} className="category text-dark">
-        {arrow === 'left' ? <i className='bi bi-caret-right me-2'></i> : null}
+        {arrow === 'left' ? <i className='bi bi-chevron-double-right me-2'></i> : null}
         <Link to={"/"} className='text-dark'>{category.name}</Link>
-        {arrow === 'right' ? <i className='bi bi-caret-right float-end opacity-75 me-2'></i> : null}
+        {arrow === 'right' ? <i className='bi bi-chevron-right float-end opacity-75 me-2'></i> : null}
     </div>
 }
 

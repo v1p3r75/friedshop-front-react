@@ -37,7 +37,7 @@ const ContactUs = () => {
                     </div>
                     <div className='position-relative w-100 mb-4'>
                         <textarea name="description" id="usernameMessage" cols={100} rows={10} placeholder='Write Message...' className='w-100 p-2 border'></textarea>
-                        <div className="position-absolute fd-color-primary" style={{top : '5%', right: '1%'}}><i className="bi bi-phone"></i></div>
+                        <div className="position-absolute fd-color-primary" style={{top : '5%', right: '1%'}}><i className="bi bi-pen"></i></div>
                     </div>
                     <div><a href="#" className="fd-btn w-25 text-center">SEND MESSAGE</a></div>
                 </form>

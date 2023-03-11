@@ -9,7 +9,7 @@ const Archives = () => {
         <h5 className='fw-bold'>Archives</h5>
         { archives.map((archives) => {
             return <div key={archives.archive_id} className="archive text-dark mt-3">
-                <span><i className='bi bi-caret-right me-2'></i><Link to={"/"} className='text-dark fw-bold opacity-75'>{archives.date}</Link></span>
+                <span><i className='bi bi-chevron-double-right me-2'></i><Link to={"/"} className='text-dark fw-bold opacity-75'>{archives.date}</Link></span>
             </div>
         })}
     </div>
