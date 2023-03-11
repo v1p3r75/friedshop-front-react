@@ -132,10 +132,10 @@ const SortProducts = () => {
   );
 }
 
-const BlogAndNews = () => {
+const BlogAndNews = ({grid = 3} : {grid? : number}) => {
 
   return (
-    <div className='d-flex gap-3 justify-content-space-between'>
+    <div className={'d-grid grid-'+ grid + ' justify-content-space-between gap-3'}>
       {
         blogInfo.map((blog) => <Blog {...blog} key={blog.blod_id}/>)
       }

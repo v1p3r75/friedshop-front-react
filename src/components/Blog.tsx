@@ -14,7 +14,7 @@ const Blog = (props : BlogType) => {
     
   
     return (
-        <div className="blog-article border border-1 bg-white w-30">
+        <div className="blog-article border border-1 bg-white">
             <div className="position-relative h-50">
                 <img src={props.img} className="w-100 h-100"/>
                 <div className="position-absolute bottom-0 start-0 bg-white text-black px-4 py-2">
