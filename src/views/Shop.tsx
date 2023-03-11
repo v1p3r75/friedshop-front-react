@@ -6,6 +6,7 @@ import { Category, PopularProducts, SortProducts } from './includes/Section'
 import SearchBar from '../components/SearchBar'
 import { apiCategory } from './VitualData'
 import Tags from '../components/Tags'
+import Archives from '../components/Archives'
 
 const Shop = () => {
 
@@ -59,6 +60,7 @@ const Shop = () => {
                 <SortProducts />
             </div>
             <Tags />
+            <Archives />
           </aside>
         </div>
         <Footer />

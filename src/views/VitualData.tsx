@@ -72,6 +72,20 @@
 
   ]
 
+  export const tags = [
+    
+    { tag_id: 1, name: 'PASTA' },
+    { tag_id: 2, name: 'RICE' },
+    { tag_id: 3, name: 'JUICE' },
+    { tag_id: 4, name: 'NATURAL' },
+    { tag_id: 5, name: 'FOOD' },
+    { tag_id: 6, name: 'GRADE' },
+    { tag_id: 7, name: 'NATURAL' },
+    { tag_id: 8, name: 'FOOD' },
+    { tag_id: 9, name: 'GRADE' },
+
+  ]
+
   export const teams = [
     {team_id : 1, img : '/src/assets/img/team/1.jpg', name: 'Fortunatus KIDJE', role : 'Web Developer'},
     {team_id : 2, img : '/src/assets/img/team/2.jpg', name: 'Fortunatus KIDJE', role : 'Designer'},

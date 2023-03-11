@@ -1,17 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { archives } from '../views/VitualData'
+import { tags } from '../views/VitualData'
 
 const Tags = () => {
 
   return (
-    <div className="w-100 p-4 text-black bg-white fd-hover-border-primary border border-1">
-        <h5 className='fw-bold'>Archives</h5>
-        { archives.map((archives) => {
-            return <div key={archives.archive_id} className="archive text-dark mt-3">
-                <span><i className='bi bi-caret-right me-2'></i><Link to={"/"} className='text-dark fw-bold opacity-75'>{archives.date}</Link></span>
-            </div>
-        })}
+    <div className="w-100 p-4 text-black bg-white fd-hover-border-primary border border-1 mb-4">
+        <h5 className='fw-bold'>Tags</h5>
+        <div className='d-flex flex-wrap gap-2'>
+          { tags.map((tag) => {
+              return <div key={tag.tag_id} className="tags text-dark mt-3">
+                  <span><Link to={"/"} className='text-dark fw-bold opacity-75 p-2 border border-1'>{tag.name}</Link></span>
+              </div>
+          })}
+        </div>
+        
     </div>
   )
 }
