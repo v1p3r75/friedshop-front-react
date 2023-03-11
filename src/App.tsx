@@ -10,6 +10,7 @@ import BlogPage from "./views/BlogPage"
 import WishList from "./views/WishList"
 import ContactUs from "./views/ContactUs"
 import ShoppingCart from "./views/ShoppingCart"
+import Checkout from "./views/Checkout"
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
       <Route path="/wishlist" element={<WishList />}></Route>
       <Route path="/blog" element={<BlogPage />}></Route>
       <Route path="/cart" element={<ShoppingCart />}></Route>
+      <Route path="/checkout" element={<Checkout />}></Route>
       <Route path="/contact" element={<ContactUs />}></Route>
       <Route path="/login" element={<Login />}></Route>
       <Route path="/signup" element={<SignUp />}></Route>
