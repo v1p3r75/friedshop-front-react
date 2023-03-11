@@ -7,6 +7,7 @@ import PageNotFound from "./views/PageNotFound"
 import Shop from "./views/Shop"
 import ViewProduct from "./views/ViewProduct"
 import BlogPage from "./views/BlogPage"
+import WishList from "./views/WishList"
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
 
       <Route path="/" element={<Home />}></Route>
       <Route path="/shop" element={<Shop />}></Route>
+      <Route path="/wishlist" element={<WishList />}></Route>
       <Route path="/blog" element={<BlogPage />}></Route>
       <Route path="/login" element={<Login />}></Route>
       <Route path="/signup" element={<SignUp />}></Route>
