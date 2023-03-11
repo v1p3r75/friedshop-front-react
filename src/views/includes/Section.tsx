@@ -110,12 +110,12 @@ const Promotion3 = () => {
 }
 
 
-const PopularProducts = ( {grid = 3} : {grid? : number} ) => {
+const PopularProducts = ( {grid = 3, type = 'grid'} : {grid? : number | boolean, type?: string} ) => {
 
   return (
-    <div className={"d-grid grid-" + grid + " gap-5"}>
+    <div className={ type === 'list' ? "test" : "d-grid grid-" + grid + " gap-5"}>
       {
-        productsTest.map((product) => <ProductCart {...product} key={product.name}/>)
+        productsTest.map((product) => <ProductCart {...product} type={type} key={product.name}/>)
       }
     </div>
   )

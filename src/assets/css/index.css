@@ -25,7 +25,7 @@ a {color: #fff!important; text-decoration: none!important;}
 .fd-btn-red { display: block; color: #fff; padding: 8px;  background-color: var(--fd-color-red) }
 .w-70 {width: 70%!important} .w-30 {width: 30%!important;} .justify-content-space-between {justify-content: space-between;}
 .f-content {line-height: 35px;} .dot {margin: 0 10px 10px 0!important;} .cursor-pointer {cursor: pointer}
-.control-dots {text-align: start!important; left : 10%!important}
+.control-dots {text-align: start!important; left : 10%!important} .p-custom {padding: 5px 20px}
 .product-cart:hover .show {display: block!important}
-.grid-3 { grid-template-columns: 3fr 3fr 3fr;} .grid-4 { grid-template-columns: 3fr 3fr 3fr 3fr;}
+.grid-3 { grid-template-columns: 3fr 3fr 3fr;} .grid-4 { grid-template-columns: 3fr 3fr 3fr 3fr;} .z-1 { z-index: 1}
 .p-color {display: block; width : 20px; height : 20px; border-radius : 30px; cursor: pointer};

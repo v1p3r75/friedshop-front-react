@@ -43,7 +43,7 @@ const Shop = () => {
                 </div>
               </nav>
             </div>
-            <PopularProducts />
+            <PopularProducts type={type} />
           </div>
           <aside className='w-25'>
             <SearchBar />
