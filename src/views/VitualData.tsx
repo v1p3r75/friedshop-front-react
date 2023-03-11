@@ -71,3 +71,12 @@
     { archive_id: 6, date: 'July 2019' },
 
   ]
+
+  export const teams = [
+    {team_id : 1, img : '/src/assets/img/team/1.jpg', name: 'Fortunatus KIDJE', role : 'Web Developer'},
+    {team_id : 2, img : '/src/assets/img/team/2.jpg', name: 'Fortunatus KIDJE', role : 'Designer'},
+    {team_id : 3, img : '/src/assets/img/team/3.jpg', name: 'Fortunatus KIDJE', role : 'Frontend Developer'},
+    {team_id : 4, img : '/src/assets/img/team/4.jpg', name: 'Fortunatus KIDJE', role : 'Backend Developer'},
+    {team_id : 5, img : '/src/assets/img/team/5.jpg', name: 'Fortunatus KIDJE', role : 'Project Manager'},
+    {team_id : 6, img : '/src/assets/img/team/6.jpg', name: 'Fortunatus KIDJE', role : 'DevOps'},
+  ]

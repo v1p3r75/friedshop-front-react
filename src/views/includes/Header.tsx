@@ -57,7 +57,7 @@ const Header = () => {
                                 <Link to={'/contact'} className="navbar-link fd-hover-color-primary text-dark">Contact US</Link>
                             </li>
                             <li className="navbar-item">
-                                <Link to={'/'} className="navbar-link fd-hover-color-primary text-dark">Faq</Link>
+                                <Link to={'/teams'} className="navbar-link fd-hover-color-primary text-dark">Teams</Link>
                             </li>
                         </ul>
                     </div>

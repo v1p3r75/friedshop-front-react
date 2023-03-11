@@ -11,6 +11,7 @@ import WishList from "./views/WishList"
 import ContactUs from "./views/ContactUs"
 import ShoppingCart from "./views/ShoppingCart"
 import Checkout from "./views/Checkout"
+import TeamMembers from "./views/TeamMembers"
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
       <Route path="/cart" element={<ShoppingCart />}></Route>
       <Route path="/checkout" element={<Checkout />}></Route>
       <Route path="/contact" element={<ContactUs />}></Route>
+      <Route path="/teams" element={<TeamMembers />}></Route>
       <Route path="/login" element={<Login />}></Route>
       <Route path="/signup" element={<SignUp />}></Route>
       <Route path="/reset-password" element={<ForgotPassword />}></Route>

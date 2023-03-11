@@ -8,7 +8,7 @@ const Footer = () => {
         <footer className='mt-5'>
             <NewsLetter />
             <div className='footer-content bg-black gap-3 p-5'>
-                <div className="f-content d-flex justify-content-space-between">
+                <div className="f-content d-flex flex-wrap justify-content-space-between">
                     <div className="contacts w-20">
                         <h5 className='my-5'>Our Address</h5>
                         <div className="opacity-75">
