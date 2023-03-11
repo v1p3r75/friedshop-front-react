@@ -33,7 +33,7 @@ const WishList = () => {
                                         <td>{product.price}</td>
                                         <td>{"In Stock"}</td>
                                         <td><a href="#" className="fd-btn rounded-5 w-50 mx-auto">ADD TO CART</a></td>
-                                        <td className='fw-bold cursor-pointer'>x</td>
+                                        <td className='fw-bold cursor-pointer'><i className="bi bi-x" style={{lineHeight: '50px'}}></i></td>
                                     </tr>
                                 )
                             })

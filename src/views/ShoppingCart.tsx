@@ -36,7 +36,7 @@ const ShoppingCart = () => {
                       <td>{product.price}</td>
                       <td>$250</td>
                       <td className='d-flex justify-content-center'><NumberCount min={1}/></td>
-                      <td className='fw-bold cursor-pointer'>x</td>
+                      <td className='cursor-pointer'><i className="bi bi-x" style={{lineHeight: '50px'}}></i></td>
                     </tr>
                   )
                 })

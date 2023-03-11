@@ -23,11 +23,11 @@ const SimpleProduct = (props : ProductType) => {
                 <div className='d-flex justify-content-between'>
                     <div className="d-flex mt-2 gap-2">
                         <span className="fd-color-primary fw-bold me-1">{'$50'}</span>
-                        <span>x</span>
+                        <span><i className="bi bi-x"></i></span>
                         <span>{3}</span>
                     </div>
                     <div className="close-btn me-4 fd-bg-primary text-white text-center rounded-5 cursor-pointer" style={{width : '30px', height: '30px'}}>
-                        <span>x</span>
+                        <span><i className="bi bi-x" style={{lineHeight: '30px'}}></i></span>
                     </div>
                 </div>
             </div>
