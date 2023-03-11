@@ -2,6 +2,7 @@ import React from 'react'
 import Reviews from './Reviews'
 import NumberCount from './NumberCount'
 import { PopularProducts } from '../views/includes/Section'
+import { Carousel } from 'react-responsive-carousel'
 
 const ProductDetails = ({id} : {id? : string | number}) => {
 
@@ -11,7 +12,14 @@ const ProductDetails = ({id} : {id? : string | number}) => {
     <div className='view-product px-5'>
         <div className="details-generals border border-1 fd-hover-border-primary bg-white d-flex text-black p-5 gap-2 mt-5" style={{minHeight : '400px'}}>
             <div className='p-img w-50'>
-                <div className="product-img h-50"><img src="/src/assets/img/product/6.png" alt="" className="w-75" style={{width : '80%'}}/></div>
+                <div className="product-img h-50">
+                    <Carousel showArrows={false} showIndicators={false} swipeable={true}>
+                        <div className="others-img"><img src={"/src/assets/img/product/6.png"} alt="Alt" /></div>
+                        <div className="others-img"><img src={"/src/assets/img/product/2.png"} alt="Alt" /></div>
+                        <div className="others-img"><img src={"/src/assets/img/product/3.png"} alt="Alt" /></div>
+                        <div className="others-img"><img src={"/src/assets/img/product/5.png"} alt="Alt" /></div>
+                    </Carousel>
+                </div>
             </div>
             <div className="p-details w-50">
                 <div className='d-flex gap-2'><Reviews rating={5}/><span className='fd-color-primary'>(25 Reviews)</span></div>
