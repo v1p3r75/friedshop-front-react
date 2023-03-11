@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Link } from 'react-router-dom';
 
-type BlogType = {
+export type BlogType = {
     date : string,
     img: string,
     title: string,

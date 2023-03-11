@@ -137,7 +137,7 @@ const BlogAndNews = () => {
   return (
     <div className='d-flex gap-3 justify-content-space-between'>
       {
-        blogInfo.map((blog) => <Blog {...blog} key={blog.img}/>)
+        blogInfo.map((blog) => <Blog {...blog} key={blog.blod_id}/>)
       }
     </div>
   );

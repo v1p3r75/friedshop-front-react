@@ -11,9 +11,9 @@
   ];
   
   export const blogInfo = [
-    {date : '21 Dec 2023', img : '/src/assets/img/blog/1.jpg', title : 'How to manage your e-commerce shopify account ?', content : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed earum nemo, officia maiores corporis eveniet ...", authorName : 'Elfried KIDJE', authorImg : '/src/assets/img/author.jpg'},
-    {date : '21 Dec 2023', img : '/src/assets/img/blog/2.jpg', title : 'How to manage your e-commerce shopify account ?', content : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed earum nemo, officia maiores corporis eveniet ...", authorName : 'Elfried KIDJE', authorImg : '/src/assets/img/author.jpg'},
-    {date : '21 Dec 2023', img : '/src/assets/img/blog/3.jpg', title : 'How to manage your e-commerce shopify account ?', content : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed earum nemo, officia maiores corporis eveniet ...", authorName : 'Elfried KIDJE', authorImg : '/src/assets/img/author.jpg'}
+    {blod_id: 1, date : '21 Dec 2023', img : '/src/assets/img/blog/1.jpg', title : 'How to manage your e-commerce shopify account ?', content : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed earum nemo, officia maiores corporis eveniet ...", authorName : 'Elfried KIDJE', authorImg : '/src/assets/img/author.jpg'},
+    {blod_id: 2, date : '21 Dec 2023', img : '/src/assets/img/blog/2.jpg', title : 'How to manage your e-commerce shopify account ?', content : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed earum nemo, officia maiores corporis eveniet ...", authorName : 'Elfried KIDJE', authorImg : '/src/assets/img/author.jpg'},
+    {blod_id: 3, date : '21 Dec 2023', img : '/src/assets/img/blog/3.jpg', title : 'How to manage your e-commerce shopify account ?', content : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed earum nemo, officia maiores corporis eveniet ...", authorName : 'Elfried KIDJE', authorImg : '/src/assets/img/author.jpg'}
   
   ];
   
