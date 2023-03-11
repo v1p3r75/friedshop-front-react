@@ -247,4 +247,4 @@ const Section = () => {
   )
 }
 
-export { Section, BlogAndNews, PopularProducts, SortProducts, Category};
+export { Section, BlogAndNews, PopularProducts, SortProducts, AllCategory, Category};

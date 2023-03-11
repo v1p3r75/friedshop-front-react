@@ -94,3 +94,13 @@
     {team_id : 5, img : '/src/assets/img/team/5.jpg', name: 'Fortunatus KIDJE', role : 'Project Manager'},
     {team_id : 6, img : '/src/assets/img/team/6.jpg', name: 'Fortunatus KIDJE', role : 'DevOps'},
   ]
+
+  export const searchData = [
+    {search_id : 1, name : 'Food'},
+    {search_id : 2, name : 'Glocery'},
+    {search_id : 3, name : 'Heatlth'},
+    {search_id : 4, name : 'Orange'},
+    {search_id : 5, name : 'Junk'},
+    {search_id : 6, name : 'Shopping'},
+    {search_id : 7, name : 'Snack'},
+  ]
