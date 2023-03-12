@@ -14,6 +14,7 @@ import Checkout from "./views/Checkout"
 import TeamMembers from "./views/TeamMembers"
 import PostView from "./views/PostView"
 import UserAccount from "./views/UserAccount"
+import AdminPanel from "./views/Admin/AdminPanel"
 
 function App() {
 
@@ -34,6 +35,13 @@ function App() {
       <Route path="/reset-password" element={<ForgotPassword />}></Route>
       <Route path="/product/:id" element={<ViewProduct />}></Route>
       <Route path="/myaccount" element={<UserAccount />}></Route>
+
+      {/* ADMINS ROUTES */}
+
+      <Route path="/admin" element={<AdminPanel />}></Route>
+
+
+
       <Route path="*" element={<PageNotFound />}></Route>
 
     </Routes>

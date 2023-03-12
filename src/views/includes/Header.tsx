@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { SocialsNetworks } from '../../components/SocialsNetworks'
 import ViewCart from '../../components/ViewCart'
 import ViewSearch from '../../components/ViewSearch'
+import Lang from '../../components/Lang'
 
 const Header = () => {
 
@@ -28,19 +29,7 @@ const Header = () => {
             </div>
             <div className='d-flex header-socials-lang'>
                 <SocialsNetworks />
-                <div className='header-lang ms-5'>
-                    <nav className="dropdown">
-                        <a href="#" className="dropdown-toggle" data-bs-toggle='dropdown' data-bs-auto-close='outside'>English</a>
-                        <div className="dropdown-menu rounded-0 text-start animate__animated animate__fadeIn">
-                            <ul>
-                                <li><a href="#" className="dropdown-item fd-hover-color-primary text-black">French</a></li>
-                                <li><a href="#" className="dropdown-item fd-hover-color-primary text-black">Arabic</a></li>
-                                <li><a href="#" className="dropdown-item fd-hover-color-primary text-black">Spanish</a></li>
-                                <li><a href="#" className="dropdown-item fd-hover-color-primary text-black">Deustch</a></li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
+                <Lang />
             </div>
         </div>
         <div className="navigation font-regular d-flex flex-wrap justify-content-between mx-5 py-4">
