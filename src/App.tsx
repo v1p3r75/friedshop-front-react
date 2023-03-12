@@ -15,6 +15,8 @@ import TeamMembers from "./views/TeamMembers"
 import PostView from "./views/PostView"
 import UserAccount from "./views/UserAccount"
 import AdminPanel from "./views/Admin/AdminPanel"
+import DashMain from "./components/Admin/DashMain"
+import ProductMain from "./components/Admin/ProductMain"
 
 function App() {
 
@@ -38,7 +40,8 @@ function App() {
 
       {/* ADMINS ROUTES */}
 
-      <Route path="/admin" element={<AdminPanel />}></Route>
+      <Route path="/admin" element={<AdminPanel  currentComponent={<DashMain />} />}></Route>
+      <Route path="/admin/products" element={<AdminPanel  currentComponent={<ProductMain />} />}></Route>
 
 
 
