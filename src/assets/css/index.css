@@ -31,3 +31,4 @@ a {color: #fff!important; text-decoration: none!important;}
 .p-color {display: block; width : 20px; height : 20px; border-radius : 30px; cursor: pointer}
 .fd-nav-active{background-color: var(--fd-color-primary)!important; color : #fff!important}
 .others-imgs {width : 80px; height : 80px;}
+.scroller {scrollbar-color: var(--fd-color-silver) var(--fd-color-dark); scrollbar-width: thin;}

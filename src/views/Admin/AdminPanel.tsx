@@ -28,7 +28,7 @@ const AdminPanel = ({currentComponent} : {currentComponent : React.ReactNode}) =
                   <div><Link to={RoutePaths.adminBlog.path}  className={toggleLinkClass(RoutePaths.adminBlog.path)}>Blog<i className="bi bi-book float-end"></i></Link></div>
                   <div><Link to={RoutePaths.adminAccount.path}  className={toggleLinkClass(RoutePaths.adminAccount.path)}>Account<i className="bi bi-person float-end"></i></Link></div>
               </aside>
-              <div className="w-75 overflow-auto">
+              <div className="w-75 overflow-auto scroller">
                 {currentComponent}
               </div>
           </div>

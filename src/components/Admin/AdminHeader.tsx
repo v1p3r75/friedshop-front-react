@@ -1,5 +1,4 @@
 import React from 'react'
-import { SocialsNetworks } from '../SocialsNetworks'
 import { Link } from 'react-router-dom'
 import RoutePaths from '../../config'
 
