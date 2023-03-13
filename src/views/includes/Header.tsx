@@ -4,6 +4,7 @@ import { SocialsNetworks } from '../../components/SocialsNetworks'
 import ViewCart from '../../components/ViewCart'
 import ViewSearch from '../../components/ViewSearch'
 import Lang from '../../components/Lang'
+import RoutePaths from '../../config'
 
 const Header = () => {
 
@@ -42,19 +43,19 @@ const Header = () => {
                     <div className="container-fluid d-lg-flex justify-content-between">
                         <ul className="navbar-nav d-lg-flex gap-3">
                             <li className="navbar-item">
-                                <Link to={'/'} className="navbar-link fd-hover-color-primary text-dark">Home</Link>
+                                <Link to={RoutePaths.home.path} className="navbar-link fd-hover-color-primary text-dark">Home</Link>
                             </li>
                             <li className="navbar-item">
-                                <Link to={'/shop'} className="navbar-link fd-hover-color-primary text-dark">Shop</Link>
+                                <Link to={RoutePaths.shop.path} className="navbar-link fd-hover-color-primary text-dark">Shop</Link>
                             </li>
                             <li className="navbar-item">
-                                <Link to={'/blog'} className="navbar-link fd-hover-color-primary text-dark">Blog</Link>
+                                <Link to={RoutePaths.blog.path} className="navbar-link fd-hover-color-primary text-dark">Blog</Link>
                             </li>
                             <li className="navbar-item">
-                                <Link to={'/contact'} className="navbar-link fd-hover-color-primary text-dark">Contact US</Link>
+                                <Link to={RoutePaths.contact.path} className="navbar-link fd-hover-color-primary text-dark">Contact US</Link>
                             </li>
                             <li className="navbar-item">
-                                <Link to={'/teams'} className="navbar-link fd-hover-color-primary text-dark">Teams</Link>
+                                <Link to={RoutePaths.team.path} className="navbar-link fd-hover-color-primary text-dark">Teams</Link>
                             </li>
                         </ul>
                     </div>
@@ -62,9 +63,9 @@ const Header = () => {
             </nav>
             <div className="d-flex gap-2 align-self-center">
                         <div onClick={viewCart}><a href='#' className="position-relative border-3 shadow border-light py-2 px-3 text-dark fd-hover-bg-primary"><i className="bi bi-cart3"></i><span className="position-absolute top-0">2</span></a></div>
-                        <div><Link to="/wishlist" className="position-relative border-3 shadow border-light py-2 px-3 text-dark fd-hover-bg-primary"><i className="bi bi-heart"></i><span className="position-absolute top-0">3</span></Link></div>
+                        <div><Link to={RoutePaths.wishlist.path} className="position-relative border-3 shadow border-light py-2 px-3 text-dark fd-hover-bg-primary"><i className="bi bi-heart"></i><span className="position-absolute top-0">3</span></Link></div>
                         <div onClick={viewSearch}><a href='#' className="position-relative border-3 shadow border-light py-2 px-3 text-dark fd-hover-bg-primary"><i className="bi bi-search"></i></a></div>
-                        <div><Link to="/login" className="position-relative border-3 shadow border-light py-2 px-3 text-dark fd-hover-bg-primary"><i className="bi bi-person"></i></Link></div>
+                        <div><Link to={RoutePaths.login.path} className="position-relative border-3 shadow border-light py-2 px-3 text-dark fd-hover-bg-primary"><i className="bi bi-person"></i></Link></div>
                     </div>
         </div>
     </div>

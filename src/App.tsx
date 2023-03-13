@@ -17,26 +17,27 @@ import UserAccount from "./views/UserAccount"
 import AdminPanel from "./views/Admin/AdminPanel"
 import DashMain from "./components/Admin/DashMain"
 import ProductMain from "./components/Admin/ProductMain"
+import RoutePaths from "./config"
 
 function App() {
 
   return (
     <Routes>
 
-      <Route path="/" element={<Home />}></Route>
-      <Route path="/shop" element={<Shop />}></Route>
-      <Route path="/wishlist" element={<WishList />}></Route>
-      <Route path="/blog" element={<BlogPage />}></Route>
-      <Route path="/blog/:id" element={<PostView />}></Route>
-      <Route path="/cart" element={<ShoppingCart />}></Route>
-      <Route path="/checkout" element={<Checkout />}></Route>
-      <Route path="/contact" element={<ContactUs />}></Route>
-      <Route path="/teams" element={<TeamMembers />}></Route>
-      <Route path="/login" element={<Login />}></Route>
-      <Route path="/signup" element={<SignUp />}></Route>
-      <Route path="/reset-password" element={<ForgotPassword />}></Route>
-      <Route path="/product/:id" element={<ViewProduct />}></Route>
-      <Route path="/myaccount" element={<UserAccount />}></Route>
+      <Route path={RoutePaths.home.path} element={<Home />}></Route>
+      <Route path={RoutePaths.shop.path} element={<Shop />}></Route>
+      <Route path={RoutePaths.wishlist.path} element={<WishList />}></Route>
+      <Route path={RoutePaths.blog.path} element={<BlogPage />}></Route>
+      <Route path={RoutePaths.post.path} element={<PostView />}></Route>
+      <Route path={RoutePaths.shopping.path} element={<ShoppingCart />}></Route>
+      <Route path={RoutePaths.checkout.path} element={<Checkout />}></Route>
+      <Route path={RoutePaths.contact.path} element={<ContactUs />}></Route>
+      <Route path={RoutePaths.team.path} element={<TeamMembers />}></Route>
+      <Route path={RoutePaths.login.path} element={<Login />}></Route>
+      <Route path={RoutePaths.signup.path} element={<SignUp />}></Route>
+      <Route path={RoutePaths.passwordReset.path} element={<ForgotPassword />}></Route>
+      <Route path={RoutePaths.productView.path} element={<ViewProduct />}></Route>
+      <Route path={RoutePaths.userAccount.path} element={<UserAccount />}></Route>
 
       {/* ADMINS ROUTES */}
 

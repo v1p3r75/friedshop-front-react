@@ -5,6 +5,7 @@ import Footer from './includes/Footer'
 import { productsTest } from './VitualData'
 import NumberCount from '../components/NumberCount'
 import { Link } from 'react-router-dom'
+import RoutePaths from '../config'
 
 const ShoppingCart = () => {
 
@@ -45,8 +46,8 @@ const ShoppingCart = () => {
           </table>
         </div>
         <div className="my-4 d-flex justify-content-between">
-          <div><Link to={"/shop"} className='fd-btn'>CONTINUE SHOPPING</Link></div>
-          <div><Link to={"/cart"} className='fd-btn'>UPDATE CART</Link></div>
+          <div><Link to={RoutePaths.shop.path} className='fd-btn'>CONTINUE SHOPPING</Link></div>
+          <div><Link to={RoutePaths.cart.path} className='fd-btn'>UPDATE CART</Link></div>
         </div>
         <div className="coupon-total d-flex gap-2 text-dark">
           <div className="coupon w-75 p-4 border border-1">
