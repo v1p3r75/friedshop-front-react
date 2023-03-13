@@ -17,7 +17,7 @@ const BlogPage = () => {
         <Banner page='News Feeds' path={['Home', 'News Feeds']} />
         <div className="shop d-flex gap-3 my-3 text-black p-5"> 
           <div className="post-section w-75"> 
-            <BlogAndNews grid={0}/>
+            <BlogAndNews grid={2}/>
           </div>
           <aside className='w-25'>
             <SearchBar />

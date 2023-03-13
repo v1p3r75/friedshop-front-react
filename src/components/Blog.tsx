@@ -23,7 +23,7 @@ const Blog = (props : BlogType) => {
             </div>
            <div className='p-3'>
            <Link to={"/blog/1"} className="blog-title my-2 fw-bold text-dark">{props.title}</Link>
-            <p className='opacity-75'>{props.content}</p>
+            <p className='opacity-75 my-3'>{props.content}</p>
             <div className="d-flex justify-content-between">
                 <div className='d-flex gap-2'>
                     <img src={props.authorImg} alt={props.authorName} className="rounded-5" style={{width : '40px', height : '40px'}}/>
