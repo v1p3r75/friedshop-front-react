@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react"
+import React, { InputHTMLAttributes, useRef, useState } from "react"
 
 
 const AdminDetails = () => {
@@ -7,7 +7,7 @@ const AdminDetails = () => {
 
 
     const activeForm = () => {
-        const inputs = document.querySelectorAll('.admin-profile input');
+        const inputs = document.querySelectorAll<HTMLInputElement>('.admin-profile input');
         inputs.forEach((input) => input.disabled = false);
         setFormState('save');
 

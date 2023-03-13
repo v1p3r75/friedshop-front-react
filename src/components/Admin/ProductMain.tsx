@@ -91,7 +91,12 @@ const AddOrEditProduct = ({ product }: { product: null | ProductType}) => {
 
 }
 
-const ListOfProducts = ({setProduct} : {setProduct : Function}) => {
+const ListOfProducts = ({setProduct, setPage} : {setProduct : Function, setPage : Function}) => {
+
+  const parseProduct = (product) => {
+    setProduct(product);
+    setPage('add');
+  }
 
   return (
     <div className="table-responsive">
@@ -116,7 +121,7 @@ const ListOfProducts = ({setProduct} : {setProduct : Function}) => {
                   <td>{45}</td>
                   <td className='fw-bold d-flex gap-2 justify-content-center'>
                     
-                    <a href="#" className='p-2 rounded-2 fd-bg-primary'><i className="bi bi-eye"></i></a>
+                    <a href="#" className='p-2 rounded-2 fd-bg-primary' onClick={(e) => parseProduct(product)}><i className="bi bi-eye"></i></a>
                     <a href="#" className='p-2 rounded-2 bg-secondary'><i className="bi bi-pen"></i></a>
                     <a href="#" className='p-2 rounded-2 bg-danger'><i className="bi bi-trash"></i></a>
                   </td>
@@ -136,7 +141,7 @@ const ProductMain = () => {
   const [currentProduct, setCurrentProduct] = useState(null);
 
   // const parseProduct = () => { setCurrentProduct(currentProduct); }
-  const changeToList = () => { setProductPage('add'); }
+  const changeToList = () => { setProductPage('add'); setCurrentProduct(null) }
   const changeToAdd = () => { setProductPage('list'); }
 
   return (
@@ -150,7 +155,7 @@ const ProductMain = () => {
         }
       </div>
       <div className="subPartMain">
-        {productPage === 'list' ? <ListOfProducts setProduct={setCurrentProduct} /> : <AddOrEditProduct product={currentProduct} />}
+        {productPage === 'list' ? <ListOfProducts setProduct={setCurrentProduct} setPage={setProductPage}/> : <AddOrEditProduct product={currentProduct} />}
       </div>
     </div>
   )
