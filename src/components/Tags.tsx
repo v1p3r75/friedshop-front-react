@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { tags } from '../views/VitualData'
+import { tags } from '../views/VirtualData'
 
 export const Tag = ({tag_id, name} : {tag_id : number, name : string}) => {
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { BlogType } from './Blog'
 import Tags, { Tag } from './Tags'
-import { tags } from '../views/VitualData'
+import { tags } from '../views/VirtualData'
 import { SocialsNetworks } from './SocialsNetworks'
 
 const BlogDetails = (props : BlogType) => {

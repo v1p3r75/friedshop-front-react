@@ -23,9 +23,8 @@ const AdminPanel = ({currentComponent} : {currentComponent : React.ReactNode}) =
               <aside className='user-page w-25 fw-bold border border-1'>
                   <div><Link to={RoutePaths.admin.path} className={toggleLinkClass(RoutePaths.admin.path)}>Dashboard<i className="bi bi-house float-end"></i></Link></div>
                   <div><Link to={RoutePaths.adminProducts.path}  className={toggleLinkClass(RoutePaths.adminProducts.path)}>Products<i className="bi bi-newspaper float-end"></i></Link></div>
-                  <div><Link to={RoutePaths.admin.path}  className={toggleLinkClass('/admin/customers')}>Customers<i className="bi bi-people float-end"></i></Link></div>
-                  <div><Link to={RoutePaths.admin.path}  className={toggleLinkClass('/admin/categories')}>Categories<i className="bi bi-bookmark float-end"></i></Link></div>
-                  <div><Link to={RoutePaths.admin.path}  className={toggleLinkClass('/admin/promotions')}>Promotions<i className="bi bi-flower1 float-end"></i></Link></div>
+                  <div><Link to={RoutePaths.adminCategories.path}  className={toggleLinkClass(RoutePaths.adminCategories.path)}>Categories<i className="bi bi-bookmark float-end"></i></Link></div>
+                  <div><Link to={RoutePaths.adminCustomers.path}  className={toggleLinkClass(RoutePaths.adminCustomers.path)}>Customers<i className="bi bi-people float-end"></i></Link></div>
                   <div><Link to={RoutePaths.admin.path}  className={toggleLinkClass('/admin/blog')}>Blog<i className="bi bi-book float-end"></i></Link></div>
                   <div><Link to={RoutePaths.admin.path}  className={toggleLinkClass('/admin/accounts')}>Account<i className="bi bi-person float-end"></i></Link></div>
               </aside>

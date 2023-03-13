@@ -5,8 +5,9 @@
   }[];
   
   export const apiSlidesInfo = [
-    { url: '/src/assets/img/slider3.jpg', alt: 'Banner 1', text: "<h2>Fresh Food & Healthly Organic Food</h2>" },
+    { url: '/src/assets/img/slider3.jpg', alt: 'Banner 1', text: "" },
     { url: '/src/assets/img/slider5.jpg', alt: 'Banner 2', text: '' },
+    { url: '/src/assets/img/slider6.jpg', alt: 'Banner 3', text: '' },
     { url: '/src/assets/img/slider4.jpg', alt: 'Banner 3', text: '' },
   ];
   
@@ -103,4 +104,12 @@
     {search_id : 5, name : 'Junk'},
     {search_id : 6, name : 'Shopping'},
     {search_id : 7, name : 'Snack'},
+  ]
+
+  export const customers = [
+    {lastname : 'John', firstname : 'Doe', email : 'john@doe.com', address : '123 Main Street'},
+    {lastname : 'John', firstname : 'Doe', email : 'john@doe.com', address : '123 Main Street'},
+    {lastname : 'John', firstname : 'Doe', email : 'john@doe.com', address : '123 Main Street'},
+    {lastname : 'John', firstname : 'Doe', email : 'john@doe.com', address : '123 Main Street'},
+    {lastname : 'John', firstname : 'Doe', email : 'john@doe.com', address : '123 Main Street'},
   ]

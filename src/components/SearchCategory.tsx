@@ -1,5 +1,5 @@
 import React from 'react'
-import { searchData } from '../views/VitualData'
+import { searchData } from '../views/VirtualData'
 import { Link } from 'react-router-dom'
 
 

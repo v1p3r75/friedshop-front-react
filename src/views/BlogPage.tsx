@@ -1,7 +1,7 @@
 import React from 'react'
 import Footer from './includes/Footer';
 import Header from './includes/Header';
-import { apiCategory, blogInfo } from './VitualData';
+import { apiCategory, blogInfo } from './VirtualData';
 import { BlogAndNews, Category } from './includes/Section';
 import Banner from '../components/Banner';
 import SearchBar from '../components/SearchBar';

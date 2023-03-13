@@ -2,7 +2,7 @@ import React from 'react'
 import Header from './includes/Header'
 import Banner from '../components/Banner'
 import Footer from './includes/Footer'
-import { teams } from './VitualData'
+import { teams } from './VirtualData'
 import Member from '../components/Member'
 
 const TeamMembers = () => {

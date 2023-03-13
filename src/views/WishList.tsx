@@ -2,7 +2,7 @@ import React from 'react'
 import Footer from './includes/Footer';
 import Header from './includes/Header';
 import Banner from '../components/Banner';
-import { productsTest } from './VitualData';
+import { productsTest } from './VirtualData';
 
 const WishList = () => {
 

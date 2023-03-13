@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import { apiCategory, productsTest } from '../views/VitualData';
+import { apiCategory, productsTest } from '../views/VirtualData';
 import SimpleProduct from './SimpleProduct';
 import SearchBar from './SearchBar';
 import SearchCategory from './SearchCategory';

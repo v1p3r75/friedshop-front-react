@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { archives } from '../views/VitualData'
+import { archives } from '../views/VirtualData'
 
 const Archives = () => {
 

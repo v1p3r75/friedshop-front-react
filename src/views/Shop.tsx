@@ -4,7 +4,7 @@ import Footer from './includes/Footer'
 import Banner from '../components/Banner'
 import { Category, PopularProducts, SortProducts } from './includes/Section'
 import SearchBar from '../components/SearchBar'
-import { apiCategory } from './VitualData'
+import { apiCategory } from './VirtualData'
 import Tags from '../components/Tags'
 import Archives from '../components/Archives'
 

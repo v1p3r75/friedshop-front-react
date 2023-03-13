@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import { productsTest } from '../views/VitualData';
+import { productsTest } from '../views/VirtualData';
 import SimpleProduct from './SimpleProduct';
 import RoutePaths from '../config';
 
