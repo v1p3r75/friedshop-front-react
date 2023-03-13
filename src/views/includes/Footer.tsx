@@ -2,6 +2,7 @@ import React from 'react'
 import NewsLetter from '../../components/NewsLetter'
 import { SocialsNetworks } from '../../components/SocialsNetworks'
 import { Link } from 'react-router-dom'
+import RoutePaths from '../../config'
 
 const Footer = () => {
 
@@ -32,7 +33,7 @@ const Footer = () => {
                     <div className="account">
                         <h5 className='my-5'>My Account</h5>
                         <div className="opacity-75">
-                            <div><Link to={"/myaccount"}>My Account</Link></div>
+                            <div><Link to={RoutePaths.userAccount.path}>My Account</Link></div>
                             <div><a href="#">Login Page</a></div>
                             <div><a href="#">Shopping Cart</a></div>
                             <div><a href="#">Register Account</a></div>

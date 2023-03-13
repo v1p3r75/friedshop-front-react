@@ -41,8 +41,8 @@ function App() {
 
       {/* ADMINS ROUTES */}
 
-      <Route path="/admin" element={<AdminPanel  currentComponent={<DashMain />} />}></Route>
-      <Route path="/admin/products" element={<AdminPanel  currentComponent={<ProductMain />} />}></Route>
+      <Route path={RoutePaths.admin.path} element={<AdminPanel  currentComponent={<DashMain />} />}></Route>
+      <Route path={RoutePaths.adminProducts.path} element={<AdminPanel  currentComponent={<ProductMain />} />}></Route>
 
 
 

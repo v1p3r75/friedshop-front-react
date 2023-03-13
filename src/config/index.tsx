@@ -16,6 +16,11 @@ const RoutePaths = {
     passwordReset : { path : '/reset-password'},
     productView : { path : '/product/:id'},
     userAccount : { path : '/myaccount'},
+    
+    // AMIN PATH
+
+    admin : { path : '/admin'},
+    adminProducts : { path : '/admin/products'},
 
 }
 
