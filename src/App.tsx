@@ -21,6 +21,7 @@ import RoutePaths from "./config"
 import CategoryMain from "./components/Admin/CategoryMain"
 import CustomersMain from "./components/Admin/CustomersMain"
 import BlogMain from "./components/Admin/BlogMain"
+import AdminAccount from "./components/Admin/AdminAccount"
 
 function App() {
 
@@ -49,6 +50,7 @@ function App() {
       <Route path={RoutePaths.adminCategories.path} element={<AdminPanel  currentComponent={<CategoryMain />} />}></Route>
       <Route path={RoutePaths.adminBlog.path} element={<AdminPanel  currentComponent={<BlogMain />} />}></Route>
       <Route path={RoutePaths.adminCustomers.path} element={<AdminPanel  currentComponent={<CustomersMain />} />}></Route>
+      <Route path={RoutePaths.adminAccount.path} element={<AdminPanel  currentComponent={<AdminAccount />} />}></Route>
 
 
 
