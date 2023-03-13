@@ -1,7 +1,7 @@
 import React from 'react'
-import { customers } from '../../views/VirtualData';
+import { blogInfo } from '../../views/VirtualData'
 
-const ListOfCustomers = () => {
+const ListOfPosts = () => {
 
   let count = 0;
 
@@ -11,26 +11,24 @@ const ListOfCustomers = () => {
             <thead>
                 <tr className='fd-bg-primary text-white'>
                     <th scope="col" className='p-3'>N°</th>
-                    <th scope="col" className='p-3'>FIRSTNAME</th>
-                    <th scope="col" className='p-3'>LASTNAME</th>
-                    <th scope="col" className='p-3'>EMAIL</th>
-                    <th scope="col" className='p-3'>ADDRESS</th>
+                    <th scope="col" className='p-3'>TITLE</th>
+                    <th scope="col" className='p-3'>SUMMARY</th>
+                    <th scope="col" className='p-3'>DATE</th>
                     <th scope="col" className='p-3'>ACTION</th>
                 </tr>
             </thead>
             <tbody>
                 {
-                    customers.map(customer => {
+                    blogInfo.map(blog => {
                         return (
                             <tr className="p-3">
                                 <td scope="row w-25">{++count}</td>
-                                <td className='fw-bold'>{customer.firstname}</td>
-                                <td className='fw-bold'>{customer.lastname}</td>
-                                <td>{customer.email}</td>
-                                <td>{customer.address}</td>
+                                <td className='fw-bold'>{blog.title}</td>
+                                <td className='opacity-75'>{blog.content}</td>
+                                <td className='opacity-75'>{blog.date}</td>
                                 <td className='fw-bold d-flex gap-2 justify-content-center'>
                                   <a href="#" className='p-2 rounded-2 fd-bg-primary'><i className="bi bi-eye"></i></a>
-                                  <a href="#" className='p-2 rounded-2 bg-secondary'><i className="bi bi-person-x"></i></a>
+                                  <a href="#" className='p-2 rounded-2 bg-secondary'><i className="bi bi-pen"></i></a>
                                   <a href="#" className='p-2 rounded-2 bg-danger'><i className="bi bi-trash"></i></a>
                                 </td>
                             </tr>
@@ -43,15 +41,18 @@ const ListOfCustomers = () => {
   );
 }
 
-const CustomersMain = () => {
+const BlogMain = () => {
   return (
     <div className='text-black'>
-        <h4 className="fw-bold mb-5">List of Customers</h4>
+        <h4 className="fw-bold">List of Posts</h4>
+        <div className="add-product my-3 d-flex justify-content-end">
+          <a href="#" className="fd-btn bg-secondary w-25 text-center rounded-3">ADD POST</a>
+        </div>
         <div className="subPartMain">
-          <ListOfCustomers />
+          <ListOfPosts />
         </div>
     </div>
   )
 }
 
-export default CustomersMain
+export default BlogMain

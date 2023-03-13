@@ -23,6 +23,7 @@ const RoutePaths = {
     adminProducts : { path : '/admin/products'},
     adminCategories : { path : '/admin/categories'},
     adminCustomers: { path : '/admin/customers'},
+    adminBlog: { path : '/admin/blog'},
 
 }
 

@@ -20,6 +20,7 @@ import ProductMain from "./components/Admin/ProductMain"
 import RoutePaths from "./config"
 import CategoryMain from "./components/Admin/CategoryMain"
 import CustomersMain from "./components/Admin/CustomersMain"
+import BlogMain from "./components/Admin/BlogMain"
 
 function App() {
 
@@ -46,6 +47,7 @@ function App() {
       <Route path={RoutePaths.admin.path} element={<AdminPanel  currentComponent={<DashMain />} />}></Route>
       <Route path={RoutePaths.adminProducts.path} element={<AdminPanel  currentComponent={<ProductMain />} />}></Route>
       <Route path={RoutePaths.adminCategories.path} element={<AdminPanel  currentComponent={<CategoryMain />} />}></Route>
+      <Route path={RoutePaths.adminBlog.path} element={<AdminPanel  currentComponent={<BlogMain />} />}></Route>
       <Route path={RoutePaths.adminCustomers.path} element={<AdminPanel  currentComponent={<CustomersMain />} />}></Route>
 
 
