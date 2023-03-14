@@ -21,13 +21,13 @@ const AdminPanel = ({currentComponent} : {currentComponent : React.ReactNode}) =
         <AdminHeader />
         <div className='admin-section d-flex justify-content-between gap-4 px-5 my-4 h-75'>
               <aside className='user-page w-25 fw-bold border border-1'>
-                  <div><Link to={RoutePaths.admin.path} className={toggleLinkClass(RoutePaths.admin.path)}>Dashboard<i className="bi bi-house float-end"></i></Link></div>
-                  <div><Link to={RoutePaths.adminProducts.path}  className={toggleLinkClass(RoutePaths.adminProducts.path)}>Products<i className="bi bi-newspaper float-end"></i></Link></div>
-                  <div><Link to={RoutePaths.adminCategories.path}  className={toggleLinkClass(RoutePaths.adminCategories.path)}>Categories<i className="bi bi-bookmark float-end"></i></Link></div>
-                  <div><Link to={RoutePaths.adminSlides.path}  className={toggleLinkClass(RoutePaths.adminSlides.path)}>Slideshow<i className="bi bi-newspaper float-end"></i></Link></div>
-                  <div><Link to={RoutePaths.adminCustomers.path}  className={toggleLinkClass(RoutePaths.adminCustomers.path)}>Customers<i className="bi bi-people float-end"></i></Link></div>
-                  <div><Link to={RoutePaths.adminBlog.path}  className={toggleLinkClass(RoutePaths.adminBlog.path)}>Blog<i className="bi bi-book float-end"></i></Link></div>
-                  <div><Link to={RoutePaths.adminAccount.path}  className={toggleLinkClass(RoutePaths.adminAccount.path)}>Account<i className="bi bi-person float-end"></i></Link></div>
+                  <div><Link to={RoutePaths.admin} className={toggleLinkClass(RoutePaths.admin)}>Dashboard<i className="bi bi-house float-end"></i></Link></div>
+                  <div><Link to={RoutePaths.adminProducts}  className={toggleLinkClass(RoutePaths.adminProducts)}>Products<i className="bi bi-newspaper float-end"></i></Link></div>
+                  <div><Link to={RoutePaths.adminCategories}  className={toggleLinkClass(RoutePaths.adminCategories)}>Categories<i className="bi bi-bookmark float-end"></i></Link></div>
+                  <div><Link to={RoutePaths.adminSlides}  className={toggleLinkClass(RoutePaths.adminSlides)}>Slideshow<i className="bi bi-newspaper float-end"></i></Link></div>
+                  <div><Link to={RoutePaths.adminCustomers}  className={toggleLinkClass(RoutePaths.adminCustomers)}>Customers<i className="bi bi-people float-end"></i></Link></div>
+                  <div><Link to={RoutePaths.adminBlog}  className={toggleLinkClass(RoutePaths.adminBlog)}>Blog<i className="bi bi-book float-end"></i></Link></div>
+                  <div><Link to={RoutePaths.adminAccount}  className={toggleLinkClass(RoutePaths.adminAccount)}>Account<i className="bi bi-person float-end"></i></Link></div>
               </aside>
               <div className="w-75 overflow-auto scroller">
                 {currentComponent}

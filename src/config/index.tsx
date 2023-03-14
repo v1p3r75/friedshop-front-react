@@ -1,37 +1,37 @@
 
 const RoutePaths = {
 
-    home : { path : '/'},
-    shop : { path : '/shop' },
-    wishlist : { path : '/wishlist'},
-    shopping : { path : '/cart'},
-    blog : { path : '/blog'},
-    post : { path : '/blog/:id'},
-    cart : { path : '/cart'},
-    checkout : { path : '/checkout'},
-    login : { path : '/login'},
-    contact : { path : '/contact'},
-    team : { path : '/teams'},
-    signup : { path : '/signup'},
-    passwordReset : { path : '/reset-password'},
-    productView : { path : '/product/:id'},
+    home : '/',
+    shop : '/shop' ,
+    wishlist : '/wishlist',
+    shopping : '/cart',
+    blog : '/blog',
+    post : '/blog/:id',
+    cart : '/cart',
+    checkout : '/checkout',
+    login : '/login',
+    contact : '/contact',
+    team : '/teams',
+    signup : '/signup',
+    passwordReset : '/reset-password',
+    productView : '/product/:id',
 
     // USERS PATHS
 
-    userAccount : { path : '/myaccount'},
-    userOrders : { path : '/myaccount/orders'},
-    userAdress : { path : '/myaccount/address'},
-    userDetails : { path : '/myaccount/details'},
+    userAccount : '/myaccount',
+    userOrders : '/myaccount/orders',
+    userAdress : '/myaccount/address',
+    userDetails : '/myaccount/details',
     
     // AMIN PATHS
 
-    admin : { path : '/admin'},
-    adminProducts : { path : '/admin/products'},
-    adminSlides : { path : '/admin/slides'},
-    adminCategories : { path : '/admin/categories'},
-    adminCustomers: { path : '/admin/customers'},
-    adminBlog: { path : '/admin/blog'},
-    adminAccount: { path : '/admin/account'},
+    admin : '/admin',
+    adminProducts : '/admin/products',
+    adminSlides : '/admin/slides',
+    adminCategories : '/admin/categories',
+    adminCustomers: '/admin/customers',
+    adminBlog: '/admin/blog',
+    adminAccount: '/admin/account',
 
 }
 

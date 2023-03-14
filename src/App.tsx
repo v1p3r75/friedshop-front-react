@@ -29,36 +29,36 @@ function App() {
   return (
     <Routes>
 
-      <Route path={RoutePaths.home.path} element={<Home />}></Route>
-      <Route path={RoutePaths.shop.path} element={<Shop />}></Route>
-      <Route path={RoutePaths.wishlist.path} element={<WishList />}></Route>
-      <Route path={RoutePaths.blog.path} element={<BlogPage />}></Route>
-      <Route path={RoutePaths.post.path} element={<PostView />}></Route>
-      <Route path={RoutePaths.shopping.path} element={<ShoppingCart />}></Route>
-      <Route path={RoutePaths.checkout.path} element={<Checkout />}></Route>
-      <Route path={RoutePaths.contact.path} element={<ContactUs />}></Route>
-      <Route path={RoutePaths.team.path} element={<TeamMembers />}></Route>
-      <Route path={RoutePaths.login.path} element={<Login />}></Route>
-      <Route path={RoutePaths.signup.path} element={<SignUp />}></Route>
-      <Route path={RoutePaths.passwordReset.path} element={<ForgotPassword />}></Route>
-      <Route path={RoutePaths.productView.path} element={<ViewProduct />}></Route>
+      <Route path={RoutePaths.home} element={<Home />}></Route>
+      <Route path={RoutePaths.shop} element={<Shop />}></Route>
+      <Route path={RoutePaths.wishlist} element={<WishList />}></Route>
+      <Route path={RoutePaths.blog} element={<BlogPage />}></Route>
+      <Route path={RoutePaths.post} element={<PostView />}></Route>
+      <Route path={RoutePaths.shopping} element={<ShoppingCart />}></Route>
+      <Route path={RoutePaths.checkout} element={<Checkout />}></Route>
+      <Route path={RoutePaths.contact} element={<ContactUs />}></Route>
+      <Route path={RoutePaths.team} element={<TeamMembers />}></Route>
+      <Route path={RoutePaths.login} element={<Login />}></Route>
+      <Route path={RoutePaths.signup} element={<SignUp />}></Route>
+      <Route path={RoutePaths.passwordReset} element={<ForgotPassword />}></Route>
+      <Route path={RoutePaths.productView} element={<ViewProduct />}></Route>
 
       {/* USERS ROUTES */}
 
-      <Route path={RoutePaths.userAccount.path} element={<UserAccount />}></Route>
-      <Route path={RoutePaths.userOrders.path} element={<UserAccount currentComponent={<UserOrders />}/>}></Route>
-      <Route path={RoutePaths.userAdress.path} element={<UserAccount currentComponent={<UserAddress />}/>}></Route>
-      <Route path={RoutePaths.userDetails.path} element={<UserAccount currentComponent={<UserDetails />}/>}></Route>
+      <Route path={RoutePaths.userAccount} element={<UserAccount />}></Route>
+      <Route path={RoutePaths.userOrders} element={<UserAccount currentComponent={<UserOrders />}/>}></Route>
+      <Route path={RoutePaths.userAdress} element={<UserAccount currentComponent={<UserAddress />}/>}></Route>
+      <Route path={RoutePaths.userDetails} element={<UserAccount currentComponent={<UserDetails />}/>}></Route>
 
       {/* ADMINS ROUTES */}
 
-      <Route path={RoutePaths.admin.path} element={<AdminPanel  currentComponent={<DashMain />} />}></Route>
-      <Route path={RoutePaths.adminProducts.path} element={<AdminPanel  currentComponent={<ProductMain />} />}></Route>
-      <Route path={RoutePaths.adminSlides.path} element={<AdminPanel  currentComponent={<SlidesMain />} />}></Route>
-      <Route path={RoutePaths.adminCategories.path} element={<AdminPanel  currentComponent={<CategoryMain />} />}></Route>
-      <Route path={RoutePaths.adminBlog.path} element={<AdminPanel  currentComponent={<BlogMain />} />}></Route>
-      <Route path={RoutePaths.adminCustomers.path} element={<AdminPanel  currentComponent={<CustomersMain />} />}></Route>
-      <Route path={RoutePaths.adminAccount.path} element={<AdminPanel  currentComponent={<AdminAccount />} />}></Route>
+      <Route path={RoutePaths.admin} element={<AdminPanel  currentComponent={<DashMain />} />}></Route>
+      <Route path={RoutePaths.adminProducts} element={<AdminPanel  currentComponent={<ProductMain />} />}></Route>
+      <Route path={RoutePaths.adminSlides} element={<AdminPanel  currentComponent={<SlidesMain />} />}></Route>
+      <Route path={RoutePaths.adminCategories} element={<AdminPanel  currentComponent={<CategoryMain />} />}></Route>
+      <Route path={RoutePaths.adminBlog} element={<AdminPanel  currentComponent={<BlogMain />} />}></Route>
+      <Route path={RoutePaths.adminCustomers} element={<AdminPanel  currentComponent={<CustomersMain />} />}></Route>
+      <Route path={RoutePaths.adminAccount} element={<AdminPanel  currentComponent={<AdminAccount />} />}></Route>
 
 
 

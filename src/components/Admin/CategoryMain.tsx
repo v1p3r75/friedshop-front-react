@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { CategoryType, apiCategory, productsTest } from '../../views/VirtualData'
+import { CategoryType, apiCategory } from '../../views/VirtualData'
 
 const AddOrEditCategory = ({ category }: { category: null | CategoryType }) => {
 
