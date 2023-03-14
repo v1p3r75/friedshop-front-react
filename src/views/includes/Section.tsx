@@ -17,7 +17,7 @@ const Category = ({category, arrow = 'left'} : {category : any, arrow? : string}
     </div>
 }
 
-const AllCategory = (props: { categoryList: CategoryType }) => {
+const AllCategory = (props: { categoryList: CategoryType[] }) => {
 
   return <div className="all-category w-25 shadow border-1 border-light p-0">
     <h6 className="fd-bg-primary p-3 fw-bold rounded-top-3">ALL CATEGORIES</h6>

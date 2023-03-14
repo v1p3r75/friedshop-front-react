@@ -2,7 +2,8 @@
  export type CategoryType = {
     category_id: string | number,
     name: string,
-  }[];
+    description? : string,
+  };
   
   export const apiSlidesInfo = [
     { url: '/src/assets/img/slider3.jpg', alt: 'Banner 1', text: "" },
@@ -53,13 +54,13 @@
   ]
   
   export const apiCategory = [
-    { category_id: 1, name: 'Vegetals And Fruits' },
-    { category_id: 2, name: 'Fruits' },
-    { category_id: 3, name: 'Oil And Vinegar' },
-    { category_id: 4, name: 'Apple Juice' },
-    { category_id: 5, name: 'Océan Food' },
-    { category_id: 6, name: 'Butter & Eggs' },
-    { category_id: 7, name: 'Fresh Meat' },
+    { category_id: 1, name: 'Vegetals And Fruits', description : 'lorem' },
+    { category_id: 2, name: 'Fruits', description : 'lorem' },
+    { category_id: 3, name: 'Oil And Vinegar', description : 'lorem' },
+    { category_id: 4, name: 'Apple Juice', description : 'lorem' },
+    { category_id: 5, name: 'Océan Food', description : 'lorem' },
+    { category_id: 6, name: 'Butter & Eggs', description : 'lorem' },
+    { category_id: 7, name: 'Fresh Meat', description : 'lorem' },
   ]
   
   export const archives = [
