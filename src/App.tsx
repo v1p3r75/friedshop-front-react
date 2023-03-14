@@ -13,7 +13,7 @@ import ShoppingCart from "./views/ShoppingCart"
 import Checkout from "./views/Checkout"
 import TeamMembers from "./views/TeamMembers"
 import PostView from "./views/PostView"
-import UserAccount from "./views/UserAccount"
+import UserAccount, { UserAddress, UserDetails, UserOrders } from "./views/UserAccount"
 import AdminPanel from "./views/Admin/AdminPanel"
 import DashMain from "./components/Admin/DashMain"
 import ProductMain from "./components/Admin/ProductMain"
@@ -42,7 +42,13 @@ function App() {
       <Route path={RoutePaths.signup.path} element={<SignUp />}></Route>
       <Route path={RoutePaths.passwordReset.path} element={<ForgotPassword />}></Route>
       <Route path={RoutePaths.productView.path} element={<ViewProduct />}></Route>
+
+      {/* USERS ROUTES */}
+
       <Route path={RoutePaths.userAccount.path} element={<UserAccount />}></Route>
+      <Route path={RoutePaths.userOrders.path} element={<UserAccount currentComponent={<UserOrders />}/>}></Route>
+      <Route path={RoutePaths.userAdress.path} element={<UserAccount currentComponent={<UserAddress />}/>}></Route>
+      <Route path={RoutePaths.userDetails.path} element={<UserAccount currentComponent={<UserDetails />}/>}></Route>
 
       {/* ADMINS ROUTES */}
 

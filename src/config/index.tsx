@@ -15,9 +15,15 @@ const RoutePaths = {
     signup : { path : '/signup'},
     passwordReset : { path : '/reset-password'},
     productView : { path : '/product/:id'},
+
+    // USERS PATHS
+
     userAccount : { path : '/myaccount'},
+    userOrders : { path : '/myaccount/orders'},
+    userAdress : { path : '/myaccount/address'},
+    userDetails : { path : '/myaccount/details'},
     
-    // AMIN PATH
+    // AMIN PATHS
 
     admin : { path : '/admin'},
     adminProducts : { path : '/admin/products'},

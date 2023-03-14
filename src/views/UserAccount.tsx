@@ -1,8 +1,11 @@
 import React, { SyntheticEvent, useState } from 'react'
 import Header from './includes/Header'
 import Footer from './includes/Footer'
+import { Link } from 'react-router-dom'
+import RoutePaths from '../config'
+import { toggleLinkClass } from '../Utils/Generals'
 
-const UserDashboard = () => {
+export const UserDashboard = () => {
     return (
         <div className="user-dashboard p-3 border border-2 text-black">
             <h3>Dashboard</h3>
@@ -11,7 +14,7 @@ const UserDashboard = () => {
     )
 }
 
-const UserOrders = () => {
+export const UserOrders = () => {
     return (
         <div className="user-orders p-3 border border-2 text-black">
             <h3>Orders</h3>
@@ -56,7 +59,7 @@ const UserOrders = () => {
     )
 }
 
-const UserAddress = () => {
+export const UserAddress = () => {
 
     return (
         <div className="user-address p-3 border border-2 text-black">
@@ -70,7 +73,7 @@ const UserAddress = () => {
     )
 }
 
-const UserDetails = () => {
+export const UserDetails = () => {
 
     return (
         <div className="user-edit-details p-3 border border-2 text-black">
@@ -122,29 +125,8 @@ const UserDetails = () => {
     )
 }
 
-const UserAccount = () => {
+const UserAccount = ({currentComponent = <UserDashboard />} : {currentComponent? : React.ReactNode}) => {
 
-    const [mainComponent, setMainComponent] = useState(<UserDashboard />)
-
-    const setDashboard = (e : SyntheticEvent) => {
-        e.preventDefault();
-        setMainComponent(<UserDashboard />)
-    };
-
-    const setOrder = (e : SyntheticEvent) => {
-        e.preventDefault();
-        setMainComponent(<UserOrders />)
-    };
-
-    const setUserAddress = (e : SyntheticEvent) => {
-        e.preventDefault();
-        setMainComponent(<UserAddress />)
-    }
-
-    const setDetails = (e : SyntheticEvent) => {
-        e.preventDefault();
-        setMainComponent(<UserDetails />)
-    }
     // const setLogout;
 
   return (
@@ -152,13 +134,13 @@ const UserAccount = () => {
         <Header />
         <div className='d-flex justify-content-between gap-3 px-5 my-5'>
             <aside className='user-page w-25 fw-bold border border-1 h-25'>
-                <div onClick={setDashboard}><a href='#' className="d-block p-3 text-black">Dashboard<i className="bi bi-house float-end"></i></a></div>
-                <div onClick={setOrder}><a href='#' className="d-block p-3 text-black">Orders<i className="bi bi-newspaper float-end"></i></a></div>
-                <div onClick={setUserAddress}><a href='#' className="d-block p-3 text-black">Address<i className="bi bi-geo-alt float-end"></i></a></div>
-                <div onClick={setDetails}><a href='#' className="d-block p-3 text-black">Account Details<i className="bi bi-person float-end"></i></a></div>
-                <div onClick={setDashboard}><a href='#' className="d-block p-3 text-black">Logout<i className="bi bi-person-slash float-end"></i></a></div>
+                <div><Link to={RoutePaths.userAccount.path} className={toggleLinkClass(RoutePaths.userAccount.path)}>Dashboard<i className="bi bi-house float-end"></i></Link></div>
+                <div><Link to={RoutePaths.userOrders.path} className={toggleLinkClass(RoutePaths.userOrders.path)}>Orders<i className="bi bi-house float-end"></i></Link></div>
+                <div><Link to={RoutePaths.userAdress.path} className={toggleLinkClass(RoutePaths.userAdress.path)}>Address<i className="bi bi-house float-end"></i></Link></div>
+                <div><Link to={RoutePaths.userDetails.path} className={toggleLinkClass(RoutePaths.userDetails.path)}>Account Details<i className="bi bi-house float-end"></i></Link></div>
+                <div><a href='#' className="d-block p-3 text-black">Logout<i className="bi bi-person-slash float-end"></i></a></div>
             </aside>
-            <div className="w-75 mt-3">{mainComponent}</div>
+            <div className="w-75 mt-3">{currentComponent}</div>
         </div>
         <Footer/>
     </>
