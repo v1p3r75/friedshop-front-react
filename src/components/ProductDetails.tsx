@@ -3,8 +3,10 @@ import Reviews from './Reviews'
 import NumberCount from './NumberCount'
 import { PopularProducts } from '../views/includes/Section'
 import { Carousel } from 'react-responsive-carousel'
+import AddToCart from './AddToCart'
+import { ProductType } from './ProductCart'
 
-const ProductDetails = ({id} : {id? : string | number}) => {
+const ProductDetails = ({product} : {product : ProductType}) => {
 
 
 
@@ -53,7 +55,7 @@ const ProductDetails = ({id} : {id? : string | number}) => {
                 </div>
                 <div className='d-flex gap-2 my-4'>
                     <NumberCount min={1} />
-                    <a href="#" className="fd-btn w-auto"><i className="bi bi-cart3"></i>ADD TO CART</a>
+                    <AddToCart product={product} divClass='align-self-center'/>
                 </div>
                 <div className="p-share d-flex gap-2 align-items-center">
                     <h5 className="fw-bold d-flex gap-2 mb-0">Share : </h5>

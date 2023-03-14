@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import Reviews from './Reviews';
 import { Link } from 'react-router-dom';
+import AddToCart from './AddToCart';
 
 export type ProductType = {
     img: string,
@@ -42,7 +43,7 @@ const ProductCart = (props: ProductType) => {
                         </div>
                         <p className="desc fw-bold opacity-50">{props.desc}</p>
                         <div className="d-flex gap-2">
-                            <div><a href="#" className="fd-btn rounded-3">ADD TO CART</a></div>
+                            <AddToCart product={props}/>
                             <div><a href="#" className="fd-btn rounded-3"><i className="bi bi-eye"></i></a></div>
                             <div><a href="#" className="fd-btn rounded-3"><i className="bi bi-heart"></i></a></div>
                         </div>
@@ -56,7 +57,9 @@ const ProductCart = (props: ProductType) => {
             <div className="position-relative bg-white mt-4 border-1 border fd-hover-border-primary product-cart" style={{ minHeight: "400px" }}>
                 <div className="position-relative h-75 product-img">
                     <img src={props.img} alt={props.name} className="h-100" />
-                    <div className='show d-none position-absolute w-100 animate__animated animate__fadeIn' style={{ bottom: '10%' }}><Link to={"/"} className='bg-white fd-color-primary fd-hover-bg-primary d-block w-50 mx-auto px-3 py-2'>ADD TO CART</Link></div>
+                    <div className='show d-none position-absolute w-100 animate__animated animate__fadeIn' style={{ bottom: '10%' }}>
+                        <AddToCart product={props} classSup='bg-white fd-color-primary fd-hover-bg-primary d-block w-50 mx-auto px-3 py-2'/>
+                    </div>
                 </div>
                 {!props.reduction ? <a className="position-absolute top-0 start-0 fd-btn" style={{ padding: '5px 20px' }}>SALE</a> :
                     <a className="position-absolute top-0 start-0 fd-btn-red" style={{ padding: '5px 20px' }}> {props.reduction} </a>

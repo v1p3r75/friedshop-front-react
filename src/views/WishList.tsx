@@ -3,6 +3,7 @@ import Footer from './includes/Footer';
 import Header from './includes/Header';
 import Banner from '../components/Banner';
 import { productsTest } from './VirtualData';
+import AddToCart from '../components/AddToCart';
 
 const WishList = () => {
 
@@ -27,12 +28,12 @@ const WishList = () => {
                         {
                             productsTest.map(product => {
                                 return (
-                                    <tr className="p-3">
+                                    <tr className="p-3" key={product.name}>
                                         <td scope="row w-25"><img src={product.img} alt={product.name} style={{width : '50px', height : '50px'}}/></td>
                                         <td className='fw-bold'>{product.name}</td>
                                         <td>{product.price}</td>
                                         <td>{"In Stock"}</td>
-                                        <td><a href="#" className="fd-btn rounded-5 w-50 mx-auto">ADD TO CART</a></td>
+                                        <td><AddToCart product={product} classSup='w-50 mx-auto'/></td>
                                         <td className='fw-bold cursor-pointer'><i className="bi bi-x" style={{lineHeight: '50px'}}></i></td>
                                     </tr>
                                 )

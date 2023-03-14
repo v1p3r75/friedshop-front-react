@@ -27,9 +27,9 @@ const NumberCount = ({initialValue = 1, step = 1, min, max } : OptionsType) => {
 
     return (
         <div className="d-flex">
-            <div className='fd-bg-primary py-1 px-3 text-white cursor-pointer' onClick={decrement}><i className="bi" style={{lineHeight : "40px"}}>-</i></div>
+            <div className='fd-bg-primary py-1 px-3 text-white cursor-pointer rounded-3' onClick={decrement}><i className="bi" style={{lineHeight : "40px"}}>-</i></div>
             <div className='bg-white px-4'><span style={{lineHeight : "40px"}}>{count}</span></div>
-            <div className='fd-bg-primary py-1 px-3 text-white cursor-pointer' onClick={increment}><i className="bi bi-plus" style={{lineHeight : "40px"}}></i></div>
+            <div className='fd-bg-primary py-1 px-3 text-white cursor-pointer rounded-3' onClick={increment}><i className="bi bi-plus" style={{lineHeight : "40px"}}></i></div>
         </div>
     )
 

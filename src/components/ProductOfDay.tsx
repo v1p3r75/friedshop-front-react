@@ -3,6 +3,7 @@ import DateCount from './DateCount';
 import NumberCount from './NumberCount';
 import Reviews from './Reviews';
 import { Link } from 'react-router-dom';
+import AddToCart from './AddToCart';
 
 type ProductType = {
     img: string,
@@ -37,7 +38,7 @@ const ProductOfDay = (props: ProductType) => {
                 </div>
                 <div className='d-flex gap-2'>
                     <NumberCount min={1} />
-                    <a href="#" className="fd-btn w-auto"><i className="bi bi-cart3"></i>ADD TO CART</a>
+                    <AddToCart product={props} divClass='align-self-center'/>
                 </div>
             </div>
         </div>
