@@ -9,7 +9,6 @@ import { ProductType } from './ProductCart'
 const ProductDetails = ({product} : {product : ProductType}) => {
 
 
-
   return (
     <div className='view-product px-5'>
         <div className="details-generals border border-1 fd-hover-border-primary bg-white d-flex text-black p-5 gap-2 mt-5" style={{minHeight : '400px'}}>
