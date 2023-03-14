@@ -5,9 +5,12 @@ import { PopularProducts } from '../views/includes/Section'
 import { Carousel } from 'react-responsive-carousel'
 import AddToCart from './AddToCart'
 import { ProductType } from './ProductCart'
+import useFetch from '../hooks/useFetch'
 
 const ProductDetails = ({product} : {product : ProductType}) => {
 
+    // const [loading, data] = useFetch('https://comfortable.dev/user/2');
+    // console.log(loading, data);
 
   return (
     <div className='view-product px-5'>
