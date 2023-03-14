@@ -4,12 +4,18 @@
     name: string,
     description? : string,
   };
+
+  export type Slide = {
+    url : string,
+    alt: string,
+    text: string,
+  }
   
   export const apiSlidesInfo = [
-    { url: '/src/assets/img/slider3.jpg', alt: 'Banner 1', text: "" },
-    { url: '/src/assets/img/slider5.jpg', alt: 'Banner 2', text: '' },
-    { url: '/src/assets/img/slider6.jpg', alt: 'Banner 3', text: '' },
-    { url: '/src/assets/img/slider4.jpg', alt: 'Banner 3', text: '' },
+    { url: '/src/assets/img/slider3.jpg', alt: 'Banner 1', text: 'Text Slide 1' },
+    { url: '/src/assets/img/slider5.jpg', alt: 'Banner 2', text: 'Text Slide 2' },
+    { url: '/src/assets/img/slider6.jpg', alt: 'Banner 3', text: 'Text Slide 3' },
+    { url: '/src/assets/img/slider4.jpg', alt: 'Banner 3', text: 'Text Slide 4' },
   ];
   
   export const blogInfo = [

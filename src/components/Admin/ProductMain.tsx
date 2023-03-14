@@ -43,7 +43,13 @@ const AddOrEditProduct = ({ product }: { product: null | ProductType}) => {
           </label>
           <textarea name="description" cols={100} rows={10} className='w-100 p-2 border' placeholder='Description'></textarea>
         </div>
-        <div><a href="#" className="fd-btn w-25 text-center">SAVE NOW</a></div>
+        <div>
+          <label>
+            <input type="checkbox" name="deal_of_day" />
+            <span className='ms-2'>Deal Of Day</span>
+          </label>
+        </div>
+        <div className='mt-3'><a href="#" className="fd-btn w-25 text-center">SAVE NOW</a></div>
       </form>
     )
   }
@@ -85,7 +91,13 @@ const AddOrEditProduct = ({ product }: { product: null | ProductType}) => {
         </label>
         <textarea name="description" cols={100} rows={10} className='w-100 p-2 border' placeholder='Description' value={product.desc}></textarea>
       </div>
-      <div><a href="#" className="fd-btn w-25 text-center">UPDATE PRODUCT</a></div>
+      <div>
+          <label>
+            <input type="checkbox" name="deal_of_day" />
+            <span className='ms-2'>Deal Of Day</span>
+          </label>
+        </div>
+      <div className='mt-4'><a href="#" className="fd-btn w-25 text-center">UPDATE PRODUCT</a></div>
     </form>
   )
 
