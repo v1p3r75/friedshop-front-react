@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import Reviews from './Reviews';
 import { Link } from 'react-router-dom';
 import AddToCart from './AddToCart';
+import AddToWishlist from './AddToWishlist';
 
 export type ProductType = {
     img: string,
@@ -45,7 +46,7 @@ const ProductCart = (props: ProductType) => {
                         <div className="d-flex gap-2">
                             <AddToCart product={props}/>
                             <div><a href="#" className="fd-btn rounded-3"><i className="bi bi-eye"></i></a></div>
-                            <div><a href="#" className="fd-btn rounded-3"><i className="bi bi-heart"></i></a></div>
+                            <div><AddToWishlist product={props} classSup='rounded-3'/></div>
                         </div>
                     </div>
                 </div>
@@ -64,7 +65,7 @@ const ProductCart = (props: ProductType) => {
                 {!props.reduction ? <a className="position-absolute top-0 start-0 fd-btn" style={{ padding: '5px 20px' }}>SALE</a> :
                     <a className="position-absolute top-0 start-0 fd-btn-red" style={{ padding: '5px 20px' }}> {props.reduction} </a>
                 }
-                <Link to={"/"} className="position-absolute fd-btn rounded-5" style={{ padding: '5px 10px', top: '10%', right: '10%' }}> <i className="bi bi-heart"></i></Link>
+                <AddToWishlist product={props} classSup='position-absolute rounded-5' supStyle={{ padding: '5px 10px', top: '10%', right: '10%' }}/>
                 <Link to={"/"} className="show position-absolute fd-btn rounded-5 d-none animate__animated animate__fadeInRight" style={{ padding: '5px 10px', top: '20%', right: '10%' }}> <i className="bi bi-eye"></i></Link>
                 <div className='text-center'>
                     <Link to={"/product/1"} className="product-name my-2 fw-bold text-dark">{props.name}</Link>
