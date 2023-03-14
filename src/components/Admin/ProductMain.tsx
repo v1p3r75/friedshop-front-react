@@ -93,7 +93,7 @@ const AddOrEditProduct = ({ product }: { product: null | ProductType}) => {
 
 const ListOfProducts = ({setProduct, setPage} : {setProduct : Function, setPage : Function}) => {
 
-  const parseProduct = (product) => {
+  const parseProduct = (product : ProductType) => {
     setProduct(product);
     setPage('add');
   }
@@ -121,9 +121,9 @@ const ListOfProducts = ({setProduct, setPage} : {setProduct : Function, setPage 
                   <td>{45}</td>
                   <td className='fw-bold d-flex gap-2 justify-content-center'>
                     
-                    <a href="#" className='p-2 rounded-2 fd-bg-primary' onClick={(e) => parseProduct(product)}><i className="bi bi-eye"></i></a>
-                    <a href="#" className='p-2 rounded-2 bg-secondary'><i className="bi bi-pen"></i></a>
-                    <a href="#" className='p-2 rounded-2 bg-danger'><i className="bi bi-trash"></i></a>
+                    <a href="#" className='p-2 rounded-2 fd-bg-primary' onClick={(e) => parseProduct(product)} title='View Product'><i className="bi bi-eye"></i></a>
+                    <a href="#" className='p-2 rounded-2 bg-secondary' onClick={(e) => parseProduct(product)} title='Edit'><i className="bi bi-pen"></i></a>
+                    <a href="#" className='p-2 rounded-2 bg-danger' title='Delete'><i className="bi bi-trash"></i></a>
                   </td>
                 </tr>
               )
@@ -140,13 +140,12 @@ const ProductMain = () => {
   const [productPage, setProductPage] = useState('list');
   const [currentProduct, setCurrentProduct] = useState(null);
 
-  // const parseProduct = () => { setCurrentProduct(currentProduct); }
   const changeToList = () => { setProductPage('add'); setCurrentProduct(null) }
   const changeToAdd = () => { setProductPage('list'); }
 
   return (
     <div className='text-black'>
-      <h4 className="fw-bold">List of products</h4>
+      <h4 className="fw-bold">Products</h4>
       <div className="add-product my-3 d-flex justify-content-end">
         {
           productPage === 'list' ?
