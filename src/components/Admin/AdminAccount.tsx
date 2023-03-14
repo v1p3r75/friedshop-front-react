@@ -1,5 +1,46 @@
-import React, { InputHTMLAttributes, useRef, useState } from "react"
+import React, { useState } from "react"
 
+const AddAccount = () => {
+
+
+    return (
+        <form action="/" method="post" className="admin-profile p-3 mb-5">
+            <div className='d-flex gap-2'>
+                <label className='w-50'>
+                    <span>First Name</span>
+                    <input type="text" name="firstname" className="form-control w-100 rounded-2 p-2"/>
+                </label>
+                <label className='w-50'>
+                    <span>Last Name</span>
+                    <input type="text" name="lastname" className="form-control w-100 rounded-2 p-2" />
+                </label>
+            </div>
+            <div className='d-flex gap-2 my-3'>
+                <label className='w-100'>
+                    <span>Email</span>
+                    <input type="email" name="email" className="form-control w-100 rounded-2 p-2" />
+                </label>
+                <label className='w-100'>
+                    <span>Phone</span>
+                    <input type="text" name="firstname" className="form-control w-100 rounded-2 p-2" />
+                </label>
+            </div>
+            <div className='my-4'>
+                <label className='w-100'>
+                    <span>Password</span>
+                    <input type="password" name="password" className="form-control w-100 rounded-2 p-2" placeholder='********' />
+                </label>
+            </div>
+            <div className='my-4'>
+                <label className='w-100'>
+                    <span>Confirm Password</span>
+                    <input type="confirm_password" name="confirm_password" className="form-control w-100 rounded-2 p-2" placeholder='********' />
+                </label>
+            </div>
+            <div><a href="#" className="fd-btn w-25 text-center">SAVE ACCOUNT</a></div>
+        </form>
+    )
+}
 
 const AdminDetails = () => {
 
@@ -91,17 +132,32 @@ const AdminList = () => {
 
 const AdminAccount = () => {
 
+    const [page, setPage] = useState('list');
+
+    const changeToList = () => { setPage('add'); }
+    const changeToAdd = () => { setPage('list'); }
+
     return (
         <div className='text-black'>
             <h4 className="fw-bold">Profile</h4>
             <div className="add-product my-3 d-flex justify-content-end">
-                <a href="#" className="fd-btn bg-secondary w-25 text-center rounded-3">ADD ACCOUNT</a>
-            </div>
+                {
+                    page === 'list' ?
+                        <a href="#" className="fd-btn bg-secondary w-25 text-center rounded-3" onClick={changeToList}>ADD ACCOUNT</a> :
+                        <a href="#" className="fd-btn bg-secondary w-25 text-center rounded-3" onClick={changeToAdd}>PROFILE</a>
+                }            </div>
             <div className="subPartMain">
-                <AdminDetails />
-                <hr />
-                <h4 className="mt-5">List Of All Admins</h4>
-                <AdminList />
+                {page === 'list' ?
+                    <>
+                        <AdminDetails />
+                        <hr />
+                        <h4 className="mt-5">List Of All Admins</h4>
+                        <AdminList />
+                    </>
+                :
+                    <AddAccount />
+                }
+                
             </div>
         </div>
     )
