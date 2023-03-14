@@ -137,24 +137,24 @@ const ListOfProducts = ({setProduct, setPage} : {setProduct : Function, setPage 
 
 const ProductMain = () => {
 
-  const [productPage, setProductPage] = useState('list');
+  const [page, setPage] = useState('list');
   const [currentProduct, setCurrentProduct] = useState(null);
 
-  const changeToList = () => { setProductPage('add'); setCurrentProduct(null) }
-  const changeToAdd = () => { setProductPage('list'); }
+  const changeToList = () => { setPage('add'); setCurrentProduct(null) }
+  const changeToAdd = () => { setPage('list'); }
 
   return (
     <div className='text-black'>
       <h4 className="fw-bold">Products</h4>
       <div className="add-product my-3 d-flex justify-content-end">
         {
-          productPage === 'list' ?
+          page === 'list' ?
             <a href="#" className="fd-btn bg-secondary w-25 text-center rounded-3" onClick={changeToList}>ADD PRODUCT</a> :
             <a href="#" className="fd-btn bg-secondary w-25 text-center rounded-3" onClick={changeToAdd}>PRODUCTS LIST</a>
         }
       </div>
       <div className="subPartMain">
-        {productPage === 'list' ? <ListOfProducts setProduct={setCurrentProduct} setPage={setProductPage}/> : <AddOrEditProduct product={currentProduct} />}
+        {page === 'list' ? <ListOfProducts setProduct={setCurrentProduct} setPage={setPage}/> : <AddOrEditProduct product={currentProduct} />}
       </div>
     </div>
   )

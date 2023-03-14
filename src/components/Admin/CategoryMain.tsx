@@ -40,7 +40,7 @@ const AddOrEditCategory = ({ category }: { category: null | CategoryType }) => {
         </label>
         <textarea name="description" cols={100} rows={10} className='w-100 p-2 border' placeholder='Description' value={category.description}></textarea>
       </div>
-      <div><a href="#" className="fd-btn w-25 text-center">SAVE NOW</a></div>
+      <div><a href="#" className="fd-btn w-25 text-center">UPDATE CATEGORIE</a></div>
     </form>
   )
 
@@ -91,24 +91,24 @@ const ListOfCategories = ({ setCategory, setPage }: { setCategory: Function, set
 }
 
 const CategoryMain = () => {
-  const [productPage, setProductPage] = useState('list');
+  const [page, setPage] = useState('list');
   const [currentCatetegory, setCurrentCatetegory] = useState(null);
 
-  const changeToList = () => { setProductPage('add'); setCurrentCatetegory(null) }
-  const changeToAdd = () => { setProductPage('list'); }
+  const changeToList = () => { setPage('add'); setCurrentCatetegory(null) }
+  const changeToAdd = () => { setPage('list'); }
 
   return (
     <div className='text-black'>
       <h4 className="fw-bold">Categories</h4>
       <div className="add-product my-3 d-flex justify-content-end">
         {
-          productPage === 'list' ?
+          page === 'list' ?
             <a href="#" className="fd-btn bg-secondary w-25 text-center rounded-3" onClick={changeToList}>ADD CATEGORY</a> :
             <a href="#" className="fd-btn bg-secondary w-25 text-center rounded-3" onClick={changeToAdd}>CATEGORY LIST</a>
         }
       </div>
       <div className="subPartMain">
-        {productPage === 'list' ? <ListOfCategories setCategory={setCurrentCatetegory} setPage={setProductPage} /> : <AddOrEditCategory category={currentCatetegory} />}
+        {page === 'list' ? <ListOfCategories setCategory={setCurrentCatetegory} setPage={setPage} /> : <AddOrEditCategory category={currentCatetegory} />}
       </div>
     </div>
   )

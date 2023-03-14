@@ -15,6 +15,7 @@ const ListOfCustomers = () => {
                     <th scope="col" className='p-3'>LASTNAME</th>
                     <th scope="col" className='p-3'>EMAIL</th>
                     <th scope="col" className='p-3'>ADDRESS</th>
+                    <th scope="col" className='p-3'>TOTAL ORDERS</th>
                     <th scope="col" className='p-3'>ACTION</th>
                 </tr>
             </thead>
@@ -28,10 +29,10 @@ const ListOfCustomers = () => {
                                 <td className='fw-bold'>{customer.lastname}</td>
                                 <td>{customer.email}</td>
                                 <td>{customer.address}</td>
+                                <td>{15}</td>
                                 <td className='fw-bold d-flex gap-2 justify-content-center'>
-                                  <a href="#" className='p-2 rounded-2 fd-bg-primary'><i className="bi bi-eye"></i></a>
-                                  <a href="#" className='p-2 rounded-2 bg-secondary'><i className="bi bi-person-x"></i></a>
-                                  <a href="#" className='p-2 rounded-2 bg-danger'><i className="bi bi-trash"></i></a>
+                                  <a href="#" className='p-2 rounded-2 bg-secondary' title='Block Customer'><i className="bi bi-person-x"></i></a>
+                                  <a href="#" className='p-2 rounded-2 bg-danger' title='Delete'><i className="bi bi-trash"></i></a>
                                 </td>
                             </tr>
                         )
