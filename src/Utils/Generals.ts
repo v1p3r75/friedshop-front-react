@@ -1,5 +1,6 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
+import { ProductType } from '../components/ProductCart';
 
 const active = "d-block p-3 fd-nav-active";
 const inactive = "d-block p-3 text-black";
@@ -42,4 +43,20 @@ const removeItem = (keyname : string) => {
 
 }
 
-export {toggleLinkClass, getItem, setItem, removeItem}
+const productIsExist = (keyname : string, stack : string) => {
+
+    let localStore : string | ProductType[] = getItem(stack)!;
+
+    if (!localStore) {
+        return [];
+        
+    }
+
+    localStore = JSON.parse(localStore);
+
+    return typeof localStore === 'object' ? localStore.filter(item => item.name === keyname) : [];
+    
+}
+
+
+export {toggleLinkClass, getItem, setItem, removeItem, productIsExist}

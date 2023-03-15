@@ -9,8 +9,8 @@ import useFetch from '../hooks/useFetch'
 
 const ProductDetails = ({product} : {product : ProductType}) => {
 
-    // const [loading, data] = useFetch('https://comfortable.dev/user/2');
-    // console.log(loading, data);
+    const [loading, data] = useFetch('https://comfortable.dev/user/2');
+    console.log(loading, data);
 
   return (
     <div className='view-product px-5'>

@@ -1,17 +1,27 @@
 import React, { useState } from 'react'
 import { ProductType } from './ProductCart'
-import { getItem } from '../Utils/Generals';
+import { getItem, productIsExist } from '../Utils/Generals';
 import addProductToCart from '../Utils/addProductToCart';
 
 const AddToWishlist = ( {product, classSup = '', supStyle} : {product : ProductType, classSup? : string, supStyle? : Object}) => {
 
     const [added, setAdded] = useState(false);
+    const exist = productIsExist(product.name, 'fd_wishlist')
 
   return <>
-        <a href="#" className={"fd-btn " + classSup } style={supStyle}><i className="bi bi-heart" onClick={(e) => {
-          e.preventDefault();
-          addProductToCart(product, 'wishlist');
-        }}></i></a>
+        <a className={"fd-btn cursor-pointer " + classSup } style={supStyle}>
+            {
+                 exist.length > 0 ? 
+                    <i className='bi bi-check-circle'></i>
+                :
+                    <i className={"bi bi-heart"} onClick={(e) => {
+                        e.preventDefault();
+                        addProductToCart(product, 'fd_wishlist');
+                        setAdded(true);
+                        }}>
+                    </i>
+            }
+        </a>
   </>
 }
 

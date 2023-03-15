@@ -4,7 +4,7 @@ import Header from './includes/Header';
 import Banner from '../components/Banner';
 import { productsTest } from './VirtualData';
 import AddToCart from '../components/AddToCart';
-import { getItem } from '../Utils/Generals';
+import { getItem, productIsExist } from '../Utils/Generals';
 import { ProductType } from '../components/ProductCart';
 
 export const ProductList = ({ product }: { product: ProductType }) => {
@@ -25,7 +25,7 @@ const WishList: FC = () => {
     let [wishlist, setWishlist] = useState<ProductType[]>();
 
     useEffect(() => {
-        let wishlist_local = getItem('wishlist');
+        let wishlist_local = getItem('fd_wishlist');
 
         if (wishlist_local) {
             setWishlist(JSON.parse(wishlist_local))

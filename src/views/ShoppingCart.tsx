@@ -14,7 +14,7 @@ const ShoppingCart = () => {
   let [shopping, setShopping] = useState<ProductType[]>();
 
   useEffect(() => {
-    let shoppingSaved = getItem('shoppingcart');
+    let shoppingSaved = getItem('fd_shoppingcart');
 
     if (shoppingSaved) {
       setShopping(JSON.parse(shoppingSaved))
