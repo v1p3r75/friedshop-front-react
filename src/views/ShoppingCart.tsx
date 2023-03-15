@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from './includes/Header'
 import Banner from '../components/Banner'
 import Footer from './includes/Footer'
@@ -6,8 +6,21 @@ import { productsTest } from './VirtualData'
 import NumberCount from '../components/NumberCount'
 import { Link } from 'react-router-dom'
 import RoutePaths from '../config'
+import { ProductType } from '../components/ProductCart'
+import { getItem } from '../Utils/Generals'
 
 const ShoppingCart = () => {
+
+  let [shopping, setShopping] = useState<ProductType[]>();
+
+  useEffect(() => {
+    let shoppingSaved = getItem('shoppingcart');
+
+    if (shoppingSaved) {
+      setShopping(JSON.parse(shoppingSaved))
+    }
+
+  }, [])
 
 
   return (
@@ -29,18 +42,22 @@ const ShoppingCart = () => {
             </thead>
             <tbody>
               {
-                productsTest.map(product => {
-                  return (
-                    <tr className="p-3">
-                      <td scope="row w-25"><img src={product.img} alt={product.name} style={{ width: '50px', height: '50px' }} /></td>
-                      <td className='fw-bold'>{product.name}</td>
-                      <td>{product.price}</td>
-                      <td>$250</td>
-                      <td className='d-flex justify-content-center'><NumberCount min={1}/></td>
-                      <td className='cursor-pointer'><i className="bi bi-x" style={{lineHeight: '50px'}}></i></td>
-                    </tr>
-                  )
-                })
+                shopping ?
+                  shopping.map(product => {
+                    return (
+                      <tr className="p-3">
+                        <td scope="row w-25"><img src={product.img} alt={product.name} style={{ width: '50px', height: '50px' }} /></td>
+                        <td className='fw-bold'>{product.name}</td>
+                        <td>{product.price}</td>
+                        <td>$250</td>
+                        <td className='d-flex justify-content-center'><NumberCount min={1} /></td>
+                        <td className='cursor-pointer'><i className="bi bi-x" style={{ lineHeight: '50px' }}></i></td>
+                      </tr>
+                    )
+                  }) :
+                  <tr className='p-5'>
+                    <td className='fw-bold text-center' colSpan={6}>You have not a product in whilist</td>
+                  </tr>
               }
             </tbody>
           </table>
@@ -49,28 +66,30 @@ const ShoppingCart = () => {
           <div><Link to={RoutePaths.shop} className='fd-btn'>CONTINUE SHOPPING</Link></div>
           <div><Link to={RoutePaths.cart} className='fd-btn'>UPDATE CART</Link></div>
         </div>
-        <div className="coupon-total d-flex gap-2 text-dark">
-          <div className="coupon w-75 p-4 border border-1">
-            <h5 className="fw-bold">Use Coupon Code</h5>
-            <hr />
-            <div className='my-3'>
-              <label className='w-100'>
-                <span>Have a coupon code?</span>
-                <input type="text" className='w-100 form-control rounded-0 border' placeholder='XXX'/>
-              </label>
+        {shopping &&
+          <div className="coupon-total d-flex gap-2 text-dark">
+            <div className="coupon w-75 p-4 border border-1">
+              <h5 className="fw-bold">Use Coupon Code</h5>
+              <hr />
+              <div className='my-3'>
+                <label className='w-100'>
+                  <span>Have a coupon code?</span>
+                  <input type="text" className='w-100 form-control rounded-0 border' placeholder='XXX' />
+                </label>
+              </div>
+              <div className="submit w-25 shadow"><a href="#" className="fd-btn text-center">APPLY</a></div>
             </div>
-            <div className="submit w-25 shadow"><a href="#" className="fd-btn text-center">APPLY</a></div>
+            <div className="total p-4 border border-1 w-25">
+              <h5 className="fw-bold">Order Total</h5>
+              <hr />
+              <div><span className='fw-bold'>Sutotal :</span><span className='float-end opacity-75'>$250</span></div>
+              <div className='my-3'><span className='fw-bold'>Taxes :</span><span className='float-end opacity-75'>$300</span></div>
+              <hr />
+              <div><span className='fw-bold'>Grand Total:</span><span className='float-end opacity-75'>$550</span></div>
+              <div className="submit mt-3"><Link to={"/checkout"} className="fd-btn text-center">PROCEED CHECKOUT</Link></div>
+            </div>
           </div>
-          <div className="total p-4 border border-1 w-25">
-            <h5 className="fw-bold">Order Total</h5>
-            <hr />
-            <div><span className='fw-bold'>Sutotal :</span><span className='float-end opacity-75'>$250</span></div>
-            <div className='my-3'><span className='fw-bold'>Taxes :</span><span className='float-end opacity-75'>$300</span></div>
-            <hr />
-            <div><span className='fw-bold'>Grand Total:</span><span className='float-end opacity-75'>$550</span></div>
-            <div className="submit mt-3"><Link to={"/checkout"} className="fd-btn text-center">PROCEED CHECKOUT</Link></div>
-          </div>
-        </div>
+        }
       </div>
       <Footer />
     </>

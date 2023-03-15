@@ -6,12 +6,16 @@ const useFetch = ( url : string ) => {
     const [data, setData] = useState({});
 
     useEffect(() => {
-        fetch(url).then((response : Response) => {
-            setData(() => setData(response.json));
-            setLoading(false);
-        }).catch((error) => {
-            console.error(error);
-        })
+         fetch(url)
+            .then((response : Response) => {
+                response.json()
+            })
+            .then(data => {
+                console.log(data);
+                setLoading(false);
+            }).catch((error) => {
+                console.error(error);
+            })
     }, []);
 
     return [loading, data];
