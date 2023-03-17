@@ -56,7 +56,7 @@ const ProductDetails = ({product} : {product : ProductType}) => {
                     </div>
                 </div>
                 <div className='d-flex gap-2 my-4'>
-                    <NumberCount min={1} />
+                    <NumberCount product={product} min={1} />
                     <AddToCart product={product} divClass='align-self-center'/>
                 </div>
                 <div className="p-share d-flex gap-2 align-items-center">

@@ -50,7 +50,7 @@ const ShoppingCart = () => {
                         <td className='fw-bold'>{product.name}</td>
                         <td>{product.price}</td>
                         <td>$250</td>
-                        <td className='d-flex justify-content-center'><NumberCount min={1} /></td>
+                        <td className='d-flex justify-content-center'><NumberCount product={product} min={1} /></td>
                         <td className='cursor-pointer'><i className="bi bi-x" style={{ lineHeight: '50px' }} onClick={
                           (e) => {
                             let newState = deleteProduct(product, cartKeyName);
@@ -71,7 +71,7 @@ const ShoppingCart = () => {
           <div><Link to={RoutePaths.shop} className='fd-btn'>CONTINUE SHOPPING</Link></div>
           <div><Link to={RoutePaths.cart} className='fd-btn'>UPDATE CART</Link></div>
         </div>
-        {shopping &&
+        {shopping && shopping.length > 0 ?
           <div className="coupon-total d-flex gap-2 text-dark">
             <div className="coupon w-75 p-4 border border-1">
               <h5 className="fw-bold">Use Coupon Code</h5>
@@ -88,12 +88,12 @@ const ShoppingCart = () => {
               <h5 className="fw-bold">Order Total</h5>
               <hr />
               <div><span className='fw-bold'>Sutotal :</span><span className='float-end opacity-75'>$250</span></div>
-              <div className='my-3'><span className='fw-bold'>Taxes :</span><span className='float-end opacity-75'>$300</span></div>
+              <div className='my-3'><span className='fw-bold'>Taxes :</span><span className='float-end opacity-75'>$0.00</span></div>
               <hr />
               <div><span className='fw-bold'>Grand Total:</span><span className='float-end opacity-75'>$550</span></div>
               <div className="submit mt-3"><Link to={"/checkout"} className="fd-btn text-center">PROCEED CHECKOUT</Link></div>
             </div>
-          </div>
+          </div> : null
         }
       </div>
       <Footer />

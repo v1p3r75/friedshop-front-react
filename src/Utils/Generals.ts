@@ -80,5 +80,30 @@ const deleteProduct = (key : ProductType, stack : string) => {
 
 }
 
+const setQuantity = (product : ProductType, stack : string, quantity: number) => {
 
-export {toggleLinkClass, getItem, setItem, removeItem, productIsExist, deleteProduct, cartKeyName, wishlistKeyName}
+    let localStore : string | ProductType[] = getItem(stack)!;
+
+    localStore = JSON.parse(localStore);
+
+
+    if(localStore instanceof Object) {
+
+        const localProduct = localStore.find(item => item.name === product.name);
+
+        if (localProduct) {
+
+            localStore.map(item => {
+                item.quantity = localProduct.name === item.name ? quantity : void 0;
+            })
+            setItem(cartKeyName, localStore);
+        }
+
+    }
+
+    return [];
+
+}
+
+
+export {toggleLinkClass, getItem, setItem, removeItem, productIsExist, deleteProduct, cartKeyName, wishlistKeyName, setQuantity}

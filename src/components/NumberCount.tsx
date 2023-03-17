@@ -1,28 +1,38 @@
-import React, { FC, SyntheticEvent, useState } from 'react'
+import React, { FC, SyntheticEvent, useEffect, useState } from 'react'
+import { ProductType } from './ProductCart';
+import { cartKeyName, setQuantity } from '../Utils/Generals';
 
 type OptionsType = {
-    initialValue? : number;
+    product: ProductType,
+    initialValue? : number,
     step? : number;
     min? : number,
     max? : number
 } 
 
-const NumberCount = ({initialValue = 1, step = 1, min, max } : OptionsType) => {
+const NumberCount = ({product, initialValue = 1, step = 1, min, max } : OptionsType) => {
     
-    const [count, setCount] = useState(initialValue);
-    
+    let [count, setCount] = useState(initialValue);
+
     const increment = () => {
         setCount((state) =>  {
-            if (max && state >= max) return state;
+            if (max && count >= max) return count;
             return state + step
         });
+        
+        let quantity = count + 1;
+        setQuantity(product, cartKeyName, quantity);
     }
 
     const decrement = () => {
+        
         setCount((state) => {
-            if (min && state <= min) return state;
+            if (min && count <= min) return count;
             return state - step;
         });
+        let quantity = count - 1;
+        setQuantity(product, cartKeyName, quantity);
+
     }
 
     return (
