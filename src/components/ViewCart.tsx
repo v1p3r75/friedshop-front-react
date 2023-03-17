@@ -1,10 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { productsTest } from '../views/VirtualData';
 import SimpleProduct from './SimpleProduct';
 import RoutePaths from '../config';
+import { ProductType } from './ProductCart';
+import { cartKeyName, getItem, getNbTotal, getTotal } from '../Utils/Generals';
 
 const ViewCart = ({setShow} : {setShow : Function}) => {
+
+    const [productCart, setProductCart] = useState<ProductType[]>()
     
     const hideCart = () => { 
         setShow(false);
@@ -13,6 +17,11 @@ const ViewCart = ({setShow} : {setShow : Function}) => {
 
     useEffect(() => {
         document.body.classList.add('overflow-hidden');
+        let cartProduct = getItem(cartKeyName);
+        if (cartProduct) {
+            setProductCart(JSON.parse(cartProduct));
+        }
+        
     }, []);
 
 
@@ -22,10 +31,13 @@ const ViewCart = ({setShow} : {setShow : Function}) => {
             <div className='position-absolute d-flex flex-column justify-content-between gap-2 fw-bold top-0 end-0 w-25 p-3 bg-white h-100 text-black' style={{zIndex : '2'}}>
                 <h4 className="fw-bold w-100">SHOPPING CART <span className="float-end cursor-pointer" onClick={hideCart}><i className="bi bi-x"></i></span></h4><hr />
                 <div className="h-50 overflow-auto">
-                    {productsTest.map(product => <SimpleProduct {...product} key={product.img} />)}
+                    { productCart && productCart.length > 0 ?
+                        productCart.map(product => <SimpleProduct product = {product} setCartProduct={setProductCart} key={product.img} />) :
+                        <h6 className="opacity-50 text-center">No Product in Cart.</h6>
+                    }
                 </div><hr />
                 <div className="h-25 mb-5">
-                    <h5 className='w-100 fw-bold'>Sub Total : <span className="float-end">$450</span></h5>
+                    <h5 className='w-100 fw-bold'>Sub Total : <span className="float-end">{'$' + getTotal()}</span></h5>
                     <div className="v-cart my-3" onClick={hideCart}><Link to={RoutePaths.cart} className="fd-btn bg-white border border-1 text-black p-4 text-center">VIEW CART</Link></div>
                     <div className="v-checkout" onClick={hideCart}><Link to={RoutePaths.checkout} className="fd-btn p-4 text-center">CHECKOUT</Link></div>
                 </div>

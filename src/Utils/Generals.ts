@@ -105,5 +105,32 @@ const setQuantity = (product : ProductType, stack : string, quantity: number) =>
 
 }
 
+export const getTotal = () => {
+
+    let localStore : string |  ProductType[] = getItem(cartKeyName)!;
+
+    localStore = JSON.parse(localStore);
+
+    let total = 0;
+
+    if (localStore instanceof Object) {
+        total = localStore.reduce((a, b) => 
+            a + (b.price * (b.quantity || 1))
+        , 0);
+    }
+
+    return total;
+
+}
+
+export const getNbTotal = (stack : string) => {
+
+    let localStore : string |  ProductType[] = getItem(stack)!;
+
+    localStore = JSON.parse(localStore);
+
+    return localStore ? localStore.length : 0;
+}
+
 
 export {toggleLinkClass, getItem, setItem, removeItem, productIsExist, deleteProduct, cartKeyName, wishlistKeyName, setQuantity}

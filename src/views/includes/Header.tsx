@@ -1,15 +1,26 @@
-import React, { SyntheticEvent, useState } from 'react'
+import React, { SyntheticEvent, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { SocialsNetworks } from '../../components/SocialsNetworks'
 import ViewCart from '../../components/ViewCart'
 import ViewSearch from '../../components/ViewSearch'
 import Lang from '../../components/Lang'
 import RoutePaths from '../../config'
+import { cartKeyName, getNbTotal, wishlistKeyName } from '../../Utils/Generals'
 
 const Header = () => {
 
     const [showCart, setShowCart] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
+    const [totalWishlist, setTotalWishlist] = useState(0);
+    const [totalShopping, setTotalShopping] = useState(0);
+
+    useEffect(() => {
+
+        setTotalShopping(getNbTotal(cartKeyName));
+        setTotalWishlist(getNbTotal(wishlistKeyName));
+
+    }, []);
+
 
     const viewCart = (e : SyntheticEvent) => {
         e.preventDefault();
@@ -62,8 +73,8 @@ const Header = () => {
                 </nav>
             </nav>
             <div className="d-flex gap-2 align-self-center">
-                        <div onClick={viewCart}><a href='#' className="position-relative border-3 shadow border-light py-2 px-3 text-dark fd-hover-bg-primary"><i className="bi bi-cart3"></i><span className="position-absolute top-0">2</span></a></div>
-                        <div><Link to={RoutePaths.wishlist} className="position-relative border-3 shadow border-light py-2 px-3 text-dark fd-hover-bg-primary"><i className="bi bi-heart"></i><span className="position-absolute top-0">3</span></Link></div>
+                        <div onClick={viewCart}><a href='#' className="position-relative border-3 shadow border-light py-2 px-3 text-dark fd-hover-bg-primary"><i className="bi bi-cart3"></i><span className="position-absolute top-0">{totalShopping}</span></a></div>
+                        <div><Link to={RoutePaths.wishlist} className="position-relative border-3 shadow border-light py-2 px-3 text-dark fd-hover-bg-primary"><i className="bi bi-heart"></i><span className="position-absolute top-0">{totalWishlist}</span></Link></div>
                         <div onClick={viewSearch}><a href='#' className="position-relative border-3 shadow border-light py-2 px-3 text-dark fd-hover-bg-primary"><i className="bi bi-search"></i></a></div>
                         <div><Link to={RoutePaths.login} className="position-relative border-3 shadow border-light py-2 px-3 text-dark fd-hover-bg-primary"><i className="bi bi-person"></i></Link></div>
                     </div>

@@ -7,11 +7,12 @@ import NumberCount from '../components/NumberCount'
 import { Link } from 'react-router-dom'
 import RoutePaths from '../config'
 import { ProductType } from '../components/ProductCart'
-import { cartKeyName, deleteProduct, getItem } from '../Utils/Generals'
+import { cartKeyName, deleteProduct, getItem, getTotal } from '../Utils/Generals'
 
 const ShoppingCart = () => {
 
   let [shopping, setShopping] = useState<ProductType[]>();
+  let total = getTotal();
 
   useEffect(() => {
     let shoppingSaved = getItem(cartKeyName);
@@ -19,6 +20,7 @@ const ShoppingCart = () => {
     if (shoppingSaved) {
       setShopping(JSON.parse(shoppingSaved))
     }
+    console.log(total);
 
   }, [])
 
@@ -87,10 +89,10 @@ const ShoppingCart = () => {
             <div className="total p-4 border border-1 w-25">
               <h5 className="fw-bold">Order Total</h5>
               <hr />
-              <div><span className='fw-bold'>Sutotal :</span><span className='float-end opacity-75'>$250</span></div>
+              <div><span className='fw-bold'>Sutotal :</span><span className='float-end opacity-75'>{total}</span></div>
               <div className='my-3'><span className='fw-bold'>Taxes :</span><span className='float-end opacity-75'>$0.00</span></div>
               <hr />
-              <div><span className='fw-bold'>Grand Total:</span><span className='float-end opacity-75'>$550</span></div>
+              <div><span className='fw-bold'>Grand Total:</span><span className='float-end opacity-75'>{'$' + total}</span></div>
               <div className="submit mt-3"><Link to={"/checkout"} className="fd-btn text-center">PROCEED CHECKOUT</Link></div>
             </div>
           </div> : null

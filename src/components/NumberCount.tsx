@@ -19,7 +19,7 @@ const NumberCount = ({product, initialValue = 1, step = 1, min, max } : OptionsT
             if (max && count >= max) return count;
             return state + step
         });
-        
+
         let quantity = count + 1;
         setQuantity(product, cartKeyName, quantity);
     }
