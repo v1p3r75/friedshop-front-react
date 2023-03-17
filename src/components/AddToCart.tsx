@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { ProductType } from './ProductCart'
 import addProductToCart from '../Utils/addProductToCart';
-import { productIsExist } from '../Utils/Generals';
+import { cartKeyName, productIsExist } from '../Utils/Generals';
 
 const AddToCart = ({ product, classSup = '', divClass = '' }: { product: ProductType, classSup?: string, divClass?: string }) => {
 
   const [added, setAdded] = useState(false);
-  const exist = productIsExist(product.name, 'fd_shoppingcart')
+  const exist = productIsExist(product.name, cartKeyName)
 
   return <>
     {
@@ -15,7 +15,7 @@ const AddToCart = ({ product, classSup = '', divClass = '' }: { product: Product
         :
         <div className={divClass} onClick={(e) => {
           e.preventDefault();
-          addProductToCart(product, 'fd_shoppingcart');
+          addProductToCart(product, cartKeyName);
           setAdded(true)
         }}><a href="#" className={"fd-btn rounded-3 text-center " + classSup}>ADD TO CART</a></div>
     }

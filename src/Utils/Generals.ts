@@ -5,6 +5,9 @@ import { ProductType } from '../components/ProductCart';
 const active = "d-block p-3 fd-nav-active";
 const inactive = "d-block p-3 text-black";
 
+const cartKeyName = 'fd_shoppingcart';
+const wishlistKeyName = 'fd_wishlist';
+
 type ToggleLink = { 
     path: string,
     activeClass : string,
@@ -54,9 +57,28 @@ const productIsExist = (keyname : string, stack : string) => {
 
     localStore = JSON.parse(localStore);
 
-    return typeof localStore === 'object' ? localStore.filter(item => item.name === keyname) : [];
+    return typeof localStore === 'object'  ? localStore.filter(item => item.name === keyname) : [];
     
 }
 
+const deleteProduct = (key : ProductType, stack : string) => {
 
-export {toggleLinkClass, getItem, setItem, removeItem, productIsExist}
+    let localStore : string | ProductType[] = getItem(stack)!;
+
+    localStore = JSON.parse(localStore);
+
+    if(localStore instanceof Object && localStore.find(item => item.name === key.name)) {
+
+        let newStore = localStore.filter(item => item.name != key.name);
+        setItem(stack, newStore);
+        
+        return newStore;
+    }
+
+    return [];
+
+
+}
+
+
+export {toggleLinkClass, getItem, setItem, removeItem, productIsExist, deleteProduct, cartKeyName, wishlistKeyName}

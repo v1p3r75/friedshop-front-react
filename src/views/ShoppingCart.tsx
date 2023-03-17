@@ -7,14 +7,14 @@ import NumberCount from '../components/NumberCount'
 import { Link } from 'react-router-dom'
 import RoutePaths from '../config'
 import { ProductType } from '../components/ProductCart'
-import { getItem } from '../Utils/Generals'
+import { cartKeyName, deleteProduct, getItem } from '../Utils/Generals'
 
 const ShoppingCart = () => {
 
   let [shopping, setShopping] = useState<ProductType[]>();
 
   useEffect(() => {
-    let shoppingSaved = getItem('fd_shoppingcart');
+    let shoppingSaved = getItem(cartKeyName);
 
     if (shoppingSaved) {
       setShopping(JSON.parse(shoppingSaved))
@@ -42,7 +42,7 @@ const ShoppingCart = () => {
             </thead>
             <tbody>
               {
-                shopping ?
+                shopping && shopping.length > 0?
                   shopping.map(product => {
                     return (
                       <tr className="p-3">
@@ -51,12 +51,17 @@ const ShoppingCart = () => {
                         <td>{product.price}</td>
                         <td>$250</td>
                         <td className='d-flex justify-content-center'><NumberCount min={1} /></td>
-                        <td className='cursor-pointer'><i className="bi bi-x" style={{ lineHeight: '50px' }}></i></td>
+                        <td className='cursor-pointer'><i className="bi bi-x" style={{ lineHeight: '50px' }} onClick={
+                          (e) => {
+                            let newState = deleteProduct(product, cartKeyName);
+                            setShopping(newState);
+                          }
+                        }></i></td>
                       </tr>
                     )
                   }) :
                   <tr className='p-5'>
-                    <td className='fw-bold text-center' colSpan={6}>You have not a product in whilist</td>
+                    <td className='fw-bold text-center' colSpan={6}>You have not a product in shopping cart</td>
                   </tr>
               }
             </tbody>
