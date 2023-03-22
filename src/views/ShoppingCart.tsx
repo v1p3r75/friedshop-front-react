@@ -15,8 +15,9 @@ const ShoppingCart = () => {
   let total = getTotal();
 
   useEffect(() => {
-    let shoppingSaved = getItem(cartKeyName);
 
+    let shoppingSaved = getItem(cartKeyName);
+      
     if (shoppingSaved) {
       setShopping(JSON.parse(shoppingSaved))
     }
@@ -44,7 +45,7 @@ const ShoppingCart = () => {
             </thead>
             <tbody>
               {
-                shopping && shopping.length > 0?
+                shopping && shopping.length > 0 ?
                   shopping.map(product => {
                     return (
                       <tr className="p-3">

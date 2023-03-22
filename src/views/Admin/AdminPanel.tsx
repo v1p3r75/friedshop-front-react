@@ -8,9 +8,8 @@ import RoutePaths from '../../config'
 
 const AdminPanel = ({currentComponent} : {currentComponent : React.ReactNode}) => {
 
-  const navigation = useLocation();
-
   useEffect(() => {
+
     document.querySelectorAll('html,body, #root').forEach((e) => e.classList.add('h-100' ,'overflow-hidden'));
   }, [])
 

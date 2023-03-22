@@ -9,11 +9,12 @@ import 'animate.css/animate.min.css'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
-    </BrowserRouter>
+        <App />
+      </BrowserRouter>
   </React.StrictMode>,
 )
