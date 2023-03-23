@@ -32,11 +32,7 @@ const getItem = (keymane : string) => {
 
 const setItem = (keyname : string, value : string | Object) => {
 
-    if (value instanceof Object) {
-        return localStorage.setItem(keyname, JSON.stringify(value));
-    }
-
-    return localStorage.setItem(keyname, value)
+    return localStorage.setItem(keyname, JSON.stringify(value));
 
 }
 
@@ -125,11 +121,12 @@ export const getTotal = () => {
 
 export const getNbTotal = (stack : string) => {
 
-    let localStore : string |  ProductType[] = getItem(stack)!;
+    // let localStore : string |  ProductType[] = getItem(stack)!;
 
-    localStore = JSON.parse(localStore);
+    // localStore = localStore || JSON.parse();
 
-    return localStore ? localStore.length : 0;
+    // return localStore ? localStore.length : 0;
+    return 3;
 }
 
 

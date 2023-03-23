@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, ReducerState, useEffect, useState } from 'react'
 import Footer from './includes/Footer';
 import Header from './includes/Header';
 import Banner from '../components/Banner';
@@ -6,19 +6,21 @@ import { productsTest } from './VirtualData';
 import AddToCart from '../components/AddToCart';
 import { deleteProduct, getItem, productIsExist, wishlistKeyName } from '../Utils/Generals';
 import { ProductType } from '../components/ProductCart';
+import { useSelector } from 'react-redux';
 
 
 
 const WishList: FC = () => {
-    let [wishlist, setWishlist] = useState<ProductType[]>();
+    
+    let wishlist : Array<ProductType> = useSelector((state) => state.productWishlist);
 
     useEffect(() => {
-        let wishlist_local = getItem(wishlistKeyName);
+        // let wishlist_local = getItem(wishlistKeyName);
 
-        if (wishlist_local) {
-            setWishlist(JSON.parse(wishlist_local))
-        }
-
+        // if (wishlist_local) {
+        //     setWishlist(JSON.parse(wishlist_local))
+        // }
+        
     }, [])
 
     return (
@@ -43,18 +45,18 @@ const WishList: FC = () => {
                                 wishlist && wishlist.length > 0 ?
                                     wishlist.map((product) => {
                                         return <tr className="p-3" key={product.name}>
-                                        <td scope="row w-25"><img src={product.img} alt={product.name} style={{ width: '50px', height: '50px' }} /></td>
-                                        <td className='fw-bold'>{product.name}</td>
-                                        <td>{product.price}</td>
-                                        <td>{"In Stock"}</td>
-                                        <td><AddToCart product={product} classSup='w-50 mx-auto' /></td>
-                                        <td className='fw-bold cursor-pointer'><i className="bi bi-x" style={{ lineHeight: '50px' }} onClick={
-                                            (e) => {
-                                                let newState = deleteProduct(product, wishlistKeyName);
-                                                setWishlist(newState);
-                                            }
-                                        }></i></td>
-                                    </tr>
+                                            <td scope="row w-25"><img src={product.img} alt={product.name} style={{ width: '50px', height: '50px' }} /></td>
+                                            <td className='fw-bold'>{product.name}</td>
+                                            <td>{product.price}</td>
+                                            <td>{"In Stock"}</td>
+                                            <td><AddToCart product={product} classSup='w-50 mx-auto' /></td>
+                                            <td className='fw-bold cursor-pointer'><i className="bi bi-x" style={{ lineHeight: '50px' }} onClick={
+                                                (e) => {
+                                                    let newState = deleteProduct(product, wishlistKeyName);
+                                                    setWishlist(newState);
+                                                }
+                                            }></i></td>
+                                        </tr>
                                     }) :
                                     <tr className='p-5'>
                                         <td className='fw-bold text-center' colSpan={6}>You have not a product in whilist</td>
