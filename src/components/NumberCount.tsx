@@ -1,6 +1,8 @@
 import React, { FC, SyntheticEvent, useEffect, useState } from 'react'
 import { ProductType } from './ProductCart';
-import { cartKeyName, setQuantity } from '../Utils/Generals';
+import { cartKeyName } from '../Utils/Generals';
+import { setProductQuantity } from '../store/productSlice';
+import { useAppDispatch } from '../hooks/redux-hooks';
 
 type OptionsType = {
     product: ProductType,
@@ -10,35 +12,34 @@ type OptionsType = {
     max? : number
 } 
 
-const NumberCount = ({product, initialValue = 1, step = 1, min, max } : OptionsType) => {
+const Numberquantity = ({product, initialValue = 1, step = 1, min, max } : OptionsType) => {
     
-    let [count, setCount] = useState(initialValue);
+    const [quantity, setQuantity] = useState(product.quantity ?? initialValue);
+    const dispatch = useAppDispatch();
 
     const increment = () => {
-        setCount((state) =>  {
-            if (max && count >= max) return count;
-            return state + step
-        });
-
-        let quantity = count + 1;
-        setQuantity(product, cartKeyName, quantity);
+        if (max && quantity >= max) {
+            return quantity;
+        }
+        setQuantity(state => state + step);
+        const quantitySaved = quantity + 1;
+        dispatch(setProductQuantity({product, quantitySaved}));
     }
 
     const decrement = () => {
         
-        setCount((state) => {
-            if (min && count <= min) return count;
-            return state - step;
-        });
-        let quantity = count - 1;
-        setQuantity(product, cartKeyName, quantity);
-
+        if (min && quantity <= min) {
+            return quantity;
+        }
+        setQuantity(state => state - step);
+        const quantitySaved = quantity - 1;
+        dispatch(setProductQuantity({product, quantitySaved}));
     }
 
     return (
         <div className="d-flex">
             <div className='fd-bg-primary py-1 px-3 text-white cursor-pointer rounded-3' onClick={decrement}><i className="bi" style={{lineHeight : "40px"}}>-</i></div>
-            <div className='bg-white px-4'><span style={{lineHeight : "40px"}}>{count}</span></div>
+            <div className='bg-white px-4'><span style={{lineHeight : "40px"}}>{quantity}</span></div>
             <div className='fd-bg-primary py-1 px-3 text-white cursor-pointer rounded-3' onClick={increment}><i className="bi bi-plus" style={{lineHeight : "40px"}}></i></div>
         </div>
     )
@@ -47,4 +48,4 @@ const NumberCount = ({product, initialValue = 1, step = 1, min, max } : OptionsT
 
 
 
-export default NumberCount
+export default Numberquantity

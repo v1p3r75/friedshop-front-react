@@ -89,6 +89,18 @@ export const productCartSlice = createSlice({
             setItem(cartKeyName, state);
             return state;
         },
+
+        setProductQuantity(state, action : PayloadAction<{product : ProductType, quantitySaved : number}>) {
+
+            const product = state.find((product) => product.id == action.payload.product.id);
+
+            if (product) {
+             product.quantity = action.payload.quantitySaved;
+             setItem(cartKeyName, state);
+           }
+
+           return state;
+        }
     }
 
 });
@@ -96,4 +108,4 @@ export const productCartSlice = createSlice({
 
 export const { fillWishList, addToWishlist, deleteProductInWishlist } = productWhishListSlice.actions;
 
-export const {fillShoppingCart, addToShoppingCart, deleteProductInCart} = productCartSlice.actions;
+export const {fillShoppingCart, addToShoppingCart, deleteProductInCart, setProductQuantity} = productCartSlice.actions;
