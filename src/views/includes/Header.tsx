@@ -5,17 +5,16 @@ import ViewCart from '../../components/ViewCart'
 import ViewSearch from '../../components/ViewSearch'
 import Lang from '../../components/Lang'
 import RoutePaths from '../../config'
-import { cartKeyName, getItem, getNbTotal, wishlistKeyName } from '../../Utils/Generals'
-import { useDispatch, useSelector } from 'react-redux'
+import { cartKeyName, getItem, wishlistKeyName } from '../../Utils/Generals'
 import { ProductType } from '../../components/ProductCart'
 import { fillShoppingCart, fillWishList } from '../../store/productSlice'
-import { RootState } from '../../../store'
+import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks'
 
 const Header = () => {
 
-    const wishlist : ProductType[] = useSelector((state : RootState) => state.productWishlist);
-    const shoppingcart : ProductType[] = useSelector((state : RootState) => state.productCart);
-    const dispatch = useDispatch();
+    const wishlist : ProductType[] = useAppSelector((state) => state.productWishlist);
+    const shoppingcart : ProductType[] = useAppSelector((state) => state.productCart);
+    const dispatch = useAppDispatch();
 
     const [showCart, setShowCart] = useState(false);
     const [showSearch, setShowSearch] = useState(false);

@@ -1,12 +1,13 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 import { ProductType } from '../components/ProductCart';
+import { useAppSelector } from '../hooks/redux-hooks';
 
 const active = "d-block p-3 fd-nav-active";
 const inactive = "d-block p-3 text-black";
 
-const cartKeyName = 'fd_shoppingcart';
-const wishlistKeyName = 'fd_wishlist';
+export const cartKeyName = 'fd_shoppingcart';
+export const wishlistKeyName = 'fd_wishlist';
 
 type ToggleLink = { 
     path: string,
@@ -15,7 +16,7 @@ type ToggleLink = {
 }
 
 
-const toggleLinkClass = (path : string, activeClass : string = active, inactiveClass : string = inactive) => {
+export const toggleLinkClass = (path : string, activeClass : string = active, inactiveClass : string = inactive) => {
 
     const currentLink = useLocation().pathname;
 
@@ -24,59 +25,25 @@ const toggleLinkClass = (path : string, activeClass : string = active, inactiveC
 }
 
 
-const getItem = (keymane : string) => {
+export const getItem = (keymane : string) => {
 
     return localStorage.getItem(keymane)
 }
 
 
-const setItem = (keyname : string, value : string | Object) => {
+export const setItem = (keyname : string, value : string | Object) => {
 
     return localStorage.setItem(keyname, JSON.stringify(value));
 
 }
 
-const removeItem = (keyname : string) => {
+export const removeItem = (keyname : string) => {
     
     return localStorage.removeItem(keyname);
 
 }
 
-const productIsExist = (keyname : string, stack : string) => {
-
-    let localStore : string | ProductType[] = getItem(stack)!;
-
-    if (!localStore) {
-        return [];
-        
-    }
-
-    localStore = JSON.parse(localStore);
-
-    return typeof localStore === 'object'  ? localStore.filter(item => item.name === keyname) : [];
-    
-}
-
-const deleteProduct = (key : ProductType, stack : string) => {
-
-    let localStore : string | ProductType[] = getItem(stack)!;
-
-    localStore = JSON.parse(localStore);
-
-    if(localStore instanceof Object && localStore.find(item => item.name === key.name)) {
-
-        let newStore = localStore.filter(item => item.name != key.name);
-        setItem(stack, newStore);
-        
-        return newStore;
-    }
-
-    return [];
-
-
-}
-
-const setQuantity = (product : ProductType, stack : string, quantity: number) => {
+export const setQuantity = (product : ProductType, stack : string, quantity: number) => {
 
     let localStore : string | ProductType[] = getItem(stack)!;
 
@@ -103,31 +70,10 @@ const setQuantity = (product : ProductType, stack : string, quantity: number) =>
 
 export const getTotal = () => {
 
-    let localStore : string |  ProductType[] = getItem(cartKeyName)!;
+    const state = useAppSelector((state) => state.productCart);
 
-    localStore = JSON.parse(localStore);
-
-    let total = 0;
-
-    if (localStore instanceof Object) {
-        total = localStore.reduce((a, b) => 
-            a + (b.price * (b.quantity || 1))
-        , 0);
-    }
+    const total = state.reduce((a, b) => a + (b.price * (b.quantity || 1)), 0);
 
     return total;
 
 }
-
-export const getNbTotal = (stack : string) => {
-
-    // let localStore : string |  ProductType[] = getItem(stack)!;
-
-    // localStore = localStore || JSON.parse();
-
-    // return localStore ? localStore.length : 0;
-    return 3;
-}
-
-
-export {toggleLinkClass, getItem, setItem, removeItem, productIsExist, deleteProduct, cartKeyName, wishlistKeyName, setQuantity}

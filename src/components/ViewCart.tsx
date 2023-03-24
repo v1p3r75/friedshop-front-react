@@ -4,13 +4,14 @@ import { productsTest } from '../views/VirtualData';
 import SimpleProduct from './SimpleProduct';
 import RoutePaths from '../config';
 import { ProductType } from './ProductCart';
-import { cartKeyName, getItem, getNbTotal, getTotal } from '../Utils/Generals';
+import { cartKeyName, getItem, getTotal } from '../Utils/Generals';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
+import { useAppSelector } from '../hooks/redux-hooks';
 
 const ViewCart = ({setShow} : {setShow : Function}) => {
 
-    const productCart = useSelector((state : RootState) => state.productCart);
+    const productCart = useAppSelector((state) => state.productCart);
     
     const hideCart = () => { 
         setShow(false);

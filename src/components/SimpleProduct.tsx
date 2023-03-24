@@ -1,15 +1,12 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { ProductType } from './ProductCart'
-import { defaultMethod } from 'react-router-dom/dist/dom'
-import { cartKeyName, deleteProduct } from '../Utils/Generals'
 import { deleteProductInCart } from '../store/productSlice'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '../hooks/redux-hooks'
 
 
 const SimpleProduct = ({product} : {product : ProductType}) => {
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
 
   return (

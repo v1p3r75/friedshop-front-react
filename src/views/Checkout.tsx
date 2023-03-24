@@ -2,6 +2,7 @@ import React from 'react'
 import Header from './includes/Header'
 import Banner from '../components/Banner'
 import Footer from './includes/Footer'
+import { getTotal } from '../Utils/Generals'
 
 const Checkout = () => {
     return (
@@ -67,11 +68,9 @@ const Checkout = () => {
                     <div className="bg-white p-3 border border-1">
                         <h5 className="fw-bold">Checkout Summary</h5><hr />
                         <div className="opacity-75">
-                            <div><span className='fw-bold'>Sutotal :</span><span className='float-end opacity-75'>$250</span></div><hr />
-                            <div><span className='fw-bold'>Shipping :</span><span className='float-end opacity-75'>$300</span></div><hr />
+                            <div><span className='fw-bold'>Sutotal :</span><span className='float-end opacity-75'>${getTotal()}</span></div><hr />
                             <div><span className='fw-bold'>Coupon :</span><span className='float-end opacity-75'>$0.00</span></div><hr />
-                            <div><span className='fw-bold'>Total :</span><span className='float-end opacity-75'>$550</span></div><hr />
-                            <div className='fw-bold'><span>Sutotal :</span><span className='float-end opacity-75'>$250</span></div>
+                            <div><span className='fw-bold'>Total :</span><span className='float-end opacity-75'>${getTotal()}</span></div><hr />
                         </div>
                     </div>
                     <div className="bg-white p-3 border border-1 mt-4">

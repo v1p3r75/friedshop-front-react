@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import { ProductType } from './ProductCart'
 import addProductToCart from '../Utils/addProductToCart';
-import { cartKeyName, productIsExist } from '../Utils/Generals';
-import { useDispatch, useSelector } from 'react-redux';
+import { cartKeyName,  } from '../Utils/Generals';
 import { addToShoppingCart } from '../store/productSlice';
 import { RootState } from '../../store';
+import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks';
 
 const AddToCart = ({ product, classSup = '', divClass = '' }: { product: ProductType, classSup?: string, divClass?: string }) => {
 
-  const dispatch = useDispatch();
-  const exist : ProductType[] = useSelector((state : RootState) => state.productCart);
+  const dispatch = useAppDispatch();
+  const exist : ProductType[] = useAppSelector((state) => state.productCart);
   const isExistInCart = exist.find((stateProduct) => stateProduct.id == product.id);
 
   return <>

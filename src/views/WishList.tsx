@@ -4,19 +4,19 @@ import Header from './includes/Header';
 import Banner from '../components/Banner';
 import { productsTest } from './VirtualData';
 import AddToCart from '../components/AddToCart';
-import { deleteProduct, getItem, productIsExist, wishlistKeyName } from '../Utils/Generals';
+import { getItem,wishlistKeyName } from '../Utils/Generals';
 import { ProductType } from '../components/ProductCart';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
 import { deleteProductInWishlist } from '../store/productSlice';
 import { useDispatch } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks';
 
 
 const WishList: FC = () => {
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
-    let wishlist : Array<ProductType> = useSelector((state : RootState) => state.productWishlist);
+    let wishlist : Array<ProductType> = useAppSelector((state) => state.productWishlist);
 
     return (
         <>

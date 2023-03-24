@@ -7,16 +7,17 @@ import NumberCount from '../components/NumberCount'
 import { Link } from 'react-router-dom'
 import RoutePaths from '../config'
 import { ProductType } from '../components/ProductCart'
-import { cartKeyName, deleteProduct, getItem, getTotal } from '../Utils/Generals'
+import { cartKeyName, getItem, getTotal } from '../Utils/Generals'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../store'
 import { deleteProductInCart } from '../store/productSlice'
 import { useDispatch } from 'react-redux'
+import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks'
 
 const ShoppingCart = () => {
 
-  const shopping : Array<ProductType> = useSelector((state : RootState) => state.productCart);
-  const dispatch = useDispatch();
+  const shopping : Array<ProductType> = useAppSelector((state) => state.productCart);
+  const dispatch = useAppDispatch();
 
   let total = getTotal();
 

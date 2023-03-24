@@ -88,8 +88,7 @@ export const productCartSlice = createSlice({
             state = state.filter((product) => product.id != action.payload.id);
             setItem(cartKeyName, state);
             return state;
-        }
-
+        },
     }
 
 });
