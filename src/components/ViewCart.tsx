@@ -5,10 +5,12 @@ import SimpleProduct from './SimpleProduct';
 import RoutePaths from '../config';
 import { ProductType } from './ProductCart';
 import { cartKeyName, getItem, getNbTotal, getTotal } from '../Utils/Generals';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 
 const ViewCart = ({setShow} : {setShow : Function}) => {
 
-    const [productCart, setProductCart] = useState<ProductType[]>()
+    const productCart = useSelector((state : RootState) => state.productCart);
     
     const hideCart = () => { 
         setShow(false);
@@ -17,11 +19,6 @@ const ViewCart = ({setShow} : {setShow : Function}) => {
 
     useEffect(() => {
         document.body.classList.add('overflow-hidden');
-        let cartProduct = getItem(cartKeyName);
-        if (cartProduct) {
-            setProductCart(JSON.parse(cartProduct));
-        }
-        
     }, []);
 
 
@@ -32,7 +29,7 @@ const ViewCart = ({setShow} : {setShow : Function}) => {
                 <h4 className="fw-bold w-100">SHOPPING CART <span className="float-end cursor-pointer" onClick={hideCart}><i className="bi bi-x"></i></span></h4><hr />
                 <div className="h-50 overflow-auto">
                     { productCart && productCart.length > 0 ?
-                        productCart.map(product => <SimpleProduct product = {product} setCartProduct={setProductCart} key={product.img} />) :
+                        productCart.map(product => <SimpleProduct product = {product} key={product.id} />) :
                         <h6 className="opacity-50 text-center">No Product in Cart.</h6>
                     }
                 </div><hr />

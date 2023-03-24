@@ -8,10 +8,13 @@ import { deleteProduct, getItem, productIsExist, wishlistKeyName } from '../Util
 import { ProductType } from '../components/ProductCart';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
-
+import { deleteProductInWishlist } from '../store/productSlice';
+import { useDispatch } from 'react-redux';
 
 
 const WishList: FC = () => {
+
+    const dispatch = useDispatch();
 
     let wishlist : Array<ProductType> = useSelector((state : RootState) => state.productWishlist);
 
@@ -42,7 +45,9 @@ const WishList: FC = () => {
                                             <td>{product.price}</td>
                                             <td>{"In Stock"}</td>
                                             <td><AddToCart product={product} classSup='w-50 mx-auto' /></td>
-                                            <td className='fw-bold cursor-pointer'><i className="bi bi-x" style={{ lineHeight: '50px' }}></i></td>
+                                            <td className='fw-bold cursor-pointer'><i className="bi bi-x" style={{ lineHeight: '50px' }} 
+                                                onClick={() => dispatch(deleteProductInWishlist(product))}
+                                                ></i></td>
                                         </tr>
                                     }) :
                                     <tr className='p-5'>

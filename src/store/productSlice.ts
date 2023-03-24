@@ -37,6 +37,13 @@ export const productWhishListSlice = createSlice({
 
             return state;
         },
+
+        deleteProductInWishlist(state, action : PayloadAction<ProductType>) {
+
+            state = state.filter((product) => product.id != action.payload.id);
+            setItem(wishlistKeyName, state);
+            return state;
+        }
     }
 
 });
@@ -75,11 +82,19 @@ export const productCartSlice = createSlice({
 
             return state;
         },
+
+        deleteProductInCart(state, action : PayloadAction<ProductType>) {
+
+            state = state.filter((product) => product.id != action.payload.id);
+            setItem(cartKeyName, state);
+            return state;
+        }
+
     }
 
 });
 
 
-export const { fillWishList, addToWishlist } = productWhishListSlice.actions;
+export const { fillWishList, addToWishlist, deleteProductInWishlist } = productWhishListSlice.actions;
 
-export const {fillShoppingCart, addToShoppingCart} = productCartSlice.actions;
+export const {fillShoppingCart, addToShoppingCart, deleteProductInCart} = productCartSlice.actions;

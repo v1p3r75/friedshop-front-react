@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom'
 import { ProductType } from './ProductCart'
 import { defaultMethod } from 'react-router-dom/dist/dom'
 import { cartKeyName, deleteProduct } from '../Utils/Generals'
+import { deleteProductInCart } from '../store/productSlice'
+import { useDispatch } from 'react-redux'
 
 
-const SimpleProduct = ({product, setCartProduct} : {product : ProductType, setCartProduct: Function}) => {
+const SimpleProduct = ({product} : {product : ProductType}) => {
 
-    const [simpleProduct, setSimpleProduct] = useState<ProductType>(product)
+    const dispatch = useDispatch();
 
 
   return (
@@ -24,12 +26,8 @@ const SimpleProduct = ({product, setCartProduct} : {product : ProductType, setCa
                         <span>{product.quantity ?? 1}</span>
                     </div>
                     <div className="close-btn me-4 fd-bg-primary text-white text-center rounded-5 cursor-pointer" style={{width : '30px', height: '30px'}}
-                    onClick={
-                        () => {
-                          let newState = deleteProduct(product, cartKeyName);
-                          setCartProduct(newState);
-                        }
-                      }>
+                      onClick={() => dispatch(deleteProductInCart(product))}
+                      >
                         <span><i className="bi bi-x" style={{lineHeight: '30px'}}></i></span>
                     </div>
                 </div>

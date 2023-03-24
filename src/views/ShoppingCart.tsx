@@ -10,10 +10,13 @@ import { ProductType } from '../components/ProductCart'
 import { cartKeyName, deleteProduct, getItem, getTotal } from '../Utils/Generals'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../store'
+import { deleteProductInCart } from '../store/productSlice'
+import { useDispatch } from 'react-redux'
 
 const ShoppingCart = () => {
 
-  let shopping : Array<ProductType> = useSelector((state : RootState) => state.productCart);
+  const shopping : Array<ProductType> = useSelector((state : RootState) => state.productCart);
+  const dispatch = useDispatch();
 
   let total = getTotal();
 
@@ -40,13 +43,15 @@ const ShoppingCart = () => {
                 shopping && shopping.length > 0 ?
                   shopping.map(product => {
                     return (
-                      <tr className="p-3">
+                      <tr className="p-3" key={product.id}>
                         <td scope="row w-25"><img src={product.img} alt={product.name} style={{ width: '50px', height: '50px' }} /></td>
                         <td className='fw-bold'>{product.name}</td>
                         <td>{product.price}</td>
                         <td>$250</td>
                         <td className='d-flex justify-content-center'><NumberCount product={product} min={1} /></td>
-                        <td className='cursor-pointer'><i className="bi bi-x" style={{ lineHeight: '50px' }}></i></td>
+                        <td className='cursor-pointer'><i className="bi bi-x" style={{ lineHeight: '50px' }}
+                          onClick={() => dispatch(deleteProductInCart(product))}
+                        ></i></td>
                       </tr>
                     )
                   }) :
