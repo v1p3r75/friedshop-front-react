@@ -4,6 +4,7 @@ import { ProductType } from "../components/ProductCart";
 
 
 export const productWhishListSlice = createSlice({
+
     name : 'wishlist',
 
     initialState : Array<ProductType>,
@@ -12,7 +13,7 @@ export const productWhishListSlice = createSlice({
 
         fillWishList : (state, action) => {
 
-            state = typeof action.payload === 'string' ? JSON.parse(action.payload) : action.payload;
+            state = JSON.parse(action.payload);
 
             return state;
         },
@@ -29,12 +30,13 @@ export const productWhishListSlice = createSlice({
                 state = newProducts;
                 return state;
             }
+
             state = [action.payload];
 
             setItem(wishlistKeyName, [action.payload]); 
 
             return state;
-        }
+        },
     }
 
 });
