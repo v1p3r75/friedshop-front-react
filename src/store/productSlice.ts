@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { cartKeyName, getItem, setItem, wishlistKeyName } from "../Utils/Generals";
 import { ProductType } from "../components/ProductCart";
 
@@ -11,14 +11,14 @@ export const productWhishListSlice = createSlice({
 
     reducers : {
 
-        fillWishList : (state, action) => {
+        fillWishList : (state, action : PayloadAction<string>) => {
 
             state = JSON.parse(action.payload);
 
             return state;
         },
 
-        addToWishlist : (state, action) => {
+        addToWishlist : (state, action : PayloadAction<ProductType>) => {
 
             const getProducts = getItem(wishlistKeyName);
 
@@ -49,14 +49,14 @@ export const productCartSlice = createSlice({
 
     reducers : {
 
-        fillShoppingCart : (state, action) => {
+        fillShoppingCart : (state, action : PayloadAction<string>) => {
 
             state = JSON.parse(action.payload);
 
             return state;
         },
 
-        addToShoppingCart : (state, action) => {
+        addToShoppingCart : (state, action : PayloadAction<ProductType>) => {
 
             const getProducts = getItem(cartKeyName);
 

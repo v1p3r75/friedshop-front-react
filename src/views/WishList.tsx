@@ -7,12 +7,13 @@ import AddToCart from '../components/AddToCart';
 import { deleteProduct, getItem, productIsExist, wishlistKeyName } from '../Utils/Generals';
 import { ProductType } from '../components/ProductCart';
 import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 
 
 
 const WishList: FC = () => {
 
-    let wishlist : Array<ProductType> = useSelector((state) => state.productWishlist);
+    let wishlist : Array<ProductType> = useSelector((state : RootState) => state.productWishlist);
 
     return (
         <>
