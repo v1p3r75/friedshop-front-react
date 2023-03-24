@@ -41,4 +41,45 @@ export const productWhishListSlice = createSlice({
 
 });
 
+export const productCartSlice = createSlice({
+
+    name : 'cart',
+
+    initialState : Array<ProductType>,
+
+    reducers : {
+
+        fillShoppingCart : (state, action) => {
+
+            state = JSON.parse(action.payload);
+
+            return state;
+        },
+
+        addToShoppingCart : (state, action) => {
+
+            const getProducts = getItem(cartKeyName);
+
+            if (getProducts) {
+                const oldProducts = JSON.parse(getProducts);
+                const newProducts : ProductType[] = [...oldProducts, action.payload];
+
+                setItem(cartKeyName, newProducts);
+                state = newProducts;
+                return state;
+            }
+
+            state = [action.payload];
+
+            setItem(cartKeyName, [action.payload]); 
+
+            return state;
+        },
+    }
+
+});
+
+
 export const { fillWishList, addToWishlist } = productWhishListSlice.actions;
+
+export const {fillShoppingCart, addToShoppingCart} = productCartSlice.actions;

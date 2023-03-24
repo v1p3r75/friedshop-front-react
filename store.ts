@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { productWhishListSlice } from "./src/store/productSlice";
+import { productCartSlice, productWhishListSlice } from "./src/store/productSlice";
 
 export const store = configureStore({
     reducer : {
-        productWishlist : productWhishListSlice.reducer
+        productWishlist : productWhishListSlice.reducer,
+        productCart : productCartSlice.reducer
     }
 })

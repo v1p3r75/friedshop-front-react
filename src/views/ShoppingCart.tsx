@@ -8,22 +8,13 @@ import { Link } from 'react-router-dom'
 import RoutePaths from '../config'
 import { ProductType } from '../components/ProductCart'
 import { cartKeyName, deleteProduct, getItem, getTotal } from '../Utils/Generals'
+import { useSelector } from 'react-redux'
 
 const ShoppingCart = () => {
 
-  let [shopping, setShopping] = useState<ProductType[]>();
+  let shopping : Array<ProductType> = useSelector((state) => state.productCart);
+
   let total = getTotal();
-
-  useEffect(() => {
-
-    let shoppingSaved = getItem(cartKeyName);
-      
-    if (shoppingSaved) {
-      setShopping(JSON.parse(shoppingSaved))
-    }
-    console.log(total);
-
-  }, [])
 
 
   return (
@@ -54,12 +45,7 @@ const ShoppingCart = () => {
                         <td>{product.price}</td>
                         <td>$250</td>
                         <td className='d-flex justify-content-center'><NumberCount product={product} min={1} /></td>
-                        <td className='cursor-pointer'><i className="bi bi-x" style={{ lineHeight: '50px' }} onClick={
-                          (e) => {
-                            let newState = deleteProduct(product, cartKeyName);
-                            setShopping(newState);
-                          }
-                        }></i></td>
+                        <td className='cursor-pointer'><i className="bi bi-x" style={{ lineHeight: '50px' }}></i></td>
                       </tr>
                     )
                   }) :

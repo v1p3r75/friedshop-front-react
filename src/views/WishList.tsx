@@ -11,17 +11,8 @@ import { useSelector } from 'react-redux';
 
 
 const WishList: FC = () => {
-    
+
     let wishlist : Array<ProductType> = useSelector((state) => state.productWishlist);
-
-    useEffect(() => {
-        // let wishlist_local = getItem(wishlistKeyName);
-
-        // if (wishlist_local) {
-        //     setWishlist(JSON.parse(wishlist_local))
-        // }
-        
-    }, [])
 
     return (
         <>
@@ -50,12 +41,7 @@ const WishList: FC = () => {
                                             <td>{product.price}</td>
                                             <td>{"In Stock"}</td>
                                             <td><AddToCart product={product} classSup='w-50 mx-auto' /></td>
-                                            <td className='fw-bold cursor-pointer'><i className="bi bi-x" style={{ lineHeight: '50px' }} onClick={
-                                                (e) => {
-                                                    let newState = deleteProduct(product, wishlistKeyName);
-                                                    setWishlist(newState);
-                                                }
-                                            }></i></td>
+                                            <td className='fw-bold cursor-pointer'><i className="bi bi-x" style={{ lineHeight: '50px' }}></i></td>
                                         </tr>
                                     }) :
                                     <tr className='p-5'>

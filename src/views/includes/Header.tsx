@@ -6,30 +6,30 @@ import ViewSearch from '../../components/ViewSearch'
 import Lang from '../../components/Lang'
 import RoutePaths from '../../config'
 import { cartKeyName, getItem, getNbTotal, wishlistKeyName } from '../../Utils/Generals'
-import useFetch from '../../hooks/useFetch'
-import { useQuery } from 'react-query'
 import { useDispatch, useSelector } from 'react-redux'
 import { ProductType } from '../../components/ProductCart'
-import { fillWishList } from '../../store/productSlice'
+import { fillShoppingCart, fillWishList } from '../../store/productSlice'
 
 const Header = () => {
 
     const wishlist : ProductType[] = useSelector(state => state.productWishlist);
+    const shoppingcart : ProductType[] = useSelector(state => state.productCart);
     const dispatch = useDispatch();
 
     const [showCart, setShowCart] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
 
     useEffect(() => {
-        
+
         const wishList = getItem(wishlistKeyName);
+        const shoppingList = getItem(cartKeyName);
         wishList && dispatch(fillWishList(wishList));
+        shoppingList && dispatch(fillShoppingCart(shoppingList));
 
     }, [])
 
     const viewCart = (e: SyntheticEvent) => {
         e.preventDefault();
-        
         setShowCart(true);
     };
 
@@ -79,7 +79,7 @@ const Header = () => {
                     </nav>
                 </nav>
                 <div className="d-flex gap-2 align-self-center">
-                    <div onClick={viewCart}><a href='#' className="position-relative border-3 shadow border-light py-2 px-3 text-dark fd-hover-bg-primary"><i className="bi bi-cart3"></i><span className="position-absolute top-0">{0}</span></a></div>
+                    <div onClick={viewCart}><a href='#' className="position-relative border-3 shadow border-light py-2 px-3 text-dark fd-hover-bg-primary"><i className="bi bi-cart3"></i><span className="position-absolute top-0">{shoppingcart.length}</span></a></div>
                     <div><Link to={RoutePaths.wishlist} className="position-relative border-3 shadow border-light py-2 px-3 text-dark fd-hover-bg-primary"><i className="bi bi-heart"></i><span className="position-absolute top-0">{wishlist.length}</span></Link></div>
                     <div onClick={viewSearch}><a href='#' className="position-relative border-3 shadow border-light py-2 px-3 text-dark fd-hover-bg-primary"><i className="bi bi-search"></i></a></div>
                     <div><Link to={RoutePaths.login} className="position-relative border-3 shadow border-light py-2 px-3 text-dark fd-hover-bg-primary"><i className="bi bi-person"></i></Link></div>

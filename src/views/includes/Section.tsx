@@ -115,7 +115,7 @@ const PopularProducts = ( {grid = 3, type = 'grid'} : {grid? : number | boolean,
   return (
     <div className={ type === 'list' ? "test" : "d-grid grid-" + grid + " gap-5"}>
       {
-        productsTest.map((product) => <ProductCart {...product} type={type} key={product.name}/>)
+        productsTest.map((product) => <ProductCart {...product} type={type} key={product.id}/>)
       }
     </div>
   )
@@ -126,7 +126,7 @@ const SortProducts = () => {
   return (
     <div>
       {
-        sortProduct.map((product) => <ProductSort {...product} key={product.name}/>)
+        sortProduct.map((product) => <ProductSort {...product} key={product.id}/>)
       }
     </div>
   );

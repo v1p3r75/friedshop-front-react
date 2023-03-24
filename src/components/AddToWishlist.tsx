@@ -10,7 +10,7 @@ const AddToWishlist = ({ product, classSup = '', supStyle }: { product: ProductT
 
   const dispatch = useDispatch();
   const exist : ProductType[] = useSelector(state => state.productWishlist);
-  const isExistInWishlist = exist.find((stateProduct) => stateProduct.name === product.name);
+  const isExistInWishlist = exist.find((stateProduct) => stateProduct.id == product.id);
 
   return <>
     <a className={"fd-btn cursor-pointer " + classSup} style={supStyle}>
@@ -18,7 +18,7 @@ const AddToWishlist = ({ product, classSup = '', supStyle }: { product: ProductT
         isExistInWishlist ?
           <i className='bi bi-check-circle'></i>
           :
-          <i className={"bi bi-heart"} onClick={() => {
+          <i className="bi bi-heart" onClick={(e) => {
             dispatch(addToWishlist(product))
           }}></i>
       }

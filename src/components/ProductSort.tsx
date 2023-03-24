@@ -1,15 +1,7 @@
 import React, { FC } from 'react'
 import Reviews from './Reviews';
 import { Link } from 'react-router-dom';
-
-type ProductType = {
-    img : string,
-    reviews: number,
-    name: string,
-    price: number,
-    oldPrice: number,
-    reduction?: string,
-};
+import { ProductType } from './ProductCart';
 
 const ProductSort = (props : ProductType) => {
     

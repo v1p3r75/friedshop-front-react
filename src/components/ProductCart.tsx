@@ -5,6 +5,7 @@ import AddToCart from './AddToCart';
 import AddToWishlist from './AddToWishlist';
 
 export type ProductType = {
+    id : number,
     img: string,
     reviews: number,
     name: string,
