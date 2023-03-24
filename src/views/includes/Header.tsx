@@ -9,11 +9,12 @@ import { cartKeyName, getItem, getNbTotal, wishlistKeyName } from '../../Utils/G
 import { useDispatch, useSelector } from 'react-redux'
 import { ProductType } from '../../components/ProductCart'
 import { fillShoppingCart, fillWishList } from '../../store/productSlice'
+import { RootState } from '../../../store'
 
 const Header = () => {
 
-    const wishlist : ProductType[] = useSelector(state => state.productWishlist);
-    const shoppingcart : ProductType[] = useSelector(state => state.productCart);
+    const wishlist : ProductType[] = useSelector((state : RootState) => state.productWishlist);
+    const shoppingcart : ProductType[] = useSelector((state : RootState) => state.productCart);
     const dispatch = useDispatch();
 
     const [showCart, setShowCart] = useState(false);

@@ -4,12 +4,13 @@ import { getItem, productIsExist, wishlistKeyName } from '../Utils/Generals';
 import addProductToCart from '../Utils/addProductToCart';
 import { addToWishlist } from '../store/productSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store';
 
 const AddToWishlist = ({ product, classSup = '', supStyle }: { product: ProductType, classSup?: string, supStyle?: Object }) => {
 
 
   const dispatch = useDispatch();
-  const exist : ProductType[] = useSelector(state => state.productWishlist);
+  const exist : ProductType[] = useSelector((state : RootState ) => state.productWishlist);
   const isExistInWishlist = exist.find((stateProduct) => stateProduct.id == product.id);
 
   return <>

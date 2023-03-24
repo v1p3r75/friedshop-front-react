@@ -9,10 +9,11 @@ import RoutePaths from '../config'
 import { ProductType } from '../components/ProductCart'
 import { cartKeyName, deleteProduct, getItem, getTotal } from '../Utils/Generals'
 import { useSelector } from 'react-redux'
+import { RootState } from '../../store'
 
 const ShoppingCart = () => {
 
-  let shopping : Array<ProductType> = useSelector((state) => state.productCart);
+  let shopping : Array<ProductType> = useSelector((state : RootState) => state.productCart);
 
   let total = getTotal();
 
