@@ -1,9 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { ProductType } from './ProductCart'
-import addProductToCart from '../Utils/addProductToCart';
-import { cartKeyName,  } from '../Utils/Generals';
 import { addToShoppingCart } from '../store/productSlice';
-import { RootState } from '../../store';
 import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks';
 
 const AddToCart = ({ product, classSup = '', divClass = '' }: { product: ProductType, classSup?: string, divClass?: string }) => {

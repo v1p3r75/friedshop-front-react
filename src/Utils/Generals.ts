@@ -1,13 +1,16 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
-import { ProductType } from '../components/ProductCart';
 import { useAppSelector } from '../hooks/redux-hooks';
 
-const active = "d-block p-3 fd-nav-active";
-const inactive = "d-block p-3 text-black";
+export const BASE_URL = 'https://friedshop-back-laravel.dev/api'; // BASE URL FOR API FETCHING
 
-export const cartKeyName = 'fd_shoppingcart';
-export const wishlistKeyName = 'fd_wishlist';
+const active = "d-block p-3 fd-nav-active"; // WHERE MENU IS ACTIVE CLASS 
+
+const inactive = "d-block p-3 text-black"; // WHERE MENU IS NOT ACTIVE CLASS
+
+export const cartKeyName = 'fd_shoppingcart'; // CART KEY NAME FOR LOCAL STORAGE
+
+export const wishlistKeyName = 'fd_wishlist'; // WISHLIST KEY NAME FOR LOCAL STORAGE
 
 type ToggleLink = { 
     path: string,
@@ -43,30 +46,6 @@ export const removeItem = (keyname : string) => {
 
 }
 
-export const setQuantity = (product : ProductType, stack : string, quantity: number) => {
-
-    let localStore : string | ProductType[] = getItem(stack)!;
-
-    localStore = JSON.parse(localStore);
-
-
-    if(localStore instanceof Object) {
-
-        const localProduct = localStore.find(item => item.name === product.name);
-
-        if (localProduct) {
-
-            localStore.map(item => {
-                item.quantity = localProduct.name === item.name ? quantity : void 0;
-            })
-            setItem(cartKeyName, localStore);
-        }
-
-    }
-
-    return [];
-
-}
 
 export const getTotal = () => {
 

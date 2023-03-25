@@ -1,25 +1,29 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 import { ProductType } from '../../components/ProductCart';
-
-// export const BASE_URL = 'https://friedshop-back-laravel.dev/api/';
-export const BASE_URL = 'https://comfortable.dev/';
+import { BASE_URL } from '../../Utils/Generals';
 
 export const productApiSice = createApi({
     reducerPath : 'api/products',
     baseQuery : fetchBaseQuery({baseUrl : BASE_URL}),
     tagTypes : ['product'],
     endpoints : (builder) => ({
+
         getAllProducts : builder.query(({
-            query : () => '/user/1',
+            query : () => '/',
         })),
+
         getProduct : builder.query({
-            query : (product : ProductType) => `product/${product.id}`,
+            query : (product : ProductType) => `/product/${product.id}`,
         }),
-        // createProduct: builder.mutation({
-        //     query : (product : ProductType) => `product/create`,
-        //     METHOD : 'POST',
-        //     body : product,
-        // })
+
+        createProduct: builder.mutation({
+            query : (product : ProductType) => ({
+                url : `/product/create`,
+                method : 'POST',
+                body : product,
+            }),
+           invalidatesTags : ['product'],
+        })
     })
 })
 

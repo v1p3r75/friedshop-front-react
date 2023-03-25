@@ -1,10 +1,6 @@
-import React, { Dispatch, useState } from 'react'
+import React from 'react'
 import { ProductType } from './ProductCart'
-import { getItem, wishlistKeyName } from '../Utils/Generals';
-import addProductToCart from '../Utils/addProductToCart';
 import { addToWishlist } from '../store/productSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store';
 import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks';
 
 const AddToWishlist = ({ product, classSup = '', supStyle }: { product: ProductType, classSup?: string, supStyle?: Object }) => {
