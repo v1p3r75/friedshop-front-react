@@ -20,8 +20,7 @@ const Header : FC = () => {
     const [showCart, setShowCart] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
     
-    const {isLoading, data, error} =  useGetAllProductsQuery('s');
-    console.log(isLoading, data, error);
+    const {data, isSuccess} =  useGetAllProductsQuery('api/products');
 
     useEffect(() => {
         

@@ -3,6 +3,24 @@ import { cartKeyName, getItem, setItem, wishlistKeyName } from "../Utils/General
 import { ProductType } from "../components/ProductCart";
 
 
+export const productSlice = createSlice({
+    
+    name : 'products',
+
+    initialState : Array<ProductType>,
+
+    reducers : {
+
+        fillProductsList : (state, action : PayloadAction<ProductType[]>) => {
+
+            state = action.payload;
+
+            return state;
+        }
+    }
+
+})
+
 export const productWhishListSlice = createSlice({
 
     name : 'wishlist',
@@ -105,6 +123,7 @@ export const productCartSlice = createSlice({
 
 });
 
+export const {fillProductsList} = productSlice.actions;
 
 export const { fillWishList, addToWishlist, deleteProductInWishlist } = productWhishListSlice.actions;
 

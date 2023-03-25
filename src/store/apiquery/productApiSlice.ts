@@ -3,13 +3,14 @@ import { ProductType } from '../../components/ProductCart';
 import { BASE_URL } from '../../Utils/Generals';
 
 export const productApiSice = createApi({
+    
     reducerPath : 'api/products',
     baseQuery : fetchBaseQuery({baseUrl : BASE_URL}),
     tagTypes : ['product'],
     endpoints : (builder) => ({
 
         getAllProducts : builder.query(({
-            query : () => '/',
+            query : () => '/product',
         })),
 
         getProduct : builder.query({
@@ -28,4 +29,8 @@ export const productApiSice = createApi({
 })
 
 
-export const { useGetAllProductsQuery } = productApiSice;
+export const {
+    useGetAllProductsQuery,
+    useGetProductQuery,
+    useCreateProductMutation,
+ } = productApiSice;
