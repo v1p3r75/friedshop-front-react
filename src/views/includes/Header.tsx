@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useEffect, useState } from 'react'
+import React, { FC, SyntheticEvent, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { SocialsNetworks } from '../../components/SocialsNetworks'
 import ViewCart from '../../components/ViewCart'
@@ -9,8 +9,9 @@ import { cartKeyName, getItem, wishlistKeyName } from '../../Utils/Generals'
 import { ProductType } from '../../components/ProductCart'
 import { fillShoppingCart, fillWishList } from '../../store/productSlice'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks'
+import { useGetAllProductsQuery } from '../../store/apiquery/productApiSlice'
 
-const Header = () => {
+const Header : FC = () => {
 
     const wishlist : ProductType[] = useAppSelector((state) => state.productWishlist);
     const shoppingcart : ProductType[] = useAppSelector((state) => state.productCart);
@@ -18,9 +19,12 @@ const Header = () => {
 
     const [showCart, setShowCart] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
+    
+    const {isLoading, data, error} =  useGetAllProductsQuery('s');
+    console.log(isLoading, data, error);
 
     useEffect(() => {
-
+        
         const wishList = getItem(wishlistKeyName);
         const shoppingList = getItem(cartKeyName);
         wishList && dispatch(fillWishList(wishList));
