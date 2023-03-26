@@ -1,50 +1,78 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useState, useEffect } from 'react'
 import { productsTest } from '../../views/VirtualData'
 import { ProductType } from '../ProductCart'
-import { useGetAllProductsQuery } from '../../store/apiquery/productApiSlice';
+import { useCreateProductMutation, useGetAllProductsQuery } from '../../store/apiquery/productApiSlice';
 import Spinner from '../Spinner';
 import { link } from '../../Utils/Generals';
 
 const AddOrEditProduct = ({ product }: { product: null | ProductType}) => {
 
+  const [image, setImage] = useState('');
+  const [data, setData] = useState<ProductType>({});
+
+  const [createProduct] =  useCreateProductMutation();
+
+  const handleSubmit = (e : React.SyntheticEvent) => {
+
+	e.preventDefault();
+	const form = new FormData(e.target);
+	form.append('reviews', '5');
+
+	createProduct(form);
+
+  }
+
+  const handleValue = (e : React.SyntheticEvent) => {
+
+	const name = e.target.name;
+	const value = e.target.value;
+	setData(values => ({...values, [name]: value}))
+
+  }
 
   if (!product) {
 
     return (
-      <form action="" method="post" className="checkout-service p-3">
+      <form action="" method="post" className="checkout-service p-3 .form-product" onSubmit={handleSubmit}>
+		{image && 
+			<div className="w-25 mx-auto p-3 border border-1 rounded-5 fd-hover-border-primary mb-4" style={{height : '250px'}}>
+				<img src={URL.createObjectURL(image)} alt="Product Image Preview" className='w-100 h-100'/>
+			</div>
+		}
         <div className='d-flex gap-2'>
           <label className='w-50'>
             <span>Name</span>
-            <input type="text" name="firstname" className="form-control w-100 rounded-0 p-2" placeholder='Product Name' />
+            <input type="text" name="name" className="form-control w-100 rounded-0 p-2" placeholder='Product Name' onChange={handleValue} required/>
           </label>
           <label className='w-50'>
             <span>Image</span>
-            <input type="file" name="image" className="form-control w-100 rounded-0 p-2" placeholder='Product Image' />
+            <input type="file" name="img" className="form-control w-100 rounded-0 p-2" placeholder='Product Image'
+			onChange={(e : React.SyntheticEvent) => setImage(e.target.files[0])} accept='image/*' required/>
           </label>
         </div>
         <div className='d-grid grid-4 gap-2 mt-3'>
           <label>
             <span>Price</span>
-            <input type="number" name="price" className="form-control w-100 rounded-0 p-2" placeholder='Product Price' />
+            <input type="number" step={0.1} name="price" className="form-control w-100 rounded-0 p-2" placeholder='Product Price' onChange={handleValue} required/>
           </label>
           <label>
             <span>Old Price</span>
-            <input type="number" name="old_price" className="form-control w-100 rounded-0 p-2" placeholder='Old Price' />
+            <input type="number" step={0.1} name="old_price" className="form-control w-100 rounded-0 p-2" placeholder='Old Price' onChange={handleValue} required/>
           </label>
           <label>
             <span>Quantity</span>
-            <input type="number" name="image" className="form-control w-100 rounded-0 p-2" placeholder='Total Quantity' />
+            <input type="number" name="quantity" className="form-control w-100 rounded-0 p-2" placeholder='Total Quantity' onChange={handleValue} required/>
           </label>
           <label>
             <span>Reduction</span>
-            <input type="text" name="price" className="form-control w-100 rounded-0 p-2" value={0} placeholder='Reduction ?' />
+            <input type="text" name="reduction" className="form-control w-100 rounded-0 p-2" value={0} placeholder='Reduction ?' onChange={handleValue} required/>
           </label>
         </div>
         <div className='my-4'>
           <label>
             <span>Description</span>
           </label>
-          <textarea name="description" cols={100} rows={10} className='w-100 p-2 border' placeholder='Description'></textarea>
+          <textarea name="desc" cols={100} rows={10} className='w-100 p-2 border' placeholder='Description' onChange={handleValue}></textarea>
         </div>
         <div>
           <label>
@@ -52,7 +80,7 @@ const AddOrEditProduct = ({ product }: { product: null | ProductType}) => {
             <span className='ms-2'>Deal Of Day</span>
           </label>
         </div>
-        <div className='mt-3'><a href="#" className="fd-btn w-25 text-center">SAVE NOW</a></div>
+        <div className='mt-3'><button className="fd-btn w-25 text-center border-0">SAVE NOW</button></div>
       </form>
     )
   }
@@ -118,7 +146,7 @@ const ListOfProducts = ({setProduct, setPage} : {setProduct : Function, setPage 
   let content : React.ReactNode;
 
   content = isLoading || isError 
-  ? <Spinner />
+  ? null
   : isSuccess 
     ? productsList['data'].map((product : ProductType) => {
       

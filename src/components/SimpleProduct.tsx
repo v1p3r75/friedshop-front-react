@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { ProductType } from './ProductCart'
 import { deleteProductInCart } from '../store/productSlice'
 import { useAppDispatch } from '../hooks/redux-hooks'
+import { link } from '../Utils/Generals'
 
 
 const SimpleProduct = ({product} : {product : ProductType}) => {
@@ -12,7 +13,7 @@ const SimpleProduct = ({product} : {product : ProductType}) => {
   return (
     <div className="d-flex w-100 gap-3 h-25 mb-3 bg-white">
             <div className="w-25 border-1 border fd-hover-border-primary">
-                <img src={product.img} alt={product.name} className="w-100 h-100"/>
+                <img src={link(product.img)} alt={product.name} className="w-100 h-100"/>
             </div>
             <div className="w-75">
                 <span className="product-name my-2 fw-bold text-dark">{product.name}</span>

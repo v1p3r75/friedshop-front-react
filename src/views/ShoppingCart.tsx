@@ -7,7 +7,7 @@ import NumberCount from '../components/NumberCount'
 import { Link } from 'react-router-dom'
 import RoutePaths from '../config'
 import { ProductType } from '../components/ProductCart'
-import { cartKeyName, getItem, getTotal } from '../Utils/Generals'
+import { cartKeyName, getItem, getTotal, link } from '../Utils/Generals'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../store'
 import { deleteProductInCart } from '../store/productSlice'
@@ -45,7 +45,7 @@ const ShoppingCart = () => {
                   shopping.map(product => {
                     return (
                       <tr className="p-3" key={product.id}>
-                        <td scope="row w-25"><img src={product.img} alt={product.name} style={{ width: '50px', height: '50px' }} /></td>
+                        <td scope="row w-25"><img src={link(product.img)} alt={product.name} style={{ width: '50px', height: '50px' }} /></td>
                         <td className='fw-bold'>{product.name}</td>
                         <td>{product.price}</td>
                         <td>$250</td>

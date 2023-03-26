@@ -18,7 +18,7 @@ export const productApiSice = createApi({
         }),
 
         createProduct: builder.mutation({
-            query : (product : ProductType) => ({
+            query : (product) => ({
                 url : `/product/create`,
                 method : 'POST',
                 body : product,

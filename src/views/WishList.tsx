@@ -4,7 +4,7 @@ import Header from './includes/Header';
 import Banner from '../components/Banner';
 import { productsTest } from './VirtualData';
 import AddToCart from '../components/AddToCart';
-import { getItem,wishlistKeyName } from '../Utils/Generals';
+import { getItem,link,wishlistKeyName } from '../Utils/Generals';
 import { ProductType } from '../components/ProductCart';
 import { useSelector } from 'react-redux';
 import { deleteProductInWishlist } from '../store/productSlice';
@@ -40,7 +40,7 @@ const WishList: FC = () => {
                                 wishlist && wishlist.length > 0 ?
                                     wishlist.map((product) => {
                                         return <tr className="p-3" key={product.name}>
-                                            <td scope="row w-25"><img src={product.img} alt={product.name} style={{ width: '50px', height: '50px' }} /></td>
+                                            <td scope="row w-25"><img src={link(product.img)} alt={product.name} style={{ width: '50px', height: '50px' }} /></td>
                                             <td className='fw-bold'>{product.name}</td>
                                             <td>{product.price}</td>
                                             <td>{"In Stock"}</td>
