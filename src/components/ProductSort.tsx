@@ -16,7 +16,7 @@ const ProductSort = (props : ProductType) => {
                 <Reviews rating={props.reviews}/>
                 <div className="d-flex">
                     <span className="fd-color-primary fw-bold me-1">${props.price}</span>
-                    <span className="align-self-end" style={{textDecoration : "line-through"}}>${props.oldPrice}</span>
+                    <span className="align-self-end" style={{textDecoration : "line-through"}}>${props.old_price}</span>
                 </div>
             </div>
         </div>  

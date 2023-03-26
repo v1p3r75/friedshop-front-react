@@ -39,7 +39,7 @@ const WishList: FC = () => {
                             {
                                 wishlist && wishlist.length > 0 ?
                                     wishlist.map((product) => {
-                                        return <tr className="p-3" key={product.name}>
+                                        return <tr className="p-3" key={product.id}>
                                             <td scope="row w-25"><img src={link(product.img)} alt={product.name} style={{ width: '50px', height: '50px' }} /></td>
                                             <td className='fw-bold'>{product.name}</td>
                                             <td>{product.price}</td>

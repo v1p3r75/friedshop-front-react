@@ -30,7 +30,8 @@ a {color: #fff!important; text-decoration: none!important;}
 .grid-3 { grid-template-columns: 3fr 3fr 3fr;} .grid-4 { grid-template-columns: 3fr 3fr 3fr 3fr;} .grid-2 { grid-template-columns: 6fr 6fr} .grid-0 { grid-template-columns: 12fr} 
 .p-color {display: block; width : 20px; height : 20px; border-radius : 30px; cursor: pointer}
 .fd-nav-active{background-color: var(--fd-color-primary)!important; color : #fff!important}
+.cursor-disabled {cursor: no-drop!important;}
 .others-imgs {width : 80px; height : 80px;}
 /* .scroller {scrollbar-color: var(--fd-color-silver) var(--fd-color-dark); scrollbar-width: thin;} */
-.spinner { border: 10px solid #fff; border-top: 10px solid var(--fd-color-primary); border-radius: 50%; width: 80px; height: 80px; animation: spin 1s linear infinite; }
+.spinner { border: 10px solid #fff; border-top: 10px solid var(--fd-color-primary); border-radius: 50%; width: 100%; height: 100%; animation: spin 1s linear infinite; }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } } 

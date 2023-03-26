@@ -11,7 +11,7 @@ export type ProductType = {
     reviews: number,
     name: string,
     price: number,
-    oldPrice: number,
+    old_price: number,
     reduction?: string,
     type?: string,
     desc?: string,
@@ -43,7 +43,7 @@ const ProductCart = (props: ProductType) => {
                         </div>
                         <div className="d-flex">
                             <h5 className="fd-color-primary">${props.price}</h5>
-                            <h6 className="align-self-end" style={{ textDecoration: "line-through" }}>${props.oldPrice}</h6>
+                            <h6 className="align-self-end" style={{ textDecoration: "line-through" }}>${props.old_price}</h6>
                         </div>
                         <p className="desc fw-bold opacity-50">{props.desc}</p>
                         <div className="d-flex gap-2">
@@ -58,7 +58,7 @@ const ProductCart = (props: ProductType) => {
             :
 
 
-            <div className="position-relative bg-white mt-4 border-1 border fd-hover-border-primary product-cart" style={{ minHeight: "400px" }}>
+            <div className="position-relative bg-white mt-4 border-1 border fd-hover-border-primary product-cart" style={{ maxHeight: "400px" }}>
                 <div className="position-relative h-75 product-img">
                     <img src={link(props.img)} alt={props.name} className="h-100" />
                     <div className='show d-none position-absolute w-100 animate__animated animate__fadeIn' style={{ bottom: '10%' }}>
@@ -78,7 +78,7 @@ const ProductCart = (props: ProductType) => {
                 </div>
                 <div className="d-flex justify-content-center">
                     <h5 className="fd-color-primary">${props.price}</h5>
-                    <h6 className="align-self-end" style={{ textDecoration: "line-through" }}>${props.oldPrice}</h6>
+                    <h6 className="align-self-end" style={{ textDecoration: "line-through" }}>${props.old_price}</h6>
                 </div>
             </div>
     )

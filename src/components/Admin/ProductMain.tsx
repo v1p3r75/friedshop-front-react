@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react'
+import React, {useState, SyntheticEvent} from 'react'
 import { productsTest } from '../../views/VirtualData'
 import { ProductType } from '../ProductCart'
 import { useCreateProductMutation, useGetAllProductsQuery } from '../../store/apiquery/productApiSlice';
@@ -7,22 +7,24 @@ import { link } from '../../Utils/Generals';
 
 const AddOrEditProduct = ({ product }: { product: null | ProductType}) => {
 
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState<Blob>();
   const [data, setData] = useState<ProductType>({});
 
-  const [createProduct] =  useCreateProductMutation();
+  const [createProduct, result] =  useCreateProductMutation();
 
-  const handleSubmit = (e : React.SyntheticEvent) => {
+
+  const handleSubmit = (e : SyntheticEvent) => {
 
 	e.preventDefault();
+
 	const form = new FormData(e.target);
-	form.append('reviews', '5');
+	form.append('reviews', '5'); // Pour le moment
 
 	createProduct(form);
 
   }
 
-  const handleValue = (e : React.SyntheticEvent) => {
+  const handleValue = (e : SyntheticEvent) => {
 
 	const name = e.target.name;
 	const value = e.target.value;
@@ -47,7 +49,7 @@ const AddOrEditProduct = ({ product }: { product: null | ProductType}) => {
           <label className='w-50'>
             <span>Image</span>
             <input type="file" name="img" className="form-control w-100 rounded-0 p-2" placeholder='Product Image'
-			onChange={(e : React.SyntheticEvent) => setImage(e.target.files[0])} accept='image/*' required/>
+			onChange={(e : SyntheticEvent) => setImage(e.target.files[0])} accept='image/*' required/>
           </label>
         </div>
         <div className='d-grid grid-4 gap-2 mt-3'>
@@ -75,10 +77,11 @@ const AddOrEditProduct = ({ product }: { product: null | ProductType}) => {
           <textarea name="desc" cols={100} rows={10} className='w-100 p-2 border' placeholder='Description' onChange={handleValue}></textarea>
         </div>
         <div>
-          <label>
-            <input type="checkbox" name="deal_of_day" />
-            <span className='ms-2'>Deal Of Day</span>
-          </label>
+          {
+			result.isError && result.error.data.errors.map(err => {
+				return <div key={err} className='fw-bold'><i className='bi bi-x text-danger'>{err}</i></div>
+			})
+		  }
         </div>
         <div className='mt-3'><button className="fd-btn w-25 text-center border-0">SAVE NOW</button></div>
       </form>
@@ -105,7 +108,7 @@ const AddOrEditProduct = ({ product }: { product: null | ProductType}) => {
         </label>
         <label>
             <span>Old Price</span>
-            <input type="number" name="old_price" className="form-control w-100 rounded-0 p-2" value={product.oldPrice} />
+            <input type="number" name="old_price" className="form-control w-100 rounded-0 p-2" value={product.old_price} />
           </label>
         <label>
           <span>Quantity</span>
@@ -151,7 +154,7 @@ const ListOfProducts = ({setProduct, setPage} : {setProduct : Function, setPage 
     ? productsList['data'].map((product : ProductType) => {
       
       return (
-        <tr className="p-3" key={product.name}>
+        <tr className="p-3" key={product.id}>
           <td scope="row w-25"><img src={link(product.img)} alt={product.name} style={{ width: '50px', height: '50px' }} /></td>
           <td className='fw-bold'>{product.name}</td>
           <td>{product.price}</td>

@@ -6,15 +6,17 @@ export const productApiSice = createApi({
     
     reducerPath : 'api/products',
     baseQuery : fetchBaseQuery({baseUrl : BASE_URL}),
-    tagTypes : ['product'],
+    tagTypes : ['Products'],
     endpoints : (builder) => ({
 
         getAllProducts : builder.query(({
             query : () => '/product',
+            providesTags : ['Products']
         })),
 
         getProduct : builder.query({
             query : (product : ProductType) => `/product/${product.id}`,
+            providesTags : ['Products']
         }),
 
         createProduct: builder.mutation({
@@ -23,7 +25,7 @@ export const productApiSice = createApi({
                 method : 'POST',
                 body : product,
             }),
-           invalidatesTags : ['product'],
+           invalidatesTags : ['Products'],
         })
     })
 })
