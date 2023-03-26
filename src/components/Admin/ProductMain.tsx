@@ -1,6 +1,9 @@
 import React, { useCallback, useState } from 'react'
 import { productsTest } from '../../views/VirtualData'
 import { ProductType } from '../ProductCart'
+import { useGetAllProductsQuery } from '../../store/apiquery/productApiSlice';
+import Spinner from '../Spinner';
+import { link } from '../../Utils/Generals';
 
 const AddOrEditProduct = ({ product }: { product: null | ProductType}) => {
 
@@ -56,7 +59,7 @@ const AddOrEditProduct = ({ product }: { product: null | ProductType}) => {
 
   return (
     <form action="" method="post" className="checkout-service p-3">
-      <div className="w-25 mx-auto p-3 border border-1 rounded-5 fd-hover-border-primary" style={{height : '250px'}}><img src={product.img} alt={product.name} className='w-100 h-100'/></div>
+      <div className="w-25 mx-auto p-3 border border-1 rounded-5 fd-hover-border-primary" style={{height : '250px'}}><img src={link(product.img)} alt={product.name} className='w-100 h-100'/></div>
       <div className='d-flex gap-2'>
         <label className='w-50'>
           <span>Name</span>
@@ -110,6 +113,34 @@ const ListOfProducts = ({setProduct, setPage} : {setProduct : Function, setPage 
     setPage('add');
   }
 
+  const {isLoading, data : productsList, isSuccess, isError} =  useGetAllProductsQuery('api/products');
+
+  let content : React.ReactNode;
+
+  content = isLoading || isError 
+  ? <Spinner />
+  : isSuccess 
+    ? productsList['data'].map((product : ProductType) => {
+      
+      return (
+        <tr className="p-3" key={product.name}>
+          <td scope="row w-25"><img src={link(product.img)} alt={product.name} style={{ width: '50px', height: '50px' }} /></td>
+          <td className='fw-bold'>{product.name}</td>
+          <td>{product.price}</td>
+          <td>{45}</td>
+          <td className='fw-bold d-flex gap-2 justify-content-center'>
+            
+            <a href="#" className='p-2 rounded-2 fd-bg-primary' onClick={(e) => parseProduct(product)} title='View Product'><i className="bi bi-eye"></i></a>
+            <a href="#" className='p-2 rounded-2 bg-secondary' onClick={(e) => parseProduct(product)} title='Edit'><i className="bi bi-pen"></i></a>
+            <a href="#" className='p-2 rounded-2 bg-danger' title='Delete'><i className="bi bi-trash"></i></a>
+          </td>
+        </tr>
+      )
+    })
+    : null;
+
+
+
   return (
     <div className="table-responsive">
       <table className="table table-default text-center table-bordered">
@@ -123,24 +154,7 @@ const ListOfProducts = ({setProduct, setPage} : {setProduct : Function, setPage 
           </tr>
         </thead>
         <tbody>
-          {
-            productsTest.map(product => {
-              return (
-                <tr className="p-3" key={product.name}>
-                  <td scope="row w-25"><img src={product.img} alt={product.name} style={{ width: '50px', height: '50px' }} /></td>
-                  <td className='fw-bold'>{product.name}</td>
-                  <td>{product.price}</td>
-                  <td>{45}</td>
-                  <td className='fw-bold d-flex gap-2 justify-content-center'>
-                    
-                    <a href="#" className='p-2 rounded-2 fd-bg-primary' onClick={(e) => parseProduct(product)} title='View Product'><i className="bi bi-eye"></i></a>
-                    <a href="#" className='p-2 rounded-2 bg-secondary' onClick={(e) => parseProduct(product)} title='Edit'><i className="bi bi-pen"></i></a>
-                    <a href="#" className='p-2 rounded-2 bg-danger' title='Delete'><i className="bi bi-trash"></i></a>
-                  </td>
-                </tr>
-              )
-            })
-          }
+          { content }
         </tbody>
       </table>
     </div>
