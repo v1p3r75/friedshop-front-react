@@ -3,6 +3,7 @@ import Reviews from './Reviews';
 import { Link } from 'react-router-dom';
 import AddToCart from './AddToCart';
 import AddToWishlist from './AddToWishlist';
+import { link } from '../Utils/Generals';
 
 export type ProductType = {
     id : number,
@@ -31,7 +32,7 @@ const ProductCart = (props: ProductType) => {
                 }
                 <div className="d-flex gap-3">
                     <div className="position-relative h-100 w-25 product-img">
-                        <img src={props.img} alt={props.name} className="w-100 h-50" />
+                        <img src={link(props.img)} alt={props.name} className="w-100 h-50" />
                     </div>
                     <div className="w-75 pt-3">
                         <div>
@@ -59,7 +60,7 @@ const ProductCart = (props: ProductType) => {
 
             <div className="position-relative bg-white mt-4 border-1 border fd-hover-border-primary product-cart" style={{ minHeight: "400px" }}>
                 <div className="position-relative h-75 product-img">
-                    <img src={props.img} alt={props.name} className="h-100" />
+                    <img src={link(props.img)} alt={props.name} className="h-100" />
                     <div className='show d-none position-absolute w-100 animate__animated animate__fadeIn' style={{ bottom: '10%' }}>
                         <AddToCart product={props} classSup='bg-white fd-color-primary fd-hover-bg-primary d-block w-50 mx-auto px-3 py-2'/>
                     </div>

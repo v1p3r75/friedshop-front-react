@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { productCartSlice, productWhishListSlice } from "./src/store/productSlice";
+import { productCartSlice, productSlice, productWhishListSlice } from "./src/store/productSlice";
 import { productApiSice } from "./src/store/apiquery/productApiSlice";
 
 export const store = configureStore({
     reducer : {
         [productApiSice.reducerPath] : productApiSice.reducer,
+        products : productSlice.reducer,
         productWishlist : productWhishListSlice.reducer,
         productCart : productCartSlice.reducer
     },

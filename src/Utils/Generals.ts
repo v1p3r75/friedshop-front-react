@@ -4,6 +4,8 @@ import { useAppSelector } from '../hooks/redux-hooks';
 
 export const BASE_URL = 'http://127.0.0.1:8000/api'; // BASE URL FOR API FETCHING
 
+export const BASE_STORAGE_URL = 'http://127.0.0.1:8000/storage/'; // BASE URL FOR FETCHING MEDIA (image, video, etc.)
+
 const active = "d-block p-3 fd-nav-active"; // WHERE MENU IS ACTIVE CLASS 
 
 const inactive = "d-block p-3 text-black"; // WHERE MENU IS NOT ACTIVE CLASS
@@ -56,3 +58,5 @@ export const getTotal = () => {
     return total;
 
 }
+
+export const link = (url : string) : string => BASE_STORAGE_URL + url;

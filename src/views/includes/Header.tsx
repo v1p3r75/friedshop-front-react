@@ -7,7 +7,7 @@ import Lang from '../../components/Lang'
 import RoutePaths from '../../config'
 import { cartKeyName, getItem, wishlistKeyName } from '../../Utils/Generals'
 import { ProductType } from '../../components/ProductCart'
-import { fillShoppingCart, fillWishList } from '../../store/productSlice'
+import { fillProductsList, fillShoppingCart, fillWishList } from '../../store/productSlice'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks'
 import { useGetAllProductsQuery } from '../../store/apiquery/productApiSlice'
 
@@ -15,15 +15,15 @@ const Header : FC = () => {
 
     const wishlist : ProductType[] = useAppSelector((state) => state.productWishlist);
     const shoppingcart : ProductType[] = useAppSelector((state) => state.productCart);
+
     const dispatch = useAppDispatch();
 
     const [showCart, setShowCart] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
     
-    const {data, isSuccess} =  useGetAllProductsQuery('api/products');
 
     useEffect(() => {
-        
+
         const wishList = getItem(wishlistKeyName);
         const shoppingList = getItem(cartKeyName);
         wishList && dispatch(fillWishList(wishList));

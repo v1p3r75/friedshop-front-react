@@ -1,15 +1,19 @@
 import React, { FC } from 'react'
 import SlideShow from '../../components/SlideShow';
-import ProductCart from '../../components/ProductCart'
+import ProductCart, { ProductType } from '../../components/ProductCart'
 import ProductSort from '../../components/ProductSort';
 import ProductOfDay from '../../components/ProductOfDay';
 import Blog from '../../components/Blog';
 import Testimonial from '../../components/Testimonial';
 import  {CategoryType, apiCategory, apiSlidesInfo, blogInfo, testimonialInfo, productsTest, dailyTest, sortProduct} from '../VirtualData';
 import { Link } from 'react-router-dom';
+import { useAppSelector } from '../../hooks/redux-hooks';
+import { useGetAllProductsQuery } from '../../store/apiquery/productApiSlice';
+import Spinner from '../../components/Spinner';
 
 
 const Category = ({category, arrow = 'left'} : {category : any, arrow? : string}) => {
+
   return <div key={category.category_id} className="category text-dark">
         {arrow === 'left' ? <i className='bi bi-chevron-double-right me-2'></i> : null}
         <Link to={"/"} className='text-dark'>{category.name}</Link>
@@ -112,11 +116,22 @@ const Promotion3 = () => {
 
 const PopularProducts = ( {grid = 3, type = 'grid'} : {grid? : number | boolean, type?: string} ) => {
 
+  const {isLoading, data : productsList, isSuccess, isError} =  useGetAllProductsQuery('api/products');
+
+  // const productsList : ProductType[] = useAppSelector((state) => state.products);
+
+  let content : React.ReactNode;
+
+  content = isLoading || isError 
+  ? <Spinner />
+  : isSuccess 
+    ? productsList['data'].map((product : ProductType) => <ProductCart {...product} type={type} key={product.id}/>)
+    : null;
+
+
   return (
     <div className={ type === 'list' ? "test" : "d-grid grid-" + grid + " gap-5"}>
-      {
-        productsTest.map((product) => <ProductCart {...product} type={type} key={product.id}/>)
-      }
+      {content}
     </div>
   )
 }
