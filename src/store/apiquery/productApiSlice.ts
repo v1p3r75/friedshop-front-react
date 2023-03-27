@@ -26,6 +26,15 @@ export const productApiSice = createApi({
                 body : product,
             }),
            invalidatesTags : ['Products'],
+        }),
+
+        deleteProduct: builder.mutation({
+            query : ({id}) => ({
+                url : '/product/delete',
+                method : 'DELETE',
+                body : id
+            }),
+            invalidatesTags : ['Products'],
         })
     })
 })

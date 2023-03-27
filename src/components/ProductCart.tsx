@@ -58,9 +58,9 @@ const ProductCart = (props: ProductType) => {
             :
 
 
-            <div className="position-relative bg-white mt-4 border-1 border fd-hover-border-primary product-cart" style={{ maxHeight: "400px" }}>
+            <div className="position-relative bg-white mt-4 border-1 border fd-hover-border-primary product-cart" style={{ height: "400px" }}>
                 <div className="position-relative h-75 product-img">
-                    <img src={link(props.img)} alt={props.name} className="h-100" />
+                    <img src={link(props.img)} alt={props.name} className="w-100 h-100" />
                     <div className='show d-none position-absolute w-100 animate__animated animate__fadeIn' style={{ bottom: '10%' }}>
                         <AddToCart product={props} classSup='bg-white fd-color-primary fd-hover-bg-primary d-block w-50 mx-auto px-3 py-2'/>
                     </div>

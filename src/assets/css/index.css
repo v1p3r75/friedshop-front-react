@@ -33,5 +33,5 @@ a {color: #fff!important; text-decoration: none!important;}
 .cursor-disabled {cursor: no-drop!important;}
 .others-imgs {width : 80px; height : 80px;}
 /* .scroller {scrollbar-color: var(--fd-color-silver) var(--fd-color-dark); scrollbar-width: thin;} */
-.spinner { border: 10px solid #fff; border-top: 10px solid var(--fd-color-primary); border-radius: 50%; width: 100%; height: 100%; animation: spin 1s linear infinite; }
+.spinner { border: 10px solid #fff; border-top: 10px solid #fff; border-radius: 50%; width: 20px; height: 20px; animation: spin 1s linear infinite; }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } } 
