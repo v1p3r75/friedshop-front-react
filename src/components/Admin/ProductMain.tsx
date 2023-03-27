@@ -1,10 +1,11 @@
 import React, { useState, SyntheticEvent, useEffect } from 'react'
 import { productsTest } from '../../views/VirtualData'
 import { ProductType } from '../ProductCart'
-import { useCreateProductMutation, useGetAllProductsQuery } from '../../store/apiquery/productApiSlice';
+import { useCreateProductMutation, useDeleteProductMutation, useGetAllProductsQuery } from '../../store/apiquery/productApiSlice';
 import Spinner from '../Spinner';
 import { link } from '../../Utils/Generals';
 import {InfinitySpin, ThreeCircles, ThreeDots} from 'react-loader-spinner'
+import Swal from 'sweetalert2';
 
 const AddOrEditProduct = ({ product }: { product: null | ProductType }) => {
 
@@ -147,12 +148,29 @@ const AddOrEditProduct = ({ product }: { product: null | ProductType }) => {
 
 const ListOfProducts = ({ setProduct, setPage }: { setProduct: Function, setPage: Function }) => {
 
+	const { isLoading, data: productsList, isSuccess, isError } = useGetAllProductsQuery('api/products');
+	const [deleteProduct, deletedResult] = useDeleteProductMutation();
+
 	const parseProduct = (product: ProductType) => {
 		setProduct(product);
 		setPage('add');
 	}
-
-	const { isLoading, data: productsList, isSuccess, isError } = useGetAllProductsQuery('api/products');
+	
+	const deleteItem = (id : number) => {
+		Swal.fire({
+			title: 'Are you sure?',
+			text: "Are you sure to delete this product ?",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes, delete it!'
+		}).then((r) => {
+			if(r.isConfirmed) {
+				deleteProduct(id);
+			}
+		});
+	}
 
 	let content: React.ReactNode;
 
@@ -171,7 +189,10 @@ const ListOfProducts = ({ setProduct, setPage }: { setProduct: Function, setPage
 
 							<a href="#" className='p-2 rounded-2 fd-bg-primary' onClick={(e) => parseProduct(product)} title='View Product'><i className="bi bi-eye"></i></a>
 							<a href="#" className='p-2 rounded-2 bg-secondary' onClick={(e) => parseProduct(product)} title='Edit'><i className="bi bi-pen"></i></a>
-							<a href="#" className='p-2 rounded-2 bg-danger' title='Delete'><i className="bi bi-trash"></i></a>
+							<a href="#" className='p-2 rounded-2 bg-danger' title='Delete' onClick={(e) =>{
+								e.preventDefault();
+								deleteItem(product.id)
+							}}><i className="bi bi-trash"></i></a>
 						</td>
 					</tr>
 				)

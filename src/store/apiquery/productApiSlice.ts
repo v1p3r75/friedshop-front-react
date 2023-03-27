@@ -7,6 +7,7 @@ export const productApiSice = createApi({
     reducerPath : 'api/products',
     baseQuery : fetchBaseQuery({baseUrl : BASE_URL}),
     tagTypes : ['Products'],
+
     endpoints : (builder) => ({
 
         getAllProducts : builder.query(({
@@ -29,10 +30,10 @@ export const productApiSice = createApi({
         }),
 
         deleteProduct: builder.mutation({
-            query : ({id}) => ({
+            query : (id : number) => ({
                 url : '/product/delete',
                 method : 'DELETE',
-                body : id
+                body : {id}
             }),
             invalidatesTags : ['Products'],
         })
@@ -44,4 +45,5 @@ export const {
     useGetAllProductsQuery,
     useGetProductQuery,
     useCreateProductMutation,
+    useDeleteProductMutation,
  } = productApiSice;
