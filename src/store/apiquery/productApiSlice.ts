@@ -26,7 +26,16 @@ export const productApiSice = createApi({
                 method : 'POST',
                 body : product,
             }),
-           invalidatesTags : ['Products'],
+           invalidatesTags : ['Products']
+        }),
+
+        updateProduct: builder.mutation({
+            query : (data) => ({
+                url : 'product/update',
+                method : 'PATCH',
+                body : data,
+            }),
+            invalidatesTags : ['Products']
         }),
 
         deleteProduct: builder.mutation({
@@ -35,7 +44,7 @@ export const productApiSice = createApi({
                 method : 'DELETE',
                 body : {id}
             }),
-            invalidatesTags : ['Products'],
+            invalidatesTags : ['Products']
         })
     })
 })

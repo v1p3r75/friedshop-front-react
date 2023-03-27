@@ -10,7 +10,9 @@ import Swal from 'sweetalert2';
 const AddOrEditProduct = ({ product }: { product: null | ProductType }) => {
 
 	const [image, setImage] = useState<Blob>();
-	const [data, setData] = useState<ProductType>({});
+	const [data, setData] = useState<ProductType>(null);
+
+	const [updateData, setUpdateData] = useState<ProductType>();
 
 	const [createProduct, result] = useCreateProductMutation();
 
@@ -32,6 +34,19 @@ const AddOrEditProduct = ({ product }: { product: null | ProductType }) => {
 		const value = e.target.value;
 		setData(values => ({ ...values, [name]: value }))
 
+	}
+
+	useEffect(() => {
+		setUpdateData(product!)
+
+	}, [product])
+
+	const handleUpdateValue = (e: SyntheticEvent) => {
+
+		const name = e.target.name;
+		const value = e.target.value;
+		setUpdateData(values => ({ ...values, [name]: value }));
+		console.log(data)
 	}
 
 	if (!product) {
@@ -97,13 +112,14 @@ const AddOrEditProduct = ({ product }: { product: null | ProductType }) => {
 		)
 	}
 
+
 	return (
 		<form action="" method="post" className="checkout-service p-3">
 			<div className="w-25 mx-auto p-3 border border-1 rounded-5 fd-hover-border-primary" style={{ height: '250px' }}><img src={link(product.img)} alt={product.name} className='w-100 h-100' /></div>
 			<div className='d-flex gap-2'>
 				<label className='w-50'>
 					<span>Name</span>
-					<input type="text" name="firstname" className="form-control w-100 rounded-0 p-2" value={product.name} />
+					<input type="text" name="firstname" className="form-control w-100 rounded-0 p-2" value={product.name} onChange={handleUpdateValue}/>
 				</label>
 				<label className='w-50'>
 					<span>Image</span>
@@ -113,26 +129,26 @@ const AddOrEditProduct = ({ product }: { product: null | ProductType }) => {
 			<div className='d-grid grid-4 gap-2 mt-3'>
 				<label>
 					<span>Price</span>
-					<input type="number" name="price" className="form-control w-100 rounded-0 p-2" value={product.price} />
+					<input type="number" name="price" className="form-control w-100 rounded-0 p-2" value={product.price} onChange={handleUpdateValue}/>
 				</label>
 				<label>
 					<span>Old Price</span>
-					<input type="number" name="old_price" className="form-control w-100 rounded-0 p-2" value={product.old_price} />
+					<input type="number" name="old_price" className="form-control w-100 rounded-0 p-2" value={product.old_price} onChange={handleUpdateValue}/>
 				</label>
 				<label>
 					<span>Quantity</span>
-					<input type="number" name="image" className="form-control w-100 rounded-0 p-2" value={200} />
+					<input type="number" name="image" className="form-control w-100 rounded-0 p-2" value={200} onChange={handleUpdateValue}/>
 				</label>
 				<label>
 					<span>Reduction</span>
-					<input type="text" name="price" className="form-control w-100 rounded-0 p-2" value={product.reduction ?? 0} />
+					<input type="text" name="price" className="form-control w-100 rounded-0 p-2" value={product.reduction ?? 0} onChange={handleUpdateValue}/>
 				</label>
 			</div>
 			<div className='my-4'>
 				<label>
 					<span>Description</span>
 				</label>
-				<textarea name="description" cols={100} rows={10} className='w-100 p-2 border' placeholder='Description' value={product.desc}></textarea>
+				<textarea name="description" cols={100} rows={10} className='w-100 p-2 border' placeholder='Description' value={product.desc} onChange={handleUpdateValue}></textarea>
 			</div>
 			<div>
 				<label>
