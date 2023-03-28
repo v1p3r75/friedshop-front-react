@@ -31,7 +31,7 @@ export const productApiSice = createApi({
 
         updateProduct: builder.mutation({
             query : (data) => ({
-                url : 'product/update',
+                url : 'product/edit',
                 method : 'PATCH',
                 body : data,
             }),
@@ -53,6 +53,7 @@ export const productApiSice = createApi({
 export const {
     useGetAllProductsQuery,
     useGetProductQuery,
+    useUpdateProductMutation,
     useCreateProductMutation,
     useDeleteProductMutation,
  } = productApiSice;

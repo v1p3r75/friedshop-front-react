@@ -1,11 +1,109 @@
 import React, { useState, SyntheticEvent, useEffect } from 'react'
 import { productsTest } from '../../views/VirtualData'
 import { ProductType } from '../ProductCart'
-import { useCreateProductMutation, useDeleteProductMutation, useGetAllProductsQuery } from '../../store/apiquery/productApiSlice';
+import { useCreateProductMutation, useDeleteProductMutation, useGetAllProductsQuery, useUpdateProductMutation } from '../../store/apiquery/productApiSlice';
 import Spinner from '../Spinner';
 import { link } from '../../Utils/Generals';
-import {InfinitySpin, ThreeCircles, ThreeDots} from 'react-loader-spinner'
+import { InfinitySpin, ThreeCircles, ThreeDots } from 'react-loader-spinner'
 import Swal from 'sweetalert2';
+
+
+const UpdateProduct = ({product}: {product : ProductType}) => {
+
+	const [updateData, setUpdateData] = useState(product);
+	const [updateProduct, udpateResult] = useUpdateProductMutation();
+
+	const handleSubmit = (e: SyntheticEvent) => {
+
+		e.preventDefault();
+
+		const form = new FormData(e.target as HTMLFormElement);
+		// form.append('reviews', '5'); // Pour le moment
+		console.log(updateData, e.target);
+
+		updateProduct(form);
+
+	}
+
+	const handleUpdateValue = (e: SyntheticEvent) => {
+
+		const target = e.target as HTMLInputElement | HTMLTextAreaElement;
+
+		setUpdateData(prevState => ({ ...prevState, [target.name]: target.value }));
+
+	}
+	udpateResult.isError ? console.log(JSON.stringify(udpateResult.error)) : udpateResult;
+
+	return (
+		<form action="" method="post" className="checkout-service p-3" onSubmit={handleSubmit}>
+			<input type="hidden" name="id" value={updateData.id}/>
+			<div className="w-25 mx-auto p-3 border border-1 rounded-5 fd-hover-border-primary" style={{ height: '250px' }}><img src={link(product.img)} alt={product.name} className='w-100 h-100' /></div>
+			<div className='d-flex gap-2'>
+				<label className='w-50'>
+					<span>Name</span>
+					<input type="text" name="name" className="form-control w-100 rounded-0 p-2" value={updateData.name} onChange={handleUpdateValue} />
+				</label>
+				<label className='w-50'>
+					<span>Image</span>
+					<input type="file" name="image" className="form-control w-100 rounded-0 p-2" placeholder='Change Image' />
+				</label>
+			</div>
+			<div className='d-grid grid-4 gap-2 mt-3'>
+				<label>
+					<span>Price</span>
+					<input type="number" name="price" className="form-control w-100 rounded-0 p-2" value={updateData.price} onChange={handleUpdateValue} />
+				</label>
+				<label>
+					<span>Old Price</span>
+					<input type="number" name="old_price" className="form-control w-100 rounded-0 p-2" value={updateData.old_price} onChange={handleUpdateValue} />
+				</label>
+				<label>
+					<span>Quantity</span>
+					<input type="number" name="total_quantity" className="form-control w-100 rounded-0 p-2" value={updateData.total_quantity} onChange={handleUpdateValue} />
+				</label>
+				<label>
+					<span>Reduction</span>
+					<input type="text" name="reduction" className="form-control w-100 rounded-0 p-2" value={updateData.reduction ?? 0} onChange={handleUpdateValue} />
+				</label>
+			</div>
+			<div className='my-4'>
+				<label>
+					<span>Description</span>
+				</label>
+				<textarea name="desc" cols={100} rows={10} className='w-100 p-2 border' placeholder='Description' value={updateData.desc} onChange={handleUpdateValue}></textarea>
+			</div>
+			<div>
+				<label>
+					<input type="checkbox" name="deal_of_day" />
+					<span className='ms-2'>Deal Of Day</span>
+				</label>
+			</div>
+			<div className='mt-4'>
+				{
+					udpateResult.isError ?
+					<h5 className="bg-danger text-white">{udpateResult.error.data.message}</h5> &&
+					udpateResult.error.data.errors.map(err => {
+						return <>
+							<div key={err} className='fw-bold'><i className='bi bi-x text-danger'>{err}</i></div>
+						</>
+					}) : ''
+				}
+
+				{
+					udpateResult.isSuccess && <div className='w-100 p-2 bg-success text-white fw-bold rounded-2 '><span>{udpateResult.data.message}</span></div>
+				}
+			</div>
+			<div className='mt-3'>{udpateResult.isLoading ?
+				<button className="fd-btn w-25 text-center border-0"><span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+					Loading...</button> :
+				<button className="fd-btn w-25 text-center border-0" type='submit'>UPDATE PRODUCT</button>
+			}</div>
+		</form>
+	)
+
+
+}
+
 
 const AddOrEditProduct = ({ product }: { product: null | ProductType }) => {
 
@@ -21,7 +119,7 @@ const AddOrEditProduct = ({ product }: { product: null | ProductType }) => {
 
 		e.preventDefault();
 
-		const form = new FormData(e.target);
+		const form = new FormData(e.target as HTMLFormElement);
 		form.append('reviews', '5'); // Pour le moment
 
 		createProduct(form);
@@ -30,24 +128,11 @@ const AddOrEditProduct = ({ product }: { product: null | ProductType }) => {
 
 	const handleValue = (e: SyntheticEvent) => {
 
-		const name = e.target.name;
-		const value = e.target.value;
-		setData(values => ({ ...values, [name]: value }))
+		const target = e.target as HTMLInputElement | HTMLTextAreaElement;
+		setData(values => ({ ...values, [target.name]: target.value }));
 
 	}
 
-	useEffect(() => {
-		setUpdateData(product!)
-
-	}, [product])
-
-	const handleUpdateValue = (e: SyntheticEvent) => {
-
-		const name = e.target.name;
-		const value = e.target.value;
-		setUpdateData(values => ({ ...values, [name]: value }));
-		console.log(data)
-	}
 
 	if (!product) {
 
@@ -66,7 +151,9 @@ const AddOrEditProduct = ({ product }: { product: null | ProductType }) => {
 					<label className='w-50'>
 						<span>Image</span>
 						<input type="file" name="img" className="form-control w-100 rounded-0 p-2" placeholder='Product Image'
-							onChange={(e: SyntheticEvent) => setImage(e.target.files[0])} accept='image/*' />
+							onChange={(e: SyntheticEvent) => {
+								setImage((e.target).files[0])
+							}} accept='image/*' />
 					</label>
 				</div>
 				<div className='d-grid grid-4 gap-2 mt-3'>
@@ -80,7 +167,7 @@ const AddOrEditProduct = ({ product }: { product: null | ProductType }) => {
 					</label>
 					<label>
 						<span>Quantity</span>
-						<input type="number" name="quantity" className="form-control w-100 rounded-0 p-2" placeholder='Total Quantity' onChange={handleValue} />
+						<input type="number" name="total_quantity" className="form-control w-100 rounded-0 p-2" placeholder='Total Quantity' onChange={handleValue} />
 					</label>
 					<label>
 						<span>Reduction</span>
@@ -105,7 +192,7 @@ const AddOrEditProduct = ({ product }: { product: null | ProductType }) => {
 				</div>
 				<div className='mt-3'>{result.isLoading ?
 					<button className="fd-btn w-25 text-center border-0"><span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-					Loading...</button> :
+						Loading...</button> :
 					<button className="fd-btn w-25 text-center border-0">SAVE NOW</button>
 				}</div>
 			</form>
@@ -113,53 +200,7 @@ const AddOrEditProduct = ({ product }: { product: null | ProductType }) => {
 	}
 
 
-	return (
-		<form action="" method="post" className="checkout-service p-3">
-			<div className="w-25 mx-auto p-3 border border-1 rounded-5 fd-hover-border-primary" style={{ height: '250px' }}><img src={link(product.img)} alt={product.name} className='w-100 h-100' /></div>
-			<div className='d-flex gap-2'>
-				<label className='w-50'>
-					<span>Name</span>
-					<input type="text" name="firstname" className="form-control w-100 rounded-0 p-2" value={product.name} onChange={handleUpdateValue}/>
-				</label>
-				<label className='w-50'>
-					<span>Image</span>
-					<input type="file" name="image" className="form-control w-100 rounded-0 p-2" placeholder='Change Image' />
-				</label>
-			</div>
-			<div className='d-grid grid-4 gap-2 mt-3'>
-				<label>
-					<span>Price</span>
-					<input type="number" name="price" className="form-control w-100 rounded-0 p-2" value={product.price} onChange={handleUpdateValue}/>
-				</label>
-				<label>
-					<span>Old Price</span>
-					<input type="number" name="old_price" className="form-control w-100 rounded-0 p-2" value={product.old_price} onChange={handleUpdateValue}/>
-				</label>
-				<label>
-					<span>Quantity</span>
-					<input type="number" name="image" className="form-control w-100 rounded-0 p-2" value={200} onChange={handleUpdateValue}/>
-				</label>
-				<label>
-					<span>Reduction</span>
-					<input type="text" name="price" className="form-control w-100 rounded-0 p-2" value={product.reduction ?? 0} onChange={handleUpdateValue}/>
-				</label>
-			</div>
-			<div className='my-4'>
-				<label>
-					<span>Description</span>
-				</label>
-				<textarea name="description" cols={100} rows={10} className='w-100 p-2 border' placeholder='Description' value={product.desc} onChange={handleUpdateValue}></textarea>
-			</div>
-			<div>
-				<label>
-					<input type="checkbox" name="deal_of_day" />
-					<span className='ms-2'>Deal Of Day</span>
-				</label>
-			</div>
-			<div className='mt-4'><a href="#" className="fd-btn w-25 text-center">UPDATE PRODUCT</a></div>
-		</form>
-	)
-
+	return <UpdateProduct product={product} />
 }
 
 const ListOfProducts = ({ setProduct, setPage }: { setProduct: Function, setPage: Function }) => {
@@ -171,8 +212,8 @@ const ListOfProducts = ({ setProduct, setPage }: { setProduct: Function, setPage
 		setProduct(product);
 		setPage('add');
 	}
-	
-	const deleteItem = (id : number) => {
+
+	const deleteItem = (id: number) => {
 		Swal.fire({
 			title: 'Are you sure?',
 			text: "Are you sure to delete this product ?",
@@ -182,7 +223,7 @@ const ListOfProducts = ({ setProduct, setPage }: { setProduct: Function, setPage
 			cancelButtonColor: '#d33',
 			confirmButtonText: 'Yes, delete it!'
 		}).then((r) => {
-			if(r.isConfirmed) {
+			if (r.isConfirmed) {
 				deleteProduct(id);
 			}
 		});
@@ -205,7 +246,7 @@ const ListOfProducts = ({ setProduct, setPage }: { setProduct: Function, setPage
 
 							<a href="#" className='p-2 rounded-2 fd-bg-primary' onClick={(e) => parseProduct(product)} title='View Product'><i className="bi bi-eye"></i></a>
 							<a href="#" className='p-2 rounded-2 bg-secondary' onClick={(e) => parseProduct(product)} title='Edit'><i className="bi bi-pen"></i></a>
-							<a href="#" className='p-2 rounded-2 bg-danger' title='Delete' onClick={(e) =>{
+							<a href="#" className='p-2 rounded-2 bg-danger' title='Delete' onClick={(e) => {
 								e.preventDefault();
 								deleteItem(product.id)
 							}}><i className="bi bi-trash"></i></a>
@@ -218,24 +259,24 @@ const ListOfProducts = ({ setProduct, setPage }: { setProduct: Function, setPage
 
 
 	return (
-		!isLoading ? 
-		<div className="table-responsive">
-			<table className="table table-default text-center table-bordered">
-				<thead>
-					<tr className='fd-bg-primary text-white'>
-						<th scope="col" className='p-3'>IMAGE</th>
-						<th scope="col" className='p-3'>PRODUCT NAME</th>
-						<th scope="col" className='p-3'>PRICE</th>
-						<th scope="col" className='p-3'>TOTAL STOCK</th>
-						<th scope="col" className='p-3'>ACTION</th>
-					</tr>
-				</thead>
-				<tbody>
-					{content}
-				</tbody>
-			</table>
-		</div> :
-		<div className='mt-5 w-25 mx-auto'><ThreeDots  /></div>
+		!isLoading ?
+			<div className="table-responsive">
+				<table className="table table-default text-center table-bordered">
+					<thead>
+						<tr className='fd-bg-primary text-white'>
+							<th scope="col" className='p-3'>IMAGE</th>
+							<th scope="col" className='p-3'>PRODUCT NAME</th>
+							<th scope="col" className='p-3'>PRICE</th>
+							<th scope="col" className='p-3'>TOTAL STOCK</th>
+							<th scope="col" className='p-3'>ACTION</th>
+						</tr>
+					</thead>
+					<tbody>
+						{content}
+					</tbody>
+				</table>
+			</div> :
+			<div className='mt-5 w-25 mx-auto'><ThreeDots /></div>
 	);
 }
 

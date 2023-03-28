@@ -16,6 +16,7 @@ export type ProductType = {
     type?: string,
     desc?: string,
     quantity?: number,
+    total_quantity: number,
 };
 
 const ProductCart = (props: ProductType) => {
