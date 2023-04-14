@@ -1,27 +1,29 @@
-import React, { useState, SyntheticEvent, useEffect } from 'react'
-import { productsTest } from '../../views/VirtualData'
+import React, { useState, SyntheticEvent, useEffect, useRef } from 'react'
 import { ProductType } from '../ProductCart'
 import { useCreateProductMutation, useDeleteProductMutation, useGetAllProductsQuery, useUpdateProductMutation } from '../../store/apiquery/productApiSlice';
-import Spinner from '../Spinner';
 import { link } from '../../Utils/Generals';
-import { InfinitySpin, ThreeCircles, ThreeDots } from 'react-loader-spinner'
+import { ThreeDots } from 'react-loader-spinner'
 import Swal from 'sweetalert2';
+import Spinner from '../Spinner';
 
+let imageIsChanged = false;
 
 const UpdateProduct = ({product}: {product : ProductType}) => {
 
 	const [updateData, setUpdateData] = useState(product);
 	const [updateProduct, udpateResult] = useUpdateProductMutation();
+	const imageTag = useRef<HTMLInputElement>(null);
 
 	const handleSubmit = (e: SyntheticEvent) => {
 
 		e.preventDefault();
-
 		const form = new FormData(e.target as HTMLFormElement);
-		// form.append('reviews', '5'); // Pour le moment
-		console.log(updateData, e.target);
-
+		form.append('_method', 'patch');
+		form.append('imageEdited', imageIsChanged.toString());
+		form.append('reviews', '5'); // Pour le moment
+		console.log(imageIsChanged.toString())
 		updateProduct(form);
+		imageIsChanged = false;
 
 	}
 
@@ -29,15 +31,21 @@ const UpdateProduct = ({product}: {product : ProductType}) => {
 
 		const target = e.target as HTMLInputElement | HTMLTextAreaElement;
 
+		if (target.name === 'img') {
+
+			imageIsChanged = true;
+			imageTag.current && 
+			(imageTag.current.src = URL.createObjectURL((e.target as HTMLInputElement).files[0]!));
+		}
 		setUpdateData(prevState => ({ ...prevState, [target.name]: target.value }));
 
 	}
-	udpateResult.isError ? console.log(JSON.stringify(udpateResult.error)) : udpateResult;
+	// udpateResult.isError ? console.log(JSON.stringify(udpateResult.error)) : udpateResult;
 
 	return (
-		<form action="" method="post" className="checkout-service p-3" onSubmit={handleSubmit}>
+		<form action="" method="patch" className="checkout-service p-3" onSubmit={handleSubmit}>
 			<input type="hidden" name="id" value={updateData.id}/>
-			<div className="w-25 mx-auto p-3 border border-1 rounded-5 fd-hover-border-primary" style={{ height: '250px' }}><img src={link(product.img)} alt={product.name} className='w-100 h-100' /></div>
+			<div className="w-25 mx-auto p-3 border border-1 rounded-5 fd-hover-border-primary" style={{ height: '250px' }}><img src={link(product.img)} alt={product.name} className='w-100 h-100' ref={imageTag}/></div>
 			<div className='d-flex gap-2'>
 				<label className='w-50'>
 					<span>Name</span>
@@ -45,7 +53,7 @@ const UpdateProduct = ({product}: {product : ProductType}) => {
 				</label>
 				<label className='w-50'>
 					<span>Image</span>
-					<input type="file" name="image" className="form-control w-100 rounded-0 p-2" placeholder='Change Image' />
+					<input type="file" name="img" className="form-control w-100 rounded-0 p-2" placeholder='Change Image' onChange={handleUpdateValue}/>
 				</label>
 			</div>
 			<div className='d-grid grid-4 gap-2 mt-3'>
@@ -121,7 +129,6 @@ const AddOrEditProduct = ({ product }: { product: null | ProductType }) => {
 
 		const form = new FormData(e.target as HTMLFormElement);
 		form.append('reviews', '5'); // Pour le moment
-
 		createProduct(form);
 
 	}
@@ -142,7 +149,7 @@ const AddOrEditProduct = ({ product }: { product: null | ProductType }) => {
 					<div className="w-25 mx-auto p-3 border border-1 rounded-5 fd-hover-border-primary mb-4" style={{ height: '250px' }}>
 						<img src={URL.createObjectURL(image)} alt="Product Image Preview" className='w-100 h-100' />
 					</div>
-				}
+				}	
 				<div className='d-flex gap-2'>
 					<label className='w-50'>
 						<span>Name</span>
@@ -241,7 +248,7 @@ const ListOfProducts = ({ setProduct, setPage }: { setProduct: Function, setPage
 						<td scope="row w-25"><img src={link(product.img)} alt={product.name} style={{ width: '50px', height: '50px' }} /></td>
 						<td className='fw-bold'>{product.name}</td>
 						<td>{product.price}</td>
-						<td>{45}</td>
+						<td>{product.total_quantity}</td>
 						<td className='fw-bold d-flex gap-2 justify-content-center'>
 
 							<a href="#" className='p-2 rounded-2 fd-bg-primary' onClick={(e) => parseProduct(product)} title='View Product'><i className="bi bi-eye"></i></a>
@@ -276,7 +283,7 @@ const ListOfProducts = ({ setProduct, setPage }: { setProduct: Function, setPage
 					</tbody>
 				</table>
 			</div> :
-			<div className='mt-5 w-25 mx-auto'><ThreeDots /></div>
+			<Spinner />
 	);
 }
 

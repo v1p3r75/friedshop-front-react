@@ -1,9 +1,9 @@
 import React from 'react'
-import { InfinitySpin } from 'react-loader-spinner'
+import { InfinitySpin, ThreeDots } from 'react-loader-spinner'
 
 const Spinner = () => {
   return (
-    <div className='spinner w-25 mx-auto' title='Fetching Products'></div>
+    <div className='mt-2 w-25 mx-auto'><ThreeDots /></div>
     // <InfinitySpin width='150' color='#fff'/>
   )
 }

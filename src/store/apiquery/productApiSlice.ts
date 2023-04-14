@@ -2,7 +2,7 @@ import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 import { ProductType } from '../../components/ProductCart';
 import { BASE_URL } from '../../Utils/Generals';
 
-export const productApiSice = createApi({
+export const productApiSlice = createApi({
     
     reducerPath : 'api/products',
     baseQuery : fetchBaseQuery({baseUrl : BASE_URL}),
@@ -32,7 +32,7 @@ export const productApiSice = createApi({
         updateProduct: builder.mutation({
             query : (data) => ({
                 url : 'product/edit',
-                method : 'PATCH',
+                method : 'POST',
                 body : data,
             }),
             invalidatesTags : ['Products']
@@ -56,4 +56,4 @@ export const {
     useUpdateProductMutation,
     useCreateProductMutation,
     useDeleteProductMutation,
- } = productApiSice;
+ } = productApiSlice;
