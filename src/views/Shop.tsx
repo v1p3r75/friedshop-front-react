@@ -51,7 +51,7 @@ const Shop = () => {
               <h5>Categories</h5><hr />
               <div className="d-flex flex-column gap-2">
                 {
-                  apiCategory.map((category) => <Category category={category} key={category.category_id}/>)
+                  apiCategory.map((category) => <Category category={category} key={category.id}/>)
                 }
               </div>
             </div>

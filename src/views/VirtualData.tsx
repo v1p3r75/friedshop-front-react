@@ -1,8 +1,10 @@
  
  export type CategoryType = {
-    category_id: string | number,
+    id: string | number,
     name: string,
+    desc?: string,
     description? : string,
+    
   };
 
   export type Slide = {
@@ -60,13 +62,13 @@
   ]
   
   export const apiCategory = [
-    { category_id: 1, name: 'Vegetals And Fruits', description : 'lorem' },
-    { category_id: 2, name: 'Fruits', description : 'lorem' },
-    { category_id: 3, name: 'Oil And Vinegar', description : 'lorem' },
-    { category_id: 4, name: 'Apple Juice', description : 'lorem' },
-    { category_id: 5, name: 'Océan Food', description : 'lorem' },
-    { category_id: 6, name: 'Butter & Eggs', description : 'lorem' },
-    { category_id: 7, name: 'Fresh Meat', description : 'lorem' },
+    { id: 1, name: 'Vegetals And Fruits', description : 'lorem' },
+    { id: 2, name: 'Fruits', description : 'lorem' },
+    { id: 3, name: 'Oil And Vinegar', description : 'lorem' },
+    { id: 4, name: 'Apple Juice', description : 'lorem' },
+    { id: 5, name: 'Océan Food', description : 'lorem' },
+    { id: 6, name: 'Butter & Eggs', description : 'lorem' },
+    { id: 7, name: 'Fresh Meat', description : 'lorem' },
   ]
   
   export const archives = [

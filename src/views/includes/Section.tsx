@@ -14,7 +14,7 @@ import Spinner from '../../components/Spinner';
 
 const Category = ({category, arrow = 'left'} : {category : any, arrow? : string}) => {
 
-  return <div key={category.category_id} className="category text-dark">
+  return <div key={category.id} className="category text-dark">
         {arrow === 'left' ? <i className='bi bi-chevron-double-right me-2'></i> : null}
         <Link to={"/"} className='text-dark'>{category.name}</Link>
         {arrow === 'right' ? <i className='bi bi-chevron-right float-end opacity-75 me-2'></i> : null}
@@ -27,7 +27,7 @@ const AllCategory = (props: { categoryList: CategoryType[] }) => {
     <h6 className="fd-bg-primary p-3 fw-bold rounded-top-3">ALL CATEGORIES</h6>
     <div className="category-list d-flex flex-column gap-4 py-2 px-3">
       {
-        props.categoryList.map((category) => <Category category={category} arrow='right' key={category.category_id}/>)
+        props.categoryList.map((category) => <Category category={category} arrow='right' key={category.id}/>)
       }
     </div>
   </div>

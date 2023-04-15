@@ -12,7 +12,7 @@ const UpdateProduct = ({product}: {product : ProductType}) => {
 
 	const [updateData, setUpdateData] = useState(product);
 	const [updateProduct, udpateResult] = useUpdateProductMutation();
-	const imageTag = useRef<HTMLInputElement>(null);
+	const imageTag = useRef<HTMLImageElement>(null);
 
 	const handleSubmit = (e: SyntheticEvent) => {
 
@@ -29,13 +29,12 @@ const UpdateProduct = ({product}: {product : ProductType}) => {
 
 	const handleUpdateValue = (e: SyntheticEvent) => {
 
-		const target = e.target as HTMLInputElement | HTMLTextAreaElement;
+		const target = e.target as HTMLInputElement;
 
-		if (target.name === 'img') {
+		if (target.name === 'img' && imageTag.current && target.files) {
 
 			imageIsChanged = true;
-			imageTag.current && 
-			(imageTag.current.src = URL.createObjectURL((e.target as HTMLInputElement).files[0]!));
+			imageTag.current.src = URL.createObjectURL(target.files[0]);
 		}
 		setUpdateData(prevState => ({ ...prevState, [target.name]: target.value }));
 
@@ -89,7 +88,7 @@ const UpdateProduct = ({product}: {product : ProductType}) => {
 			<div className='mt-4'>
 				{
 					udpateResult.isError ?
-					<h5 className="bg-danger text-white">{udpateResult.error.data.message}</h5> &&
+					<h5 className="bg-danger text-white">{udpateResult.error.data.message!}</h5> &&
 					udpateResult.error.data.errors.map(err => {
 						return <>
 							<div key={err} className='fw-bold'><i className='bi bi-x text-danger'>{err}</i></div>
@@ -159,7 +158,7 @@ const AddOrEditProduct = ({ product }: { product: null | ProductType }) => {
 						<span>Image</span>
 						<input type="file" name="img" className="form-control w-100 rounded-0 p-2" placeholder='Product Image'
 							onChange={(e: SyntheticEvent) => {
-								setImage((e.target).files[0])
+								setImage((e.target as HTMLInputElement).files[0])
 							}} accept='image/*' />
 					</label>
 				</div>
