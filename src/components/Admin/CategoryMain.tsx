@@ -1,7 +1,71 @@
 import React, { useState, SyntheticEvent } from 'react'
 import { CategoryType } from '../../views/VirtualData'
-import { useGetAllCategoriesQuery,useCreateCategoryMutation, useDeleteCategoryMutation } from "../../store/apiquery/categoryApiSlice"
+import { useGetAllCategoriesQuery,useUpdateCategoryMutation, useCreateCategoryMutation, useDeleteCategoryMutation } from "../../store/apiquery/categoryApiSlice"
 import Swal from 'sweetalert2';
+import Spinner from '../Spinner';
+
+
+const UpdateCategory = ({category}: {category : CategoryType}) => {
+
+	const [updateData, setUpdateData] = useState(category);
+	const [updateCategory, udpateResult] = useUpdateCategoryMutation();
+
+	const handleSubmit = (e: SyntheticEvent) => {
+
+		e.preventDefault();
+		const form = new FormData(e.target as HTMLFormElement);
+		form.append('_method', 'patch');
+		updateCategory(form);
+
+	}
+
+	const handleUpdateValue = (e: SyntheticEvent) => {
+
+		const target = e.target as HTMLInputElement;
+		setUpdateData(prevState => ({ ...prevState, [target.name]: target.value }));
+
+	}
+
+	return (
+		<form action="" method="patch" className="checkout-service p-3" onSubmit={handleSubmit}>
+			<input type="hidden" name="id" value={updateData.id} />
+      <div>
+          <label className='w-100'>
+            <span>Name</span>
+            <input type="text" name="name" value={updateData.name} className="form-control w-100 rounded-0 p-2" placeholder='Category Name' onChange={handleUpdateValue}/>
+          </label>
+        </div>
+        <div className='my-4'>
+          <label>
+            <span>Description</span>
+          </label>
+          <textarea name="desc" cols={100} rows={10} value={updateData.desc} className='w-100 p-2 border' placeholder='Description' onChange={handleUpdateValue}></textarea>
+        </div>
+			<div className='mt-4'>
+				{
+					udpateResult.isError ?
+					<h5 className="bg-danger text-white">{udpateResult.error.data.message!}</h5> &&
+					udpateResult.error.data.errors.map(err => {
+						return <>
+							<div key={err} className='fw-bold'><i className='bi bi-x text-danger'>{err}</i></div>
+						</>
+					}) : ''
+				}
+
+				{
+					udpateResult.isSuccess && <div className='w-100 p-2 bg-success text-white fw-bold rounded-2 '><span>{udpateResult.data.message}</span></div>
+				}
+			</div>
+			<div className='mt-3'>{udpateResult.isLoading ?
+				<button className="fd-btn w-25 text-center border-0"><span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+					Loading...</button> :
+				<button className="fd-btn w-25 text-center border-0" type='submit'>UPDATE CATEGORY</button>
+			}</div>
+		</form>
+	)
+
+
+}
 
 const AddOrEditCategory = ({ category }: { category: null | CategoryType }) => {
 
@@ -62,30 +126,13 @@ const AddOrEditCategory = ({ category }: { category: null | CategoryType }) => {
     )
   }
 
-  return (
-
-    <form action="" method="post" className="p-3">
-      <div>
-        <label>
-          <span>Name</span>
-          <input type="text" name="firstname" className="form-control w-100 rounded-0 p-2" value={category.name} />
-        </label>
-      </div>
-      <div className='my-4'>
-        <label>
-          <span>Description</span>
-        </label>
-        <textarea name="description" cols={100} rows={10} className='w-100 p-2 border' placeholder='Description' value={category.description}></textarea>
-      </div>
-      <div><a href="#" className="fd-btn w-25 text-center">UPDATE CATEGORIE</a></div>
-    </form>
-  )
+  return <UpdateCategory category={category} />
 
 }
 
 const ListOfCategories = ({ setCategory, setPage }: { setCategory: Function, setPage: Function }) => {
 
-  const parseCategory = (category: {name: string, desc: string}) => {
+  const parseCategory = (category: CategoryType) => {
     setCategory(category);
     setPage('add');
   }
@@ -117,7 +164,7 @@ const ListOfCategories = ({ setCategory, setPage }: { setCategory: Function, set
       ? categoryList['data'].map((category: CategoryType) => {
 
         return (
-          <tr className="p-3">
+          <tr className="p-3" key={category.id}>
             <td scope="row w-25">{++count}</td>
             <td className='fw-bold'>{category.name}</td>
             <td>{category.desc}</td>
@@ -132,7 +179,7 @@ const ListOfCategories = ({ setCategory, setPage }: { setCategory: Function, set
       : null;
 
   return (
-    <div className="table-responsive">
+    !isLoading ? <div className="table-responsive">
       <table className="table table-default text-center table-bordered">
         <thead>
           <tr className='fd-bg-primary text-white'>
@@ -148,7 +195,7 @@ const ListOfCategories = ({ setCategory, setPage }: { setCategory: Function, set
           }
         </tbody>
       </table>
-    </div>
+    </div> : <Spinner />
   );
 }
 
