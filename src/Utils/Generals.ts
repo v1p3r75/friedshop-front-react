@@ -1,6 +1,8 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 import { useAppSelector } from '../hooks/redux-hooks';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
+import { SerializedError } from '@reduxjs/toolkit';
 
 export const BASE_URL = 'http://127.0.0.1:8000/api'; // BASE URL FOR API FETCHING
 
@@ -60,3 +62,4 @@ export const getTotal = () => {
 }
 
 export const link = (url : string) : string => BASE_STORAGE_URL + url;
+

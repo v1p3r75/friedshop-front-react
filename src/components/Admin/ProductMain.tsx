@@ -5,6 +5,7 @@ import { link } from '../../Utils/Generals';
 import { ThreeDots } from 'react-loader-spinner'
 import Swal from 'sweetalert2';
 import Spinner from '../Spinner';
+import { HandleResult } from '../HandleResult';
 
 let imageIsChanged = false;
 
@@ -86,19 +87,7 @@ const UpdateProduct = ({product}: {product : ProductType}) => {
 				</label>
 			</div>
 			<div className='mt-4'>
-				{
-					udpateResult.isError ?
-					<h5 className="bg-danger text-white">{udpateResult.error.data.message!}</h5> &&
-					udpateResult.error.data.errors.map(err => {
-						return <>
-							<div key={err} className='fw-bold'><i className='bi bi-x text-danger'>{err}</i></div>
-						</>
-					}) : ''
-				}
-
-				{
-					udpateResult.isSuccess && <div className='w-100 p-2 bg-success text-white fw-bold rounded-2 '><span>{udpateResult.data.message}</span></div>
-				}
+				<HandleResult result={udpateResult} />
 			</div>
 			<div className='mt-3'>{udpateResult.isLoading ?
 				<button className="fd-btn w-25 text-center border-0"><span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
@@ -187,14 +176,7 @@ const AddOrEditProduct = ({ product }: { product: null | ProductType }) => {
 					<textarea name="desc" cols={100} rows={10} className='w-100 p-2 border' placeholder='Description' onChange={handleValue}></textarea>
 				</div>
 				<div>
-					{
-						result.isError && result.error.data.errors.map(err => {
-							return <div key={err} className='fw-bold'><i className='bi bi-x text-danger'>{err}</i></div>
-						})
-					}
-					{
-						result.isSuccess && <div className='w-100 p-2 bg-success text-white fw-bold rounded-2 '><span>{result.data.message}</span></div>
-					}
+					<HandleResult result={result} />
 				</div>
 				<div className='mt-3'>{result.isLoading ?
 					<button className="fd-btn w-25 text-center border-0"><span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>

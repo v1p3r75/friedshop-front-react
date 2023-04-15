@@ -3,6 +3,7 @@ import { CategoryType } from '../../views/VirtualData'
 import { useGetAllCategoriesQuery,useUpdateCategoryMutation, useCreateCategoryMutation, useDeleteCategoryMutation } from "../../store/apiquery/categoryApiSlice"
 import Swal from 'sweetalert2';
 import Spinner from '../Spinner';
+import { HandleResult } from '../HandleResult';
 
 
 const UpdateCategory = ({category}: {category : CategoryType}) => {
@@ -42,19 +43,7 @@ const UpdateCategory = ({category}: {category : CategoryType}) => {
           <textarea name="desc" cols={100} rows={10} value={updateData.desc} className='w-100 p-2 border' placeholder='Description' onChange={handleUpdateValue}></textarea>
         </div>
 			<div className='mt-4'>
-				{
-					udpateResult.isError ?
-					<h5 className="bg-danger text-white">{udpateResult.error.data.message!}</h5> &&
-					udpateResult.error.data.errors.map(err => {
-						return <>
-							<div key={err} className='fw-bold'><i className='bi bi-x text-danger'>{err}</i></div>
-						</>
-					}) : ''
-				}
-
-				{
-					udpateResult.isSuccess && <div className='w-100 p-2 bg-success text-white fw-bold rounded-2 '><span>{udpateResult.data.message}</span></div>
-				}
+				<HandleResult result={udpateResult}/>
 			</div>
 			<div className='mt-3'>{udpateResult.isLoading ?
 				<button className="fd-btn w-25 text-center border-0"><span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
@@ -69,7 +58,7 @@ const UpdateCategory = ({category}: {category : CategoryType}) => {
 
 const AddOrEditCategory = ({ category }: { category: null | CategoryType }) => {
 
-  const [data, setData] = useState<CategoryType>(null);
+  const [data, setData] = useState<CategoryType>();
 
 	const [createCategory, result] = useCreateCategoryMutation();
 
@@ -108,14 +97,7 @@ const AddOrEditCategory = ({ category }: { category: null | CategoryType }) => {
           <textarea name="desc" cols={100} rows={10} className='w-100 p-2 border' placeholder='Description' onChange={handleValue}></textarea>
         </div>
         <div>
-        {
-						result.isError && result.error.data.errors.map(err => {
-							return <div key={err} className='fw-bold'><i className='bi bi-x text-danger'>{err}</i></div>
-						})
-					}
-					{
-						result.isSuccess && <div className='w-100 p-2 bg-success text-white fw-bold rounded-2 '><span>{result.data.message}</span></div>
-					}
+          <HandleResult result={result} />
         </div>
         <div className='mt-3'>{result.isLoading ?
 					<button className="fd-btn w-25 text-center border-0"><span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
@@ -171,7 +153,7 @@ const ListOfCategories = ({ setCategory, setPage }: { setCategory: Function, set
             <td className='fw-bold d-flex gap-2 justify-content-center'>
               <a href="#" className='p-2 rounded-2 fd-bg-primary' onClick={(e) => parseCategory(category)} title='View'><i className="bi bi-eye"></i></a>
               <a href="#" className='p-2 rounded-2 bg-secondary' onClick={(e) => parseCategory(category)} title='Edit'><i className="bi bi-pen"></i></a>
-              <a href="#" className='p-2 rounded-2 bg-danger' title='Delete' onClick={(e) => deleteItem(category.id)}><i className="bi bi-trash"></i></a>
+              <a href="#" className='p-2 rounded-2 bg-danger' title='Delete' onClick={(e) => deleteItem(Number(category.id))}><i className="bi bi-trash"></i></a>
             </td>
           </tr>
         )
