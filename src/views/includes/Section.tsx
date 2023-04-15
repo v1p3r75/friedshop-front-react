@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/redux-hooks';
 import { useGetAllProductsQuery } from '../../store/apiquery/productApiSlice';
 import Spinner from '../../components/Spinner';
+import { useGetAllCategoriesQuery } from '../../store/apiquery/categoryApiSlice';
 
 
 const Category = ({category, arrow = 'left'} : {category : any, arrow? : string}) => {
@@ -21,15 +22,20 @@ const Category = ({category, arrow = 'left'} : {category : any, arrow? : string}
     </div>
 }
 
-const AllCategory = (props: { categoryList: CategoryType[] }) => {
+const AllCategory = () => {
+
+  const {isLoading, data : categoryList }  = useGetAllCategoriesQuery("api/categories");
 
   return <div className="all-category w-25 shadow border-1 border-light p-0">
     <h6 className="fd-bg-primary p-3 fw-bold rounded-top-3">ALL CATEGORIES</h6>
-    <div className="category-list d-flex flex-column gap-4 py-2 px-3">
-      {
-        props.categoryList.map((category) => <Category category={category} arrow='right' key={category.id}/>)
+    { !isLoading ? 
+      <div className="category-list d-flex flex-column gap-4 py-2 px-3">
+        {
+          categoryList['data'].map((category : CategoryType) => <Category category={category} arrow='right' key={category.id}/>)
+        }
+      </div> : 
+      <Spinner />
       }
-    </div>
   </div>
 }
 
@@ -185,7 +191,7 @@ const Section = () => {
     <section>
       <div className="container-fluid">
         <div className="row d-flex justify-content-between px-5 my-5 gap-3">
-          <AllCategory categoryList={apiCategory} />
+          <AllCategory />
           <div className="fd-slideshow w-70 p-0">
             <SlideShow slidesInfo={apiSlidesInfo} />
           </div>
