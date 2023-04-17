@@ -24,11 +24,11 @@ const Category = ({category, arrow = 'left'} : {category : any, arrow? : string}
 
 const AllCategory = () => {
 
-  const {isLoading, data : categoryList }  = useGetAllCategoriesQuery("api/categories");
+  const {isLoading, data : categoryList, isError }  = useGetAllCategoriesQuery("api/categories");
 
   return <div className="all-category w-25 shadow border-1 border-light p-0">
     <h6 className="fd-bg-primary p-3 fw-bold rounded-top-3">ALL CATEGORIES</h6>
-    { !isLoading ? 
+    { !isLoading && !isError ? 
       <div className="category-list d-flex flex-column gap-4 py-2 px-3">
         {
           categoryList['data'].map((category : CategoryType) => <Category category={category} arrow='right' key={category.id}/>)
