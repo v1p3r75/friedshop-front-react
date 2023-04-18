@@ -1,14 +1,28 @@
-import { TypedUseMutationResult } from "@reduxjs/toolkit/dist/query/react";
-import { UseMutationStateResult } from "@reduxjs/toolkit/dist/query/react/buildHooks";
 import React, { useEffect } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {setItem} from "../Utils/Generals";
+import { useNavigate } from "react-router-dom";
+import RoutePaths from "../config";
 
 export const HandleResult = ({result} : {result : any}) => {
 
+    const navigate = useNavigate()
+
     useEffect(() => {
+        
         result.isError && toast.error((result.error as any).data?.message);
-        result.isSuccess && toast.success(result.data?.message);
+
+        if(result.isSuccess) {
+
+            if (RoutePaths.token in result.data.data) {
+
+                setItem(RoutePaths.token, result.data.data._token);
+                navigate(RoutePaths.userAccount);
+            }
+            toast.success(result.data?.message);
+        }
+        
     }, [result]);
     
     let content : React.ReactNode = null;

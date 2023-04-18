@@ -1,9 +1,10 @@
-import React, { SyntheticEvent, useState } from 'react'
+import {useEffect } from 'react'
 import Header from './includes/Header'
 import Footer from './includes/Footer'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import RoutePaths from '../config'
-import { toggleLinkClass } from '../Utils/Generals'
+import { toggleLinkClass, getItem } from '../Utils/Generals'
+import PrivateRoute from "../components/PrivateRoute"
 
 export const UserDashboard = () => {
     return (
@@ -127,9 +128,16 @@ export const UserDetails = () => {
 
 const UserAccount = ({currentComponent = <UserDashboard />} : {currentComponent? : React.ReactNode}) => {
 
-    // const setLogout;
+    const navigate = useNavigate();
 
-  return (
+    useEffect(() => {
+        const isLogged = getItem(RoutePaths.token);
+
+        navigate(RoutePaths.userAccount)
+
+    }, [currentComponent])
+    
+    return (
     <>
         <Header />
         <div className='d-flex justify-content-between gap-3 px-5 my-5'>

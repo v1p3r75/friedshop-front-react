@@ -33,6 +33,8 @@ const RoutePaths = {
     adminBlog: '/admin/blog',
     adminAccount: '/admin/account',
 
+    token: '_token'
+
 }
 
 export default RoutePaths
