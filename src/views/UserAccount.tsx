@@ -132,10 +132,10 @@ const UserAccount = ({currentComponent = <UserDashboard />} : {currentComponent?
 
     useEffect(() => {
         const isLogged = getItem(RoutePaths.token);
+        console.log('OK');
+        // navigate(RoutePaths.userAccount)
 
-        navigate(RoutePaths.userAccount)
-
-    }, [currentComponent])
+    }, [])
     
     return (
     <>
