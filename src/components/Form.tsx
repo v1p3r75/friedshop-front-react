@@ -10,9 +10,9 @@ const LoginForm = () => {
     const [data, setData] = useState({});
     const [sendUserInfo, result] = useLoginMutation();
 
-    const handleChange = ( {target} : SyntheticEvent<HTMLInputElement>) => {
+    const handleChange = ( e : SyntheticEvent<HTMLInputElement>) => {
 
-        setData({...data, [target.name]: target.value });
+        setData({...data, [e.target.name]: e.target.value });
     }
 
     const handleSubmit = (e : SyntheticEvent) => {
