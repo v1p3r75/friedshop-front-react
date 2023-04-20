@@ -1,5 +1,40 @@
-import React, { useCallback, useState } from 'react'
+import React, { SyntheticEvent, useState, useRef } from 'react'
 import { Slide, apiSlidesInfo } from '../../views/VirtualData'
+
+let imageIsChanged = false;
+
+const UpdateSlide = ({slide}: {slide: Slide}) => {
+
+  const [updateData, setUpdateData] = useState(slide);
+	// const [updateProduct, udpateResult] = useUpdateProductMutation();
+	const imageTag = useRef<HTMLImageElement>(null);
+
+	const handleSubmit = (e: SyntheticEvent) => {
+
+		e.preventDefault();
+		const form = new FormData(e.target as HTMLFormElement);
+		form.append('_method', 'patch');
+		form.append('imageEdited', imageIsChanged.toString());
+		console.log(imageIsChanged.toString())
+		// updateProduct(form);
+		imageIsChanged = false;
+
+	}
+
+	const handleUpdateValue = (e: SyntheticEvent) => {
+
+		const target = e.target as HTMLInputElement;
+
+		if (target.name === 'img' && imageTag.current && target.files) {
+
+			imageIsChanged = true;
+			imageTag.current.src = URL.createObjectURL(target.files[0]);
+		}
+		setUpdateData(prevState => ({ ...prevState, [target.name]: target.value }));
+
+	}
+}
+
 
 const AddOrEditSlide = ({ slide }: { slide: null | Slide}) => {
 
