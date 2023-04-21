@@ -1,8 +1,5 @@
-import React from 'react'
 import { useLocation } from 'react-router-dom'
 import { useAppSelector } from '../hooks/redux-hooks';
-import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
-import { SerializedError } from '@reduxjs/toolkit';
 
 export const BASE_URL = 'http://127.0.0.1:8000/api'; // BASE URL FOR API FETCHING
 
@@ -15,13 +12,6 @@ const inactive = "d-block p-3 text-black"; // WHERE MENU IS NOT ACTIVE CLASS
 export const cartKeyName = 'fd_shoppingcart'; // CART KEY NAME FOR LOCAL STORAGE
 
 export const wishlistKeyName = 'fd_wishlist'; // WISHLIST KEY NAME FOR LOCAL STORAGE
-
-type ToggleLink = { 
-    path: string,
-    activeClass : string,
-    inactiveClass : string,
-}
-
 
 export const toggleLinkClass = (path : string, activeClass : string = active, inactiveClass : string = inactive) => {
 

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import AdminHeader from '../../components/Admin/AdminHeader'
 import AdminFooter from '../../components/Admin/AdminFooter'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { toggleLinkClass } from '../../Utils/Generals'
 import RoutePaths from '../../config'
 
