@@ -5,7 +5,7 @@ import { PopularProducts } from '../views/includes/Section'
 import { Carousel } from 'react-responsive-carousel'
 import AddToCart from './AddToCart'
 import { ProductType } from './ProductCart'
-import useFetch from '../hooks/useFetch'
+import { link } from '../Utils/Generals';
 
 const ProductDetails = ({product} : {product : ProductType}) => {
 
@@ -15,10 +15,10 @@ const ProductDetails = ({product} : {product : ProductType}) => {
             <div className='p-img w-50'>
                 <div className="product-img h-50">
                     <Carousel showArrows={false} showIndicators={false} swipeable={true}>
-                        <div className="others-img"><img src={"/src/assets/img/product/6.png"} alt="Alt" /></div>
-                        <div className="others-img"><img src={"/src/assets/img/product/2.png"} alt="Alt" /></div>
-                        <div className="others-img"><img src={"/src/assets/img/product/3.png"} alt="Alt" /></div>
-                        <div className="others-img"><img src={"/src/assets/img/product/5.png"} alt="Alt" /></div>
+                        <div className="others-img"><img src={link(product.img)} alt="Alt" /></div>
+                        <div className="others-img"><img src={link(product.img)} alt="Alt" /></div>
+                        <div className="others-img"><img src={link(product.img)} alt="Alt" /></div>
+                        <div className="others-img"><img src={link(product.img)} alt="Alt" /></div>
                     </Carousel>
                 </div>
             </div>

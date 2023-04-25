@@ -37,7 +37,7 @@ const ProductCart = (props: ProductType) => {
                     </div>
                     <div className="w-75 pt-3">
                         <div>
-                            <Link to={"/product/1"} className="product-name my-2 fw-bold text-dark">{props.name}</Link>
+                            <Link to={"/product/" + props.id} className="product-name my-2 fw-bold text-dark">{props.name}</Link>
                         </div>
                         <div className='d-flex my-2'>
                             <Reviews rating={props.reviews} />
@@ -49,7 +49,7 @@ const ProductCart = (props: ProductType) => {
                         <p className="desc fw-bold opacity-50">{props.desc}</p>
                         <div className="d-flex gap-2">
                             <AddToCart product={props}/>
-                            <div><a href="#" className="fd-btn rounded-3"><i className="bi bi-eye"></i></a></div>
+                            <div><Link to={"/product/" + props.id} className="fd-btn rounded-3"><i className="bi bi-eye"></i></Link></div>
                             <div><AddToWishlist product={props} classSup='rounded-3'/></div>
                         </div>
                     </div>
@@ -70,9 +70,9 @@ const ProductCart = (props: ProductType) => {
                     <a className="position-absolute top-0 start-0 fd-btn-red" style={{ padding: '5px 20px' }}> {props.reduction} </a>
                 }
                 <AddToWishlist product={props} classSup='position-absolute rounded-5' supStyle={{ padding: '5px 10px', top: '10%', right: '10%' }}/>
-                <Link to={"/"} className="show position-absolute fd-btn rounded-5 d-none animate__animated animate__fadeInRight" style={{ padding: '5px 10px', top: '20%', right: '10%' }}> <i className="bi bi-eye"></i></Link>
+                <Link to={"/product/" + props.id} className="show position-absolute fd-btn rounded-5 d-none animate__animated animate__fadeInRight" style={{ padding: '5px 10px', top: '20%', right: '10%' }}> <i className="bi bi-eye"></i></Link>
                 <div className='text-center'>
-                    <Link to={"/product/1"} className="product-name my-2 fw-bold text-dark">{props.name}</Link>
+                    <Link to={"/product/" + props.id} className="product-name my-2 fw-bold text-dark">{props.name}</Link>
                 </div>
                 <div className='d-flex justify-content-center'>
                     <Reviews rating={props.reviews} />

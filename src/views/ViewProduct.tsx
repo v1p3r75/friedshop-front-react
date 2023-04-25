@@ -12,10 +12,6 @@ const ViewProduct = () => {
   const params = useParams()
   const { isLoading, data : details , isSuccess, isError } = useGetProductQuery(params.id);
 
-  // useEffect(() => {
-
-  //   console.log(data)
-  // })
 
   return (
     <>
