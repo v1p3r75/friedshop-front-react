@@ -9,9 +9,6 @@ import useFetch from '../hooks/useFetch'
 
 const ProductDetails = ({product} : {product : ProductType}) => {
 
-    const [loading, data] = useFetch('https://comfortable.dev/user/2');
-    console.log(loading, data);
-
   return (
     <div className='view-product px-5'>
         <div className="details-generals border border-1 fd-hover-border-primary bg-white d-flex text-black p-5 gap-2 mt-5" style={{minHeight : '400px'}}>
@@ -27,13 +24,11 @@ const ProductDetails = ({product} : {product : ProductType}) => {
             </div>
             <div className="p-details w-50">
                 <div className='d-flex gap-2'><Reviews rating={5}/><span className='fd-color-primary'>(25 Reviews)</span></div>
-                <h3 className="fw-bold my-4">Vegetables Juice</h3>
-                <p className='fw-bold opacity-75'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum modi, praesentium voluptas suscipit tempore blanditiis aut consectetur rem atque architecto exercitationem numquam veritatis recusandae animi? Recusandae consectetur quam suscipit consequatur!
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, ipsa assumenda repudiandae incidunt ea est pariatur eveniet ut cupiditate, ...
-                </p>
+                <h3 className="fw-bold my-4">{product.name}</h3>
+                <p className='fw-bold opacity-75'>{product.desc}</p>
                 <div className="d-flex gap-2">
-                    <h1 className="fw-bold fd-color-primary">$200</h1>
-                    <h2 className="fw-bold align-self-end" style={{textDecoration : "line-through"}}>$300</h2>
+                    <h1 className="fw-bold fd-color-primary">${product.price}</h1>
+                    <h2 className="fw-bold align-self-end" style={{textDecoration : "line-through"}}>${product.old_price}</h2>
                 </div><hr />
                 <div className="categories-list d-flex gap-2">
                     <h5 className="fw-bold">Categories : </h5>
