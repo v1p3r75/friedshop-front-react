@@ -63,7 +63,7 @@ const ProductCart = (props: ProductType) => {
                 <div className="position-relative h-75 product-img">
                     <img src={link(props.img)} alt={props.name} className="w-100 h-100" />
                     <div className='show d-none position-absolute w-100 animate__animated animate__fadeIn' style={{ bottom: '10%' }}>
-                        <AddToCart product={props} classSup='bg-white fd-color-primary fd-hover-bg-primary d-block w-50 mx-auto px-3 py-2'/>
+                        <AddToCart product={props} classSup='bg-white fd-color-primary fd-hover-bg-primary d-block w-75 mx-auto px-3 py-2'/>
                     </div>
                 </div>
                 {!props.reduction ? <a className="position-absolute top-0 start-0 fd-btn" style={{ padding: '5px 20px' }}>SALE</a> :
