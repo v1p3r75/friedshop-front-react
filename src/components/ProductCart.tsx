@@ -1,4 +1,3 @@
-import React, { FC } from 'react'
 import Reviews from './Reviews';
 import { Link } from 'react-router-dom';
 import AddToCart from './AddToCart';

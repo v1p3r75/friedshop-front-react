@@ -46,7 +46,7 @@
   
   ]
   
-  export const dailyTest = { img : '/src/assets/img/product/1.png', reviews : 4, name: 'Product Name 1', price : 90, oldPrice : 100, description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed earum nemo, officia maiores corporis eveniet ratione magnam facere voluptates consequuntur cumque."
+  export const dailyTest = { id: 1, img : '/src/assets/img/product/1.png', reviews : 4, name: 'Product Name 1', price : 90, old_price : 100, desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed earum nemo, officia maiores corporis eveniet ratione magnam facere voluptates consequuntur cumque.", total_quantity: 3
   }
   
   

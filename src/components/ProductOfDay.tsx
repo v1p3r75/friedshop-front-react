@@ -1,19 +1,9 @@
-import React, { FC } from 'react'
 import DateCount from './DateCount';
 import NumberCount from './NumberCount';
 import Reviews from './Reviews';
 import { Link } from 'react-router-dom';
 import AddToCart from './AddToCart';
-
-type ProductType = {
-    img: string,
-    reviews: number,
-    name: string,
-    price: number,
-    oldPrice: number,
-    reduction?: string,
-    description: string,
-};
+import { ProductType } from './ProductCart';
 
 const ProductOfDay = (props: ProductType) => {
 
@@ -34,7 +24,7 @@ const ProductOfDay = (props: ProductType) => {
                 </div>
                 <div className="my-3 d-flex gap-2"><Reviews rating={props.reviews} /><span className='fd-color-primary'>(25 Reviews)</span></div>
                 <div className="product-desc fw-bold opacity-75">
-                    <p>{props.description}</p>
+                    <p>{props.desc}</p>
                 </div>
                 <div className='d-flex gap-2'>
                     <NumberCount product={props} min={1} />

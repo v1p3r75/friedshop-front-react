@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Header from './includes/Header'
 import Footer from './includes/Footer'
 import Banner from '../components/Banner'
 import { Category, PopularProducts, SortProducts } from './includes/Section'
 import SearchBar from '../components/SearchBar'
-import { CategoryType, apiCategory } from './VirtualData'
+import { CategoryType } from './VirtualData'
 import Tags from '../components/Tags'
 import Archives from '../components/Archives'
 import { useGetAllCategoriesQuery } from '../store/apiquery/categoryApiSlice';
