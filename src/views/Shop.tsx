@@ -4,11 +4,17 @@ import Footer from './includes/Footer'
 import Banner from '../components/Banner'
 import { Category, PopularProducts, SortProducts } from './includes/Section'
 import SearchBar from '../components/SearchBar'
-import { apiCategory } from './VirtualData'
+import { CategoryType, apiCategory } from './VirtualData'
 import Tags from '../components/Tags'
 import Archives from '../components/Archives'
+import { useGetAllCategoriesQuery } from '../store/apiquery/categoryApiSlice';
+import Spinner from '../components/Spinner'
+
 
 const Shop = () => {
+
+  const {isLoading, data : categoryList, isError }  = useGetAllCategoriesQuery("api/categories");
+
 
   const [type, setType] = useState('grid');
 
@@ -50,8 +56,13 @@ const Shop = () => {
             <div className="category-list text-black bg-white w-100 border border-1 fd-hover-border-primary p-3 my-5">
               <h5>Categories</h5><hr />
               <div className="d-flex flex-column gap-2">
-                {
-                  apiCategory.map((category) => <Category category={category} key={category.id}/>)
+              { !isLoading && !isError ? 
+                <div className="category-list d-flex flex-column gap-4 py-2 px-3">
+                  {
+                    categoryList['data'].map((category : CategoryType) => <Category category={category} key={category.id}/>)
+                  }
+                </div> : 
+                <Spinner />
                 }
               </div>
             </div>
