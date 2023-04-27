@@ -6,6 +6,8 @@ import { Carousel } from 'react-responsive-carousel'
 import AddToCart from './AddToCart'
 import { ProductType } from './ProductCart'
 import { link } from '../Utils/Generals';
+import { Link } from 'react-router-dom'
+import RoutePaths from '../config'
 
 const ProductDetails = ({product} : {product : ProductType}) => {
 
@@ -81,7 +83,7 @@ const ProductDetails = ({product} : {product : ProductType}) => {
         <div className="related-products text-black my-5">
             <div className="d-flex justify-content-between mb-5">
                 <h4>Related Products</h4>
-                <div><a href="#" className="fd-btn fw-bold">View All <i className="bi bi-arrow-right"></i></a></div>
+                <div><Link to={RoutePaths.shop} className="fd-btn fw-bold">View All <i className="bi bi-arrow-right"></i></Link></div>
             </div>
               <PopularProducts grid={4} />
         </div>

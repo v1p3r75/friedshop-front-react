@@ -44,7 +44,7 @@ const WishList: FC = () => {
                                             <td className='fw-bold'>{product.name}</td>
                                             <td>{product.price}</td>
                                             <td>{"In Stock"}</td>
-                                            <td><AddToCart product={product} classSup='w-50 mx-auto' /></td>
+                                            <td><AddToCart product={product} classSup='w-75 mx-auto' /></td>
                                             <td className='fw-bold cursor-pointer'><i className="bi bi-x" style={{ lineHeight: '50px' }} 
                                                 onClick={() => dispatch(deleteProductInWishlist(product))}
                                                 ></i></td>

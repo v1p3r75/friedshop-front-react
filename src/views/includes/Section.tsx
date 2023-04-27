@@ -11,6 +11,7 @@ import { useAppSelector } from '../../hooks/redux-hooks';
 import { useGetAllProductsQuery } from '../../store/apiquery/productApiSlice';
 import Spinner from '../../components/Spinner';
 import { useGetAllCategoriesQuery } from '../../store/apiquery/categoryApiSlice';
+import RoutePaths from '../../config';
 
 
 const Category = ({category, arrow = 'left'} : {category : any, arrow? : string}) => {
@@ -202,7 +203,7 @@ const Section = () => {
             <div className="popular-products text-black my-5">
               <div className="d-flex justify-content-between mb-5">
                 <h4>Popular Products</h4>
-                <div><a href="#" className="fd-btn fw-bold">View All <i className="bi bi-arrow-right"></i></a></div>
+                <div><Link to={RoutePaths.shop} className="fd-btn fw-bold">View All <i className="bi bi-arrow-right"></i></Link></div>
               </div>
               <PopularProducts grid={4} />
             </div>
