@@ -36,11 +36,6 @@ export const HandleResult = ({result} : {result : any}) => {
             ))}
         </div>
         
-    } else if (result.isSuccess && result.data?.message) {
-
-        content = <div className='w-100 p-2 bg-success text-white fw-bold rounded-2 '>
-                <span>{result.data.message}</span>
-            </div>
     }
 
     return <><ToastContainer />{content}</>;

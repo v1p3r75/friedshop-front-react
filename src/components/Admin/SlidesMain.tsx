@@ -1,5 +1,7 @@
 import React, { SyntheticEvent, useState, useRef } from 'react'
 import { Slide, apiSlidesInfo } from '../../views/VirtualData'
+import { useCreateSlideMutation } from '../../store/apiquery/slideApiSlice';
+import { HandleResult } from '../HandleResult';
 
 let imageIsChanged = false;
 
@@ -30,33 +32,10 @@ const UpdateSlide = ({slide}: {slide: Slide}) => {
 			imageIsChanged = true;
 			imageTag.current.src = URL.createObjectURL(target.files[0]);
 		}
+    console.log(target.value)
 		setUpdateData(prevState => ({ ...prevState, [target.name]: target.value }));
 
 	}
-}
-
-
-const AddOrEditSlide = ({ slide }: { slide: null | Slide}) => {
-
-
-  if (!slide) {
-
-    return (
-      <form action="" method="post" className="checkout-service p-3">
-        <div className='mt-4'>
-          <label className='w-100'>
-            <span>Image</span>
-            <input type="file" name="image" className="form-control w-100 rounded-0 p-2" />
-          </label>
-          <label className='w-100 mt-4'>
-            <span>Text</span>
-            <input type="text" name="text" className="form-control w-100 rounded-0 p-2" placeholder='Slide Text' />
-          </label>
-        </div>
-        <div className='mt-3'><a href="#" className="fd-btn w-25 text-center">SAVE NOW</a></div>
-      </form>
-    )
-  }
 
   return (
     <form action="" method="post" className="checkout-service p-3">
@@ -64,20 +43,84 @@ const AddOrEditSlide = ({ slide }: { slide: null | Slide}) => {
         <div className='mt-4'>
           <label className='w-100'>
             <span>Image</span>
-            <input type="file" name="image" className="form-control w-100 rounded-0 p-2"/>
+            <input type="file" name="img" className="form-control w-100 rounded-0 p-2"/>
           </label>
           <label className='w-100 mt-4'>
             <span>Text</span>
-            <input type="text" name="text" className="form-control w-100 rounded-0 p-2" value={slide.text}/>
+            <input type="text" name="text" className="form-control w-100 rounded-0 p-2" value={updateData.text} onChange={handleUpdateValue}/>
           </label>
         </div>
       <div className='mt-4'><a href="#" className="fd-btn w-25 text-center">UPDATE SLIDE</a></div>
     </form>
   )
+}
+
+
+const AddOrEditSlide = ({ slide }: { slide: null | Slide}) => {
+
+
+  const [image, setImage] = useState<Blob>();
+	const [data, setData] = useState<Slide>();
+
+
+	const [createSlide, result] = useCreateSlideMutation();
+
+
+	const handleSubmit = (e: SyntheticEvent) => {
+
+		e.preventDefault();
+
+		const form = new FormData(e.target as HTMLFormElement);
+		createSlide(form);
+
+	}
+
+	const handleValue = (e: SyntheticEvent) => {
+
+		const target = e.target as HTMLInputElement | HTMLTextAreaElement;
+		setData(values => ({ ...values, [target.name]: target.value }));
+
+	}
+
+
+  if (!slide) {
+
+    return (
+      <form action="" method="post" className="checkout-service p-3" onSubmit={handleSubmit}>
+        {image &&
+					<div className="w-100 mx-auto p-3 border border-1 rounded-5 fd-hover-border-primary mb-4" style={{ height: '250px' }}>
+						<img src={URL.createObjectURL(image)} alt="Product Image Preview" className='w-100 h-100' />
+					</div>
+				}	
+        <div className='mt-4'>
+          <label className='w-100'>
+            <span>Image</span>
+            <input type="file" name="image" className="form-control w-100 rounded-0 p-2" onChange={(e: SyntheticEvent) => {
+								setImage((e.target as HTMLInputElement).files[0])
+							}} accept='image/*'/>
+          </label>
+          <label className='w-100 mt-4'>
+            <span>Text</span>
+            <input type="text" name="text" className="form-control w-100 rounded-0 p-2" placeholder='Slide Text' onChange={handleValue}/>
+          </label>
+        </div>
+        <div>
+					<HandleResult result={result} />
+				</div>
+				<div className='mt-3'>{result.isLoading ?
+					<button className="fd-btn w-25 text-center border-0"><span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+						Loading...</button> :
+					<button className="fd-btn w-25 text-center border-0">SAVE NOW</button>
+				}</div>
+      </form>
+    )
+  }
+
+  return <UpdateSlide slide={slide}/>
 
 }
 
-const ListOfProducts = ({setSlide, setPage} : {setSlide : Function, setPage : Function}) => {
+const ListOfSlides = ({setSlide, setPage} : {setSlide : Function, setPage : Function}) => {
 
   const parseSlide = (slide : Slide) => {
     setSlide(slide);
@@ -136,7 +179,7 @@ const SlidesMain = () => {
         }
       </div>
       <div className="subPartMain">
-        {page === 'list' ? <ListOfProducts setSlide={setCurrentSlide} setPage={setPage}/> : <AddOrEditSlide slide={currentSlide} />}
+        {page === 'list' ? <ListOfSlides setSlide={setCurrentSlide} setPage={setPage}/> : <AddOrEditSlide slide={currentSlide} />}
       </div>
     </div>
   )

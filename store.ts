@@ -3,21 +3,26 @@ import { productCartSlice, productSlice, productWhishListSlice } from "./src/sto
 import { productApiSlice } from "./src/store/apiquery/productApiSlice";
 import { categoryApiSlice } from "./src/store/apiquery/categoryApiSlice";
 import { authApiSlice } from "./src/store/apiquery/AuthApiSlice";
+import { slideApiSlice } from "./src/store/apiquery/slideApiSlice";
 
 export const store = configureStore({
     reducer : {
         [productApiSlice.reducerPath] : productApiSlice.reducer,
         [authApiSlice.reducerPath] : authApiSlice.reducer,
         [categoryApiSlice.reducerPath] : categoryApiSlice.reducer,
+        [slideApiSlice.reducerPath] : slideApiSlice.reducer,
         products : productSlice.reducer,
         productWishlist : productWhishListSlice.reducer,
         productCart : productCartSlice.reducer
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware()
-        .concat(productApiSlice.middleware,
+        .concat(
+            productApiSlice.middleware,
             categoryApiSlice.middleware,
-            authApiSlice.middleware),
+            authApiSlice.middleware,
+            slideApiSlice.middleware
+        ),
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

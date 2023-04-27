@@ -175,7 +175,7 @@ const AddOrEditProduct = ({ product }: { product: null | ProductType }) => {
 					</label>
 					<textarea name="desc" cols={100} rows={10} className='w-100 p-2 border' placeholder='Description' onChange={handleValue}></textarea>
 				</div>
-				<div>
+				<div className="mt-3">
 					<HandleResult result={result} />
 				</div>
 				<div className='mt-3'>{result.isLoading ?
