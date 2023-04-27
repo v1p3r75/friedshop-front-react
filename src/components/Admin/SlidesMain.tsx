@@ -1,6 +1,6 @@
 import React, { SyntheticEvent, useState, useRef } from 'react'
 import { Slide, apiSlidesInfo } from '../../views/VirtualData'
-import { useCreateSlideMutation, useDeleteSlideMutation, useGetAllSlidesQuery } from '../../store/apiquery/slideApiSlice';
+import { useCreateSlideMutation, useDeleteSlideMutation, useGetAllSlidesQuery, useUpdateSlideMutation } from '../../store/apiquery/slideApiSlice';
 import { HandleResult } from '../HandleResult';
 import Swal from 'sweetalert2';
 import Spinner from '../Spinner';
@@ -11,7 +11,8 @@ let imageIsChanged = false;
 const UpdateSlide = ({ slide }: { slide: Slide }) => {
 
   const [updateData, setUpdateData] = useState(slide);
-  // const [updateProduct, udpateResult] = useUpdateProductMutation();
+  const [image, setImage] = useState<Blob>()
+  const [updateSlide, result] = useUpdateSlideMutation();
   const imageTag = useRef<HTMLImageElement>(null);
 
   const handleSubmit = (e: SyntheticEvent) => {
@@ -20,8 +21,7 @@ const UpdateSlide = ({ slide }: { slide: Slide }) => {
     const form = new FormData(e.target as HTMLFormElement);
     form.append('_method', 'patch');
     form.append('imageEdited', imageIsChanged.toString());
-    console.log(imageIsChanged.toString())
-    // updateProduct(form);
+    updateSlide(form);
     imageIsChanged = false;
 
   }
@@ -30,31 +30,39 @@ const UpdateSlide = ({ slide }: { slide: Slide }) => {
 
     const target = e.target as HTMLInputElement;
 
-    if (target.name === 'img' && imageTag.current && target.files) {
+    if (target.name === 'image' && imageTag.current && target.files) {
 
       imageIsChanged = true;
       imageTag.current.src = URL.createObjectURL(target.files[0]);
     }
-    console.log(target.value)
     setUpdateData(prevState => ({ ...prevState, [target.name]: target.value }));
 
   }
 
   return (
-    <form action="" method="post" className="checkout-service p-3">
-      <div className="w-100 mx-auto p-3 border border-1 rounded-5 fd-hover-border-primary" style={{ height: '450px' }}><img src={slide.url} alt={slide.alt} className='w-100 h-100' /></div>
+    <form action="" method="post" className="checkout-service p-3" onSubmit={handleSubmit}>
+      	<input type="hidden" name="id" value={slide.id}/>
+      <div className="w-100 mx-auto p-3 border border-1 rounded-5 fd-hover-border-primary" style={{ height: '450px' }}>
+        <img src={link(slide.image)} alt={slide.text} className='w-100 h-100' ref={imageTag}/>
+      </div>
       <div className='mt-4'>
         <label className='w-100'>
           <span>Image</span>
-          <input type="file" name="img" className="form-control w-100 rounded-0 p-2" />
+          <input type="file" name="image" className="form-control w-100 rounded-0 p-2" onChange={handleUpdateValue} accept='image/*' />
         </label>
         <label className='w-100 mt-4'>
           <span>Text</span>
           <input type="text" name="text" className="form-control w-100 rounded-0 p-2" value={updateData.text} onChange={handleUpdateValue} />
         </label>
       </div>
-      <div className='mt-4'><a href="#" className="fd-btn w-25 text-center">UPDATE SLIDE</a></div>
-    </form>
+      <div className="mt-3">
+					<HandleResult result={result} />
+			</div>
+      <div className='mt-3'>{result.isLoading ?
+					<button className="fd-btn w-25 text-center border-0"><span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+						Loading...</button> :
+					<button className="fd-btn w-25 text-center border-0" type="submit">UPDATE SLIDE</button>
+				}</div>    </form>
   )
 }
 

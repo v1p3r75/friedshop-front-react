@@ -22,7 +22,6 @@ const UpdateProduct = ({product}: {product : ProductType}) => {
 		form.append('_method', 'patch');
 		form.append('imageEdited', imageIsChanged.toString());
 		form.append('reviews', '5'); // Pour le moment
-		console.log(imageIsChanged.toString())
 		updateProduct(form);
 		imageIsChanged = false;
 
@@ -105,8 +104,6 @@ const AddOrEditProduct = ({ product }: { product: null | ProductType }) => {
 
 	const [image, setImage] = useState<Blob>();
 	const [data, setData] = useState<ProductType>(null);
-
-	const [updateData, setUpdateData] = useState<ProductType>();
 
 	const [createProduct, result] = useCreateProductMutation();
 
