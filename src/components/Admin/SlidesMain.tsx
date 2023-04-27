@@ -1,86 +1,89 @@
 import React, { SyntheticEvent, useState, useRef } from 'react'
 import { Slide, apiSlidesInfo } from '../../views/VirtualData'
-import { useCreateSlideMutation } from '../../store/apiquery/slideApiSlice';
+import { useCreateSlideMutation, useDeleteSlideMutation, useGetAllSlidesQuery } from '../../store/apiquery/slideApiSlice';
 import { HandleResult } from '../HandleResult';
+import Swal from 'sweetalert2';
+import Spinner from '../Spinner';
+import { link } from '../../Utils/Generals';
 
 let imageIsChanged = false;
 
-const UpdateSlide = ({slide}: {slide: Slide}) => {
+const UpdateSlide = ({ slide }: { slide: Slide }) => {
 
   const [updateData, setUpdateData] = useState(slide);
-	// const [updateProduct, udpateResult] = useUpdateProductMutation();
-	const imageTag = useRef<HTMLImageElement>(null);
+  // const [updateProduct, udpateResult] = useUpdateProductMutation();
+  const imageTag = useRef<HTMLImageElement>(null);
 
-	const handleSubmit = (e: SyntheticEvent) => {
+  const handleSubmit = (e: SyntheticEvent) => {
 
-		e.preventDefault();
-		const form = new FormData(e.target as HTMLFormElement);
-		form.append('_method', 'patch');
-		form.append('imageEdited', imageIsChanged.toString());
-		console.log(imageIsChanged.toString())
-		// updateProduct(form);
-		imageIsChanged = false;
+    e.preventDefault();
+    const form = new FormData(e.target as HTMLFormElement);
+    form.append('_method', 'patch');
+    form.append('imageEdited', imageIsChanged.toString());
+    console.log(imageIsChanged.toString())
+    // updateProduct(form);
+    imageIsChanged = false;
 
-	}
+  }
 
-	const handleUpdateValue = (e: SyntheticEvent) => {
+  const handleUpdateValue = (e: SyntheticEvent) => {
 
-		const target = e.target as HTMLInputElement;
+    const target = e.target as HTMLInputElement;
 
-		if (target.name === 'img' && imageTag.current && target.files) {
+    if (target.name === 'img' && imageTag.current && target.files) {
 
-			imageIsChanged = true;
-			imageTag.current.src = URL.createObjectURL(target.files[0]);
-		}
+      imageIsChanged = true;
+      imageTag.current.src = URL.createObjectURL(target.files[0]);
+    }
     console.log(target.value)
-		setUpdateData(prevState => ({ ...prevState, [target.name]: target.value }));
+    setUpdateData(prevState => ({ ...prevState, [target.name]: target.value }));
 
-	}
+  }
 
   return (
     <form action="" method="post" className="checkout-service p-3">
-        <div className="w-100 mx-auto p-3 border border-1 rounded-5 fd-hover-border-primary" style={{height : '450px'}}><img src={slide.url} alt={slide.alt} className='w-100 h-100'/></div>
-        <div className='mt-4'>
-          <label className='w-100'>
-            <span>Image</span>
-            <input type="file" name="img" className="form-control w-100 rounded-0 p-2"/>
-          </label>
-          <label className='w-100 mt-4'>
-            <span>Text</span>
-            <input type="text" name="text" className="form-control w-100 rounded-0 p-2" value={updateData.text} onChange={handleUpdateValue}/>
-          </label>
-        </div>
+      <div className="w-100 mx-auto p-3 border border-1 rounded-5 fd-hover-border-primary" style={{ height: '450px' }}><img src={slide.url} alt={slide.alt} className='w-100 h-100' /></div>
+      <div className='mt-4'>
+        <label className='w-100'>
+          <span>Image</span>
+          <input type="file" name="img" className="form-control w-100 rounded-0 p-2" />
+        </label>
+        <label className='w-100 mt-4'>
+          <span>Text</span>
+          <input type="text" name="text" className="form-control w-100 rounded-0 p-2" value={updateData.text} onChange={handleUpdateValue} />
+        </label>
+      </div>
       <div className='mt-4'><a href="#" className="fd-btn w-25 text-center">UPDATE SLIDE</a></div>
     </form>
   )
 }
 
 
-const AddOrEditSlide = ({ slide }: { slide: null | Slide}) => {
+const AddOrEditSlide = ({ slide }: { slide: null | Slide }) => {
 
 
   const [image, setImage] = useState<Blob>();
-	const [data, setData] = useState<Slide>();
+  const [data, setData] = useState<Slide>();
 
 
-	const [createSlide, result] = useCreateSlideMutation();
+  const [createSlide, result] = useCreateSlideMutation();
 
 
-	const handleSubmit = (e: SyntheticEvent) => {
+  const handleSubmit = (e: SyntheticEvent) => {
 
-		e.preventDefault();
+    e.preventDefault();
 
-		const form = new FormData(e.target as HTMLFormElement);
-		createSlide(form);
+    const form = new FormData(e.target as HTMLFormElement);
+    createSlide(form);
 
-	}
+  }
 
-	const handleValue = (e: SyntheticEvent) => {
+  const handleValue = (e: SyntheticEvent) => {
 
-		const target = e.target as HTMLInputElement | HTMLTextAreaElement;
-		setData(values => ({ ...values, [target.name]: target.value }));
+    const target = e.target as HTMLInputElement | HTMLTextAreaElement;
+    setData(values => ({ ...values, [target.name]: target.value }));
 
-	}
+  }
 
 
   if (!slide) {
@@ -88,75 +91,109 @@ const AddOrEditSlide = ({ slide }: { slide: null | Slide}) => {
     return (
       <form action="" method="post" className="checkout-service p-3" onSubmit={handleSubmit}>
         {image &&
-					<div className="w-100 mx-auto p-3 border border-1 rounded-5 fd-hover-border-primary mb-4" style={{ height: '250px' }}>
-						<img src={URL.createObjectURL(image)} alt="Product Image Preview" className='w-100 h-100' />
-					</div>
-				}	
+          <div className="w-100 mx-auto p-3 border border-1 rounded-5 fd-hover-border-primary mb-4" style={{ height: '250px' }}>
+            <img src={URL.createObjectURL(image)} alt="Product Image Preview" className='w-100 h-100' />
+          </div>
+        }
         <div className='mt-4'>
           <label className='w-100'>
             <span>Image</span>
             <input type="file" name="image" className="form-control w-100 rounded-0 p-2" onChange={(e: SyntheticEvent) => {
-								setImage((e.target as HTMLInputElement).files[0])
-							}} accept='image/*'/>
+              setImage((e.target as HTMLInputElement).files[0])
+            }} accept='image/*' />
           </label>
           <label className='w-100 mt-4'>
             <span>Text</span>
-            <input type="text" name="text" className="form-control w-100 rounded-0 p-2" placeholder='Slide Text' onChange={handleValue}/>
+            <input type="text" name="text" className="form-control w-100 rounded-0 p-2" placeholder='Slide Text' onChange={handleValue} />
           </label>
         </div>
         <div>
-					<HandleResult result={result} />
-				</div>
-				<div className='mt-3'>{result.isLoading ?
-					<button className="fd-btn w-25 text-center border-0"><span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-						Loading...</button> :
-					<button className="fd-btn w-25 text-center border-0">SAVE NOW</button>
-				}</div>
+          <HandleResult result={result} />
+        </div>
+        <div className='mt-3'>{result.isLoading ?
+          <button className="fd-btn w-25 text-center border-0"><span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+            Loading...</button> :
+          <button className="fd-btn w-25 text-center border-0">SAVE NOW</button>
+        }</div>
       </form>
     )
   }
 
-  return <UpdateSlide slide={slide}/>
+  return <UpdateSlide slide={slide} />
 
 }
 
-const ListOfSlides = ({setSlide, setPage} : {setSlide : Function, setPage : Function}) => {
+const ListOfSlides = ({ setSlide, setPage }: { setSlide: Function, setPage: Function }) => {
 
-  const parseSlide = (slide : Slide) => {
+  const parseSlide = (slide: Slide) => {
     setSlide(slide);
     setPage('add');
   }
 
-  return (
-    <div className="table-responsive">
-      <table className="table table-default text-center table-bordered">
-        <thead>
-          <tr className='fd-bg-primary text-white'>
-            <th scope="col" className='p-3'>IMAGE</th>
-            <th scope="col" className='p-3'>SLIDE TEXT</th>
-            <th scope="col" className='p-3'>ACTION</th>
+  const { isLoading, data: slideList, isSuccess, isError } = useGetAllSlidesQuery('api/slides');
+  const [deleteResult, deletedResult] = useDeleteSlideMutation();
+
+  const deleteItem = (id: number) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "Are you sure to delete this slide ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((r) => {
+      if (r.isConfirmed) {
+        deleteResult(id);
+      }
+    });
+  }
+
+  let content: React.ReactNode;
+
+  content = isLoading || isError
+    ? null
+    : isSuccess
+      ? slideList['data'].map((slide: Slide) => {
+
+        return (
+          <tr className="p-3" key={slide.image}>
+            <td scope="row w-25"><img src={link(slide.image)} alt={slide.text} style={{ width: '100px', height: '50px' }} /></td>
+            <td>{slide.text}</td>
+            <td className='fw-bold d-flex gap-2 justify-content-center'>
+
+              <a href="#" className='p-2 rounded-2 fd-bg-primary' onClick={(e) => parseSlide(slide)} title='View Slide'><i className="bi bi-eye"></i></a>
+              <a href="#" className='p-2 rounded-2 bg-secondary' onClick={(e) => parseSlide(slide)} title='Edit'><i className="bi bi-pen"></i></a>
+              <a href="#" className='p-2 rounded-2 bg-danger' title='Delete' onClick={(e) => {
+                e.preventDefault();
+                deleteItem(slide.id)
+              }}><i className="bi bi-trash"></i></a>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          {
-            apiSlidesInfo.map(slide => {
-              return (
-                <tr className="p-3" key={slide.url}>
-                  <td scope="row w-25"><img src={slide.url} alt={slide.text} style={{ width: '100px', height: '50px' }} /></td>
-                  <td>{slide.text}</td>
-                  <td className='fw-bold d-flex gap-2 justify-content-center'>
-                    
-                    <a href="#" className='p-2 rounded-2 fd-bg-primary' onClick={(e) => parseSlide(slide)} title='View Slide'><i className="bi bi-eye"></i></a>
-                    <a href="#" className='p-2 rounded-2 bg-secondary' onClick={(e) => parseSlide(slide)} title='Edit'><i className="bi bi-pen"></i></a>
-                    <a href="#" className='p-2 rounded-2 bg-danger' title='Delete'><i className="bi bi-trash"></i></a>
-                  </td>
-                </tr>
-              )
-            })
-          }
-        </tbody>
-      </table>
-    </div>
+        )
+      })
+      : null;
+
+
+
+  return (
+    !isLoading ?
+      <div className="table-responsive">
+        <table className="table table-default text-center table-bordered">
+          <thead>
+            <tr className='fd-bg-primary text-white'>
+              <th scope="col" className='p-3'>IMAGE</th>
+              <th scope="col" className='p-3'>SLIDE TEXT</th>
+              <th scope="col" className='p-3'>ACTION</th>
+            </tr>
+          </thead>
+          <tbody>
+            {content}
+          </tbody>
+        </table>
+      </div>
+      :
+      <Spinner />
   );
 }
 
@@ -179,7 +216,7 @@ const SlidesMain = () => {
         }
       </div>
       <div className="subPartMain">
-        {page === 'list' ? <ListOfSlides setSlide={setCurrentSlide} setPage={setPage}/> : <AddOrEditSlide slide={currentSlide} />}
+        {page === 'list' ? <ListOfSlides setSlide={setCurrentSlide} setPage={setPage} /> : <AddOrEditSlide slide={currentSlide} />}
       </div>
     </div>
   )

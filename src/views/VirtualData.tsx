@@ -8,8 +8,8 @@
   };
 
   export type Slide = {
-    url : string,
-    alt: string,
+    id: number,
+    image : string,
     text: string,
   }
   
