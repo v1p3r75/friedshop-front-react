@@ -5,7 +5,7 @@ import ProductSort from '../../components/ProductSort';
 import ProductOfDay from '../../components/ProductOfDay';
 import Blog from '../../components/Blog';
 import Testimonial from '../../components/Testimonial';
-import  {CategoryType, apiCategory, apiSlidesInfo, blogInfo, testimonialInfo, productsTest, dailyTest, sortProduct} from '../VirtualData';
+import  {CategoryType, apiSlidesInfo, blogInfo, testimonialInfo, productsTest, dailyTest, sortProduct} from '../VirtualData';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/redux-hooks';
 import { useGetAllProductsQuery } from '../../store/apiquery/productApiSlice';

@@ -11,6 +11,14 @@ import { fillProductsList, fillShoppingCart, fillWishList } from '../../store/pr
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks'
 import { useGetAllProductsQuery } from '../../store/apiquery/productApiSlice'
 
+const navsBar = [
+    {path: RoutePaths.home, name: 'Home'},
+    {path: RoutePaths.shop, name: 'Shop'},
+    {path: RoutePaths.blog, name: 'Blog'},
+    {path: RoutePaths.contact, name: 'Contact US'},
+    {path: RoutePaths.team, name: 'Teams'},
+];
+
 const Header : FC = () => {
 
     const wishlist : ProductType[] = useAppSelector((state) => state.productWishlist);
@@ -62,21 +70,13 @@ const Header : FC = () => {
                     <nav className="collapse navbar-collapse" id="headerNavbar">
                         <div className="container-fluid d-lg-flex justify-content-between">
                             <ul className="navbar-nav d-lg-flex gap-3">
-                                <li className="navbar-item">
-                                    <Link to={RoutePaths.home} className="navbar-link fd-hover-color-primary text-dark">Home</Link>
-                                </li>
-                                <li className="navbar-item">
-                                    <Link to={RoutePaths.shop} className="navbar-link fd-hover-color-primary text-dark">Shop</Link>
-                                </li>
-                                <li className="navbar-item">
-                                    <Link to={RoutePaths.blog} className="navbar-link fd-hover-color-primary text-dark">Blog</Link>
-                                </li>
-                                <li className="navbar-item">
-                                    <Link to={RoutePaths.contact} className="navbar-link fd-hover-color-primary text-dark">Contact US</Link>
-                                </li>
-                                <li className="navbar-item">
-                                    <Link to={RoutePaths.team} className="navbar-link fd-hover-color-primary text-dark">Teams</Link>
-                                </li>
+                                {
+                                    navsBar.map((link) => {
+                                        return <li key={link.name}className="navbar-item">
+                                        <Link to={link.path} className="navbar-link fd-hover-color-primary text-dark">{link.name}</Link>
+                                    </li>
+                                    })
+                                }
                             </ul>
                         </div>
                     </nav>
