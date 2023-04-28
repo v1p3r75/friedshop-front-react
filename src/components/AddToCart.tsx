@@ -14,7 +14,7 @@ const AddToCart = ({ product, classSup = '', divClass = '' }: { product: Product
       isExistInCart ?
         <div className={divClass}><span className={"fd-btn rounded-3 text-center " + classSup}><i className='bi bi-check-circle'></i></span></div>
         :
-        <div className={divClass} onClick={(e) => dispatch(addToShoppingCart(product))}><a href="javascript:void(0)" className={"fd-btn rounded-3 text-center " + classSup}>ADD TO CART</a></div>
+        <div className={divClass} onClick={(e) => dispatch(addToShoppingCart(product))}><a href="#" className={"fd-btn rounded-3 text-center " + classSup}>ADD TO CART</a></div>
     }
   </>
 }

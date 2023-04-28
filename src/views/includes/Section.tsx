@@ -194,7 +194,7 @@ const Section = () => {
         <div className="row d-flex justify-content-between px-5 my-5 gap-3">
           <AllCategory />
           <div className="fd-slideshow w-70 p-0">
-            <SlideShow slidesInfo={apiSlidesInfo} />
+            <SlideShow />
           </div>
         </div>
         <div className='px-5'>
