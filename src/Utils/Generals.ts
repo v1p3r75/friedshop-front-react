@@ -22,6 +22,8 @@ export type User = {
     email?: string,
     phone?: string,
     address?: string,
+    password?: string,
+    password_confirmation?: string,
 }
 
 export const toggleLinkClass = (path : string, activeClass : string = active, inactiveClass : string = inactive) => {

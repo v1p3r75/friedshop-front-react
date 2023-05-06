@@ -32,7 +32,7 @@ export const usersApiSlice = createApi({
             query : (data) => ({
                 url : 'user/edit',
                 method : 'POST',
-                body : data,
+                body : {_method : 'patch', ...data},
             }),
             invalidatesTags : ['Users']
         }),
