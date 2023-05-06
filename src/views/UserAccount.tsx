@@ -127,15 +127,6 @@ export const UserDetails = () => {
 }
 
 const UserAccount = ({currentComponent = <UserDashboard />} : {currentComponent? : React.ReactNode}) => {
-
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        const isLogged = getItem(RoutePaths.token);
-        console.log('OK');
-        // navigate(RoutePaths.userAccount)
-
-    }, [])
     
     return (
     <>

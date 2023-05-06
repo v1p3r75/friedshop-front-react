@@ -24,6 +24,7 @@ import BlogMain from "./components/Admin/BlogMain"
 import AdminAccount from "./components/Admin/AdminAccount"
 import SlidesMain from "./components/Admin/SlidesMain"
 import PrivateRoute from "./components/PrivateRoute"
+import RedirectIfAuthenticate from "./components/RedirectIfAuthenticate"
 
 function App() {
 
@@ -39,8 +40,10 @@ function App() {
       <Route path={RoutePaths.checkout} element={<Checkout />}></Route>
       <Route path={RoutePaths.contact} element={<ContactUs />}></Route>
       <Route path={RoutePaths.team} element={<TeamMembers />}></Route>
-      <Route path={RoutePaths.login} element={<Login />}></Route>
-      <Route path={RoutePaths.signup} element={<SignUp />}></Route>
+      <Route element={<RedirectIfAuthenticate />} >
+        <Route path={RoutePaths.login} element={<Login />}></Route>
+        <Route path={RoutePaths.signup} element={<SignUp />}></Route>
+      </Route>
       <Route path={RoutePaths.passwordReset} element={<ForgotPassword />}></Route>
       <Route path={RoutePaths.productView} element={<ViewProduct />}></Route>
 

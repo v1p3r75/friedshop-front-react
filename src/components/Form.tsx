@@ -1,11 +1,12 @@
 import React, { SyntheticEvent, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useRegisterMutation, useLoginMutation } from "../store/apiquery/AuthApiSlice";
 import { HandleResult } from "./HandleResult";
 import LoadingButton from "./LoadingButton";
-import { setItem } from  "../Utils/Generals"
+import RedirectIfAuthenticate from "./RedirectIfAuthenticate";
 
 const LoginForm = () => {
+
 
     const [data, setData] = useState({});
     const [sendUserInfo, result] = useLoginMutation();
