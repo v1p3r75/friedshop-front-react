@@ -1,18 +1,17 @@
 import { PropsWithChildren, useLayoutEffect } from "react"
-import { useNavigate } from "react-router-dom"
+import { Navigate, Outlet, useNavigate } from "react-router-dom"
+import { getItem } from "../Utils/Generals"
+import RoutePaths from "../config";
 
 const PrivateRoute = ({type = 0, children} : PropsWithChildren<{type : number}>) => {
     
-    const isLogged = false;
-    const navigate = useNavigate()
+    const isLogged = getItem(RoutePaths.token);
 
-    useLayoutEffect(() => {
-        if (!isLogged) {
-            navigate('/login');
-        }
-    })
+    if (!isLogged) {
+        return <Navigate to={RoutePaths.login} replace />;
+    }
     
-    return children
+    return <Outlet />;
 }
 
 export default PrivateRoute;

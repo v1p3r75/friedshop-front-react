@@ -23,6 +23,7 @@ import CustomersMain from "./components/Admin/CustomersMain"
 import BlogMain from "./components/Admin/BlogMain"
 import AdminAccount from "./components/Admin/AdminAccount"
 import SlidesMain from "./components/Admin/SlidesMain"
+import PrivateRoute from "./components/PrivateRoute"
 
 function App() {
 
@@ -45,10 +46,12 @@ function App() {
 
       {/* USERS ROUTES */}
 
-      <Route path={RoutePaths.userAccount} element={<UserAccount />}></Route>
-      <Route path={RoutePaths.userOrders} element={<UserAccount currentComponent={<UserOrders />}/>}></Route>
-      <Route path={RoutePaths.userAdress} element={<UserAccount currentComponent={<UserAddress />}/>}></Route>
-      <Route path={RoutePaths.userDetails} element={<UserAccount currentComponent={<UserDetails />}/>}></Route>
+      <Route element={<PrivateRoute type={0}/>}>
+        <Route path={RoutePaths.userAccount} element={<UserAccount />}></Route>
+        <Route path={RoutePaths.userOrders} element={<UserAccount currentComponent={<UserOrders />}/>}></Route>
+        <Route path={RoutePaths.userAdress} element={<UserAccount currentComponent={<UserAddress />}/>}></Route>
+        <Route path={RoutePaths.userDetails} element={<UserAccount currentComponent={<UserDetails />}/>}></Route>
+      </Route>
 
       {/* ADMINS ROUTES */}
 
