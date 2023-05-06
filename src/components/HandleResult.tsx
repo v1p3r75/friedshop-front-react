@@ -18,6 +18,7 @@ export const HandleResult = ({result} : {result : any}) => {
             if (RoutePaths.token in result.data?.data) {
 
                 setItem(RoutePaths.token, result.data?.data._token);
+                setItem('user', result.data?.data.user);
                 navigate(RoutePaths.userAccount);
             }
             toast.success(result.data?.message);

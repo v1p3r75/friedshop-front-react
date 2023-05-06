@@ -14,6 +14,16 @@ export const cartKeyName = 'fd_shoppingcart'; // CART KEY NAME FOR LOCAL STORAGE
 
 export const wishlistKeyName = 'fd_wishlist'; // WISHLIST KEY NAME FOR LOCAL STORAGE
 
+export type User = {
+
+    id?: number,
+    firstname?: string,
+    lastname?: string,
+    email?: string,
+    phone?: string,
+    address?: string,
+}
+
 export const toggleLinkClass = (path : string, activeClass : string = active, inactiveClass : string = inactive) => {
 
     const currentLink = useLocation().pathname;

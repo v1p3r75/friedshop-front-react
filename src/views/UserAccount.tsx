@@ -3,8 +3,12 @@ import Header from './includes/Header'
 import Footer from './includes/Footer'
 import { Link, useNavigate } from 'react-router-dom'
 import RoutePaths from '../config'
-import { toggleLinkClass, getItem } from '../Utils/Generals'
+import { toggleLinkClass, getItem, User } from '../Utils/Generals'
 import PrivateRoute from "../components/PrivateRoute"
+import { useGetUserQuery } from '../store/apiquery/usersApiSlice'
+import Spinner from '../components/Spinner'
+import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks'
+import { setUser } from '../store/userSlice'
 
 export const UserDashboard = () => {
     return (
@@ -62,19 +66,22 @@ export const UserOrders = () => {
 
 export const UserAddress = () => {
 
+    const user : User = useAppSelector(state => state.user);
+
     return (
         <div className="user-address p-3 border border-2 text-black">
             <h3>Billing Address</h3>
             <div className="opacity-75">
-                <h6>BP 065 Market, Cotonou</h6>
-                <h6>BP 452 Hotel, Porto-Novo</h6>
-                <h6><span className="fw-bold">Mobile:</span>(229) 96457545</h6>
+                <h6>{user.address}</h6>
+                <h6><span className="fw-bold">Mobile:</span>(229) {user.phone}</h6>
             </div>
         </div>
     )
 }
 
 export const UserDetails = () => {
+
+    const user : User = useAppSelector(state => state.user);
 
     return (
         <div className="user-edit-details p-3 border border-2 text-black">
@@ -83,44 +90,38 @@ export const UserDetails = () => {
                     <div className='d-flex gap-2'>
                         <label className='w-50'>
                             <span>First Name</span>
-                            <input type="text" name="firstname" className="form-control w-100 rounded-0 p-2" placeholder='First Name'/>
+                            <input type="text" name="firstname" className="form-control w-100 rounded-0 p-2" value={user.firstname}/>
                         </label>
                         <label className='w-50'>
                             <span>Last Name</span>
-                            <input type="text" name="lastname" className="form-control w-100 rounded-0 p-2" placeholder='Last Name'/>
+                            <input type="text" name="lastname" className="form-control w-100 rounded-0 p-2" value={user.lastname}/>
                         </label>
                     </div>
                     <div className='my-4'>
                         <label className='w-100'>
                             <span>Email</span>
-                            <input type="email" name="email" className="form-control w-100 rounded-0 p-2" placeholder='Email'/>
+                            <input type="email" name="email" className="form-control w-100 rounded-0 p-2" value={user.email}/>
                         </label>
                     </div>
                     <div>
                         <label className='w-100'>
                             <span>Address</span>
-                            <input type="text" name="firstname" className="form-control w-100 rounded-0 p-2" placeholder='Address'/>
+                            <input type="text" name="firstname" className="form-control w-100 rounded-0 p-2" value={user.address}/>
                         </label>
                     </div>
                     <div className='my-4'>
                         <label className='w-100'>
                             <span>Password</span>
-                            <input type="password" name="password" className="form-control w-100 rounded-0 p-2" placeholder='Password'/>
+                            <input type="password" name="password" className="form-control w-100 rounded-0 p-2" value='Password'/>
                         </label>
                     </div>
                     <div>
                         <label className='w-100'>
                             <span>Confirm Password</span>
-                            <input type="password" name="confirm_password" className="form-control w-100 rounded-0 p-2" placeholder='Confirm Password'/>
+                            <input type="password" name="confirm_password" className="form-control w-100 rounded-0 p-2" value='Confirm Password'/>
                         </label>
                     </div>
-                    <div className='my-4'>
-                        <label>
-                            <span>Description</span>
-                        </label>
-                        <textarea name="description" cols={100} rows={10} className='w-100 p-2 border' placeholder='Description'></textarea>
-                    </div>
-                    <div><a href="#" className="fd-btn w-25 text-center">SAVE NOW</a></div>
+                    <div className='mt-4'><a href="#" className="fd-btn w-25 text-center">SAVE NOW</a></div>
                 </form>
         </div>
     )
@@ -128,6 +129,15 @@ export const UserDetails = () => {
 
 const UserAccount = ({currentComponent = <UserDashboard />} : {currentComponent? : React.ReactNode}) => {
     
+    const dispatch = useAppDispatch();
+    const user = JSON.parse(getItem('user') || '');
+    const {data, isError, isFetching} = useGetUserQuery(user.id);
+    
+    useEffect(() => {
+
+        data && dispatch(setUser(data.data));
+    }, [data])
+
     return (
     <>
         <Header />
@@ -139,7 +149,10 @@ const UserAccount = ({currentComponent = <UserDashboard />} : {currentComponent?
                 <div><Link to={RoutePaths.userDetails} className={toggleLinkClass(RoutePaths.userDetails)}>Account Details<i className="bi bi-person float-end"></i></Link></div>
                 <div><a href='#' className="d-block p-3 text-black">Logout<i className="bi bi-person-slash float-end"></i></a></div>
             </aside>
-            <div className="w-75 mt-3">{currentComponent}</div>
+            {
+                !isFetching && !isError ? <div className="w-75 mt-3">{currentComponent}</div> :
+                <Spinner />
+            }
         </div>
         <Footer/>
     </>
