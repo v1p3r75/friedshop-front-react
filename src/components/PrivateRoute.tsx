@@ -1,5 +1,5 @@
 import { PropsWithChildren, useEffect } from "react"
-import { Navigate, Outlet, useNavigate } from "react-router-dom"
+import { Navigate, Outlet } from "react-router-dom"
 import { getItem } from "../Utils/Generals"
 import RoutePaths from "../config";
 import { useAppDispatch } from "../hooks/redux-hooks";

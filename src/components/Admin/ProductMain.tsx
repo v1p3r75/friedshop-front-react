@@ -6,6 +6,7 @@ import { ThreeDots } from 'react-loader-spinner'
 import Swal from 'sweetalert2';
 import Spinner from '../Spinner';
 import { HandleResult } from '../HandleResult';
+import { useGetAllCategoriesQuery } from '../../store/apiquery/categoryApiSlice';
 
 let imageIsChanged = false;
 
@@ -105,6 +106,8 @@ const AddOrEditProduct = ({ product }: { product: null | ProductType }) => {
 	const [image, setImage] = useState<Blob>();
 	const [data, setData] = useState<ProductType>(null);
 
+	const { data : categories } = useGetAllCategoriesQuery('api/categories')
+
 	const [createProduct, result] = useCreateProductMutation();
 
 
@@ -164,6 +167,19 @@ const AddOrEditProduct = ({ product }: { product: null | ProductType }) => {
 					<label>
 						<span>Reduction</span>
 						<input type="text" name="reduction" className="form-control w-100 rounded-0 p-2" value={0} placeholder='Reduction ?' onChange={handleValue} />
+					</label>
+				</div>
+				<div className='mt-4'>
+					<label className='w-100'>
+						<span>Category</span>
+						<select name="categorie_id" className='form-select w-100'>
+							<option value="">Select Category</option>
+                            {
+								categories && categories.data.map(category => (
+                                    <option key={category.id} value={category.id}>{category.name}</option>
+                                ))
+							}
+						</select>
 					</label>
 				</div>
 				<div className='my-4'>
