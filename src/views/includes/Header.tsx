@@ -10,6 +10,8 @@ import { ProductType } from '../../components/ProductCart'
 import { fillProductsList, fillShoppingCart, fillWishList } from '../../store/productSlice'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks'
 import { useGetAllProductsQuery } from '../../store/apiquery/productApiSlice'
+import { setUser } from '../../store/userSlice'
+import { useGetUserQuery } from '../../store/apiquery/usersApiSlice'
 
 const navsBar = [
     {path: RoutePaths.home, name: 'Home'},
@@ -21,14 +23,26 @@ const navsBar = [
 
 const Header : FC = () => {
 
+
     const wishlist : ProductType[] = useAppSelector((state) => state.productWishlist);
     const shoppingcart : ProductType[] = useAppSelector((state) => state.productCart);
 
     const dispatch = useAppDispatch();
 
     const [showCart, setShowCart] = useState(false);
-    const [showSearch, setShowSearch] = useState(false);
+    const [showSearch, setShowSearch] = useState(false); 
+
+    const isLogged = getItem(RoutePaths.token);
+    const user = !isLogged ? null : JSON.parse(getItem('user') || '');
+    const {data} = !user ? {data : null} : useGetUserQuery(user.id);
     
+   useEffect(() => {
+
+        if (data) {
+            dispatch(setUser(data.data));
+        }
+    }
+    ,[data]);
 
     useEffect(() => {
 

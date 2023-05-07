@@ -2,7 +2,6 @@ import React, { useState, SyntheticEvent, useEffect, useRef } from 'react'
 import { ProductType } from '../ProductCart'
 import { useCreateProductMutation, useDeleteProductMutation, useGetAllProductsQuery, useUpdateProductMutation } from '../../store/apiquery/productApiSlice';
 import { link } from '../../Utils/Generals';
-import { ThreeDots } from 'react-loader-spinner'
 import Swal from 'sweetalert2';
 import Spinner from '../Spinner';
 import { HandleResult } from '../HandleResult';
