@@ -3,9 +3,15 @@ import { Link, Navigate } from "react-router-dom";
 import { useRegisterMutation, useLoginMutation } from "../store/apiquery/AuthApiSlice";
 import { HandleResult } from "./HandleResult";
 import LoadingButton from "./LoadingButton";
-import RedirectIfAuthenticate from "./RedirectIfAuthenticate";
+import RoutePaths from "../config";
+import { checkLogin } from "../Utils/Generals";
 
 const LoginForm = () => {
+
+    if (checkLogin()) {
+    
+        return <Navigate to={RoutePaths.userAccount} replace />
+    }
 
 
     const [data, setData] = useState({});
@@ -66,6 +72,11 @@ const LoginForm = () => {
 }
 
 const SignUpForm = () => {
+
+    if (checkLogin()) {
+    
+        return <Navigate to={RoutePaths.userAccount} replace />
+    }
 
     const [data, setData] = useState({});
     const [sendUserInfo, result] = useRegisterMutation();
@@ -138,6 +149,10 @@ const SignUpForm = () => {
 }
 
 const ResetPassword = () => {
+    if (checkLogin()) {
+    
+        return <Navigate to={RoutePaths.userAccount} replace />
+    }
 
     return (
         <div className="login-form  bg-white shadow w-30 mx-auto my-5 text-black p-3" style={{ minHeight: '300px' }}>

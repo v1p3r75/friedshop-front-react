@@ -1,15 +1,16 @@
 import {useEffect, useState, SyntheticEvent } from 'react'
 import Header from './includes/Header'
 import Footer from './includes/Footer'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import RoutePaths from '../config'
-import { toggleLinkClass, getItem, User } from '../Utils/Generals'
+import { toggleLinkClass, getItem, User, setItem, removeItem } from '../Utils/Generals'
 import { useGetUserQuery, useUpdateUserMutation } from '../store/apiquery/usersApiSlice'
 import Spinner from '../components/Spinner'
 import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks'
-import { setUser } from '../store/userSlice'
+import { logoutCurrentUser, setUser } from '../store/userSlice'
 import LoadingButton from '../components/LoadingButton'
 import { HandleResult } from '../components/HandleResult'
+import Swal from 'sweetalert2'
 
 export const UserDashboard = () => {
     return (
@@ -145,15 +146,29 @@ export const UserDetails = () => {
 
 const UserAccount = ({currentComponent = <UserDashboard />} : {currentComponent? : React.ReactNode}) => {
     
-    const dispatch = useAppDispatch();
-    const user = JSON.parse(getItem('user') || '');
-    const {data, isError, isFetching} = useGetUserQuery(user.id);
+    const dispatch = useAppDispatch()
+    const navigate = useNavigate()
+
+    const logoutUser = (e : SyntheticEvent) => {
+        e.preventDefault();
+        Swal.fire({
+			title: 'Are you sure?',
+			text: "Are you sure to delete this product ?",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes, Logout it!'
+		}).then((r) => {
+            if (r.isConfirmed) {
+                removeItem('_token');
+                removeItem('user');
+                // dispatch(logoutCurrentUser)
+                navigate(RoutePaths.home)
+            }
+        })
+    }
     
-    useEffect(() => {
-
-        data && dispatch(setUser(data.data));
-    }, [data])
-
     return (
     <>
         <Header />
@@ -163,12 +178,11 @@ const UserAccount = ({currentComponent = <UserDashboard />} : {currentComponent?
                 <div><Link to={RoutePaths.userOrders} className={toggleLinkClass(RoutePaths.userOrders)}>Orders<i className="bi bi-bookmark-fill float-end"></i></Link></div>
                 <div><Link to={RoutePaths.userAdress} className={toggleLinkClass(RoutePaths.userAdress)}>Address<i className="bi bi-envelope float-end"></i></Link></div>
                 <div><Link to={RoutePaths.userDetails} className={toggleLinkClass(RoutePaths.userDetails)}>Account Details<i className="bi bi-person float-end"></i></Link></div>
-                <div><a href='#' className="d-block p-3 text-black">Logout<i className="bi bi-person-slash float-end"></i></a></div>
+                <div><a href='#' className="d-block p-3 text-black" onClick={logoutUser}>Logout<i className="bi bi-person-slash float-end"></i></a></div>
             </aside>
-            {
-                !isFetching && !isError ? <div className="w-75 mt-3">{currentComponent}</div> :
-                <Spinner />
-            }
+            <div className="w-75 mt-3">{currentComponent}</div>
+            {/* // !isFetching && !isError ? <div className="w-75 mt-3">{currentComponent}</div> :
+                // <Spinner /> */}
         </div>
         <Footer/>
     </>

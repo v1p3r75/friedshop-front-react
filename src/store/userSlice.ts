@@ -1,4 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { getItem, removeItem } from "../Utils/Generals";
+import RoutePaths from "../config";
 
 
 export const userSlice = createSlice({
@@ -15,8 +17,15 @@ export const userSlice = createSlice({
 
             return state;
         },
+
+        logoutCurrentUser : (state, action) => {
+
+            state = {};
+            console.log('hello')
+            return state;
+        },
     }
 
 })
 
-export const { setUser } = userSlice.actions;
+export const { setUser, logoutCurrentUser } = userSlice.actions;
