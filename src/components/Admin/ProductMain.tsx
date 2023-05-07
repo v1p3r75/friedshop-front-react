@@ -12,6 +12,8 @@ let imageIsChanged = false;
 
 const UpdateProduct = ({product}: {product : ProductType}) => {
 
+	const { data : categories } = useGetAllCategoriesQuery('api/categories')
+
 	const [updateData, setUpdateData] = useState(product);
 	const [updateProduct, udpateResult] = useUpdateProductMutation();
 	const imageTag = useRef<HTMLImageElement>(null);
@@ -74,6 +76,22 @@ const UpdateProduct = ({product}: {product : ProductType}) => {
 					<input type="text" name="reduction" className="form-control w-100 rounded-0 p-2" value={updateData.reduction ?? 0} onChange={handleUpdateValue} />
 				</label>
 			</div>
+			<div className='mt-4'>
+					<label className='w-100'>
+						<span>Category</span>
+						<select name="categorie_id" className='form-select w-100'>
+							<option value="">Select Category</option>
+                            {
+								categories && categories.data.map(category => (
+                                    <option key={category.id} value={category.id}
+										selected={product.categorie_id == category.id ? true : false}>
+										{category.name}
+									</option>
+                                ))
+							}
+						</select>
+					</label>
+				</div>
 			<div className='my-4'>
 				<label>
 					<span>Description</span>
