@@ -1,10 +1,22 @@
-import React from 'react'
+import React, { SyntheticEvent } from 'react'
 import Header from './includes/Header'
 import Banner from '../components/Banner'
 import Footer from './includes/Footer'
-import { getTotal } from '../Utils/Generals'
+import { User, buildCheckoutData, getTotal } from '../Utils/Generals'
+import { useAppSelector } from '../hooks/redux-hooks'
 
 const Checkout = () => {
+
+    const user : User = useAppSelector(state => state.user);
+    const data = buildCheckoutData();
+
+    const submitCheckout = (e : SyntheticEvent) => {
+
+        e.preventDefault();
+        console.log(data);
+        
+    }
+
     return (
         <>
             <Header />
@@ -16,30 +28,30 @@ const Checkout = () => {
                     <div className='d-flex gap-2 mt-5'>
                         <label className='w-50'>
                             <span>First Name *</span>
-                            <input type="text" name="firstname" className="form-control w-100 rounded-0 p-2"/>
+                            <input type="text" name="firstname" value={user.firstname} disabled className="form-control w-100 rounded-0 p-2"/>
                         </label>
                         <label className='w-50'>
                             <span>Last Name *</span>
-                            <input type="email" name="lastname" className="form-control w-100 rounded-0 p-2"/>
+                            <input type="email" name="lastname" value={user.lastname} disabled className="form-control w-100 rounded-0 p-2"/>
                         </label>
                     </div>
                     <div className='my-4'>
                         <label className='w-100'>
                             <span>Email *</span>
-                            <input type="email" name="email" className="form-control w-100 rounded-0 p-2"/>
+                            <input type="email" name="email" value={user.email} disabled className="form-control w-100 rounded-0 p-2"/>
                         </label>
                     </div>
                     <div>
                         <label className='w-100'>
                             <span>Phone *</span>
-                            <input type="text" name="firstname" className="form-control w-100 rounded-0 p-2"/>
+                            <input type="text" name="phone" value={user.phone} disabled className="form-control w-100 rounded-0 p-2"/>
                         </label>
                     </div>
                     <div className='my-4'>
                         <label className='w-100'>
                             <span>Country *</span>
-                            <select name="country" className="form-control">
-                                <option value="">Bénin</option>
+                            <select name="country" disabled className="form-control">
+                                <option value="" selected>Bénin</option>
                                 <option value="">France</option>
                                 <option value="">United Kingdom</option>
                             </select>
@@ -48,7 +60,7 @@ const Checkout = () => {
                     <div>
                         <label className='w-100'>
                             <span>Zip *</span>
-                            <input type="text" name="firstname" className="form-control w-100 rounded-0 p-2"/>
+                            <input type="text" name="firstname" value={user.address} disabled className="form-control w-100 rounded-0 p-2"/>
                         </label>
                     </div>
                     <div className='my-4'>
@@ -100,7 +112,7 @@ const Checkout = () => {
                                     <span>Direct bank transfer</span>
                                 </label>
                             </div>
-                            <div><a href="#" className="fd-btn w-50 text-center">PLACE ORDER</a></div>
+                            <div><a href="#" className="fd-btn w-50 text-center" onClick={submitCheckout}>PLACE ORDER</a></div>
                         </form>
                     </div>
                 </div>

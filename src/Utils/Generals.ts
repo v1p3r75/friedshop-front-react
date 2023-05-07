@@ -71,3 +71,21 @@ export const checkLogin = () => {
     const isLogged = localStorage.getItem(RoutePaths.token);
     return !!isLogged;
 }
+
+type CheckOut = {id : number, quantity? : number};
+
+export const buildCheckoutData = () : CheckOut[] => {
+    
+    const users = useAppSelector((state) => state.productCart);
+
+    let checkoutData : CheckOut[] = [];
+
+    users.forEach((user) => {
+        checkoutData.push({
+            id: user.id,
+            quantity: user.quantity || 0,
+        })
+    })
+
+    return checkoutData;
+}
