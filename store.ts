@@ -6,6 +6,7 @@ import { authApiSlice } from "./src/store/apiquery/AuthApiSlice";
 import { slideApiSlice } from "./src/store/apiquery/slideApiSlice";
 import { usersApiSlice } from "./src/store/apiquery/usersApiSlice";
 import { userSlice } from "./src/store/userSlice";
+import { commandApiSlice } from "./src/store/apiquery/CommandApiSlice";
 
 export const store = configureStore({
     reducer : {
@@ -14,6 +15,7 @@ export const store = configureStore({
         [categoryApiSlice.reducerPath] : categoryApiSlice.reducer,
         [slideApiSlice.reducerPath] : slideApiSlice.reducer,
         [usersApiSlice.reducerPath] : usersApiSlice.reducer,
+        [commandApiSlice.reducerPath] : commandApiSlice.reducer,
         products : productSlice.reducer,
         productWishlist : productWhishListSlice.reducer,
         productCart : productCartSlice.reducer,

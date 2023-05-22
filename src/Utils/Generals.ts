@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom'
 import { useAppSelector } from '../hooks/redux-hooks';
 import RoutePaths from '../config';
+import { ProductType } from '../components/ProductCart';
 
 export const BASE_URL = 'http://127.0.0.1:8000/api'; // BASE URL FOR API FETCHING
 
@@ -72,20 +73,21 @@ export const checkLogin = () => {
     return !!isLogged;
 }
 
-type CheckOut = {id : number, quantity? : number};
+type CheckOut = {product_id : number, quantity? : number};
 
-export const buildCheckoutData = () : CheckOut[] => {
+export const buildCheckoutData = () => {
     
-    const users = useAppSelector((state) => state.productCart);
+    const products = useAppSelector((state) => state.productCart);
+    const user : User = useAppSelector((state) => state.user)
 
     let checkoutData : CheckOut[] = [];
 
-    users.forEach((user) => {
+    products.forEach((product : ProductType) => {
         checkoutData.push({
-            id: user.id,
-            quantity: user.quantity || 0,
+            product_id: product.id,
+            quantity: product.quantity || 1,
         })
     })
 
-    return checkoutData;
+    return {user_id: user.id, commands : checkoutData};
 }
