@@ -28,7 +28,8 @@ export const store = configureStore({
             categoryApiSlice.middleware,
             authApiSlice.middleware,
             slideApiSlice.middleware,
-            usersApiSlice.middleware
+            usersApiSlice.middleware,
+            commandApiSlice.middleware,
         ),
 })
 
