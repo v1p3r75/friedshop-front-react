@@ -121,7 +121,7 @@ const UpdateProduct = ({product}: {product : ProductType}) => {
 const AddOrEditProduct = ({ product }: { product: null | ProductType }) => {
 
 	const [image, setImage] = useState<Blob>();
-	const [data, setData] = useState<ProductType>(null);
+	const [data, setData] = useState<ProductType | null>(null);
 
 	const { data : categories } = useGetAllCategoriesQuery('api/categories')
 

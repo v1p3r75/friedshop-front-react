@@ -1,17 +1,17 @@
-import { useEffect, useState, SyntheticEvent } from 'react'
+import { useState, useEffect, SyntheticEvent } from 'react'
 import Header from './includes/Header'
 import Footer from './includes/Footer'
 import { Link, useNavigate } from 'react-router-dom'
 import RoutePaths from '../config'
-import { toggleLinkClass, getItem, User, setItem, removeItem } from '../Utils/Generals'
-import { useGetUserQuery, useUpdateUserMutation } from '../store/apiquery/usersApiSlice'
+import { toggleLinkClass, User, removeItem } from '../Utils/Generals'
+import { useUpdateUserMutation } from '../store/apiquery/usersApiSlice'
 import Spinner from '../components/Spinner'
 import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks'
-import { logoutCurrentUser, setUser } from '../store/userSlice'
 import LoadingButton from '../components/LoadingButton'
 import { HandleResult } from '../components/HandleResult'
 import Swal from 'sweetalert2'
-import { useGetAllCommandsQuery } from '../store/apiquery/CommandApiSlice'
+import { useGetCommandQuery } from '../store/apiquery/CommandApiSlice'
+import { connect } from 'react-redux'
 
 export const UserDashboard = () => {
     return (
@@ -24,30 +24,40 @@ export const UserDashboard = () => {
 
 export const UserOrders = () => {
 
-    const { data: commands, isLoading } = useGetAllCommandsQuery("api/commands");
+    const user: User = useAppSelector(state => state.user);
+    let content: React.ReactHTMLElement<HTMLElement>;
+    const { data: commands, isLoading } = useGetCommandQuery(user.id);
+
+    useEffect(() => {
+
+        commands ? commands.data.map((command: any) => {
+            console.log(command)
+        }) : null;
+
+    }, [commands])
 
     return (
         <div className="user-orders p-3 border border-2 text-black">
             <h3>Orders</h3>
             <div className="table-responsive">
                 {
-                    isLoading ? 
-                    <table className="table table-default table-bordered text-center">
-                        <thead>
-                            <tr>
-                                <th scope="col">Commande</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Total</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                        </tbody>
-                    </table> :
+                    !isLoading ?
+                        <table className="table table-default table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Commande</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Total</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {content}
+                            </tbody>
+                        </table> :
 
-                    <Spinner />
+                        <Spinner />
                 }
             </div>
 
@@ -78,7 +88,7 @@ export const UserDetails = () => {
 
     const handleChange = (e: SyntheticEvent) => {
 
-        const target: HTMLInputElement = e.target
+        const target = e.target as HTMLInputElement
         setData({ ...data, [target.name]: target.value });
     }
 

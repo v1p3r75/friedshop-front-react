@@ -15,7 +15,7 @@ export const commandApiSlice = createApi({
         })),
 
         getCommand : builder.query({
-            query : (command) => `/command/${command.id}`,
+            query : (id) => `/command/${id}`,
             providesTags : ['Commands']
         }),
 

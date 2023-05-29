@@ -17,9 +17,11 @@ const LoginForm = () => {
     const [data, setData] = useState({});
     const [sendUserInfo, result] = useLoginMutation();
 
-    const handleChange = ( e : SyntheticEvent<HTMLInputElement>) => {
+    const handleChange = ( e : SyntheticEvent) => {
 
-        setData({...data, [e.target.name]: e.target.value });
+        const target = e.target as HTMLInputElement
+
+        setData({...data, [target.name]: target.value });
     }
 
     const handleSubmit = (e : SyntheticEvent) => {
@@ -81,7 +83,9 @@ const SignUpForm = () => {
     const [data, setData] = useState({});
     const [sendUserInfo, result] = useRegisterMutation();
 
-    const handleChange = ( {target} : SyntheticEvent) => {
+    const handleChange = ( e : SyntheticEvent) => {
+
+        const target = e.target as HTMLInputElement
 
         setData({...data, [target.name]: target.value });
     }
