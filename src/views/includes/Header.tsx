@@ -1,5 +1,5 @@
 import React, { FC, SyntheticEvent, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Route } from 'react-router-dom'
 import { SocialsNetworks } from '../../components/SocialsNetworks'
 import ViewCart from '../../components/ViewCart'
 import ViewSearch from '../../components/ViewSearch'
@@ -14,35 +14,35 @@ import { setUser } from '../../store/userSlice'
 import { useGetUserQuery } from '../../store/apiquery/usersApiSlice'
 
 const navsBar = [
-    {path: RoutePaths.home, name: 'Home'},
-    {path: RoutePaths.shop, name: 'Shop'},
-    {path: RoutePaths.blog, name: 'Blog'},
-    {path: RoutePaths.contact, name: 'Contact US'},
-    {path: RoutePaths.team, name: 'Teams'},
+    { path: RoutePaths.home, name: 'Home' },
+    { path: RoutePaths.shop, name: 'Shop' },
+    { path: RoutePaths.blog, name: 'Blog' },
+    { path: RoutePaths.contact, name: 'Contact US' },
+    { path: RoutePaths.team, name: 'Teams' },
 ];
 
-const Header : FC = () => {
+const Header: FC = () => {
 
 
-    const wishlist : ProductType[] = useAppSelector((state) => state.productWishlist);
-    const shoppingcart : ProductType[] = useAppSelector((state) => state.productCart);
+    const wishlist: ProductType[] = useAppSelector((state) => state.productWishlist);
+    const shoppingcart: ProductType[] = useAppSelector((state) => state.productCart);
 
     const dispatch = useAppDispatch();
 
     const [showCart, setShowCart] = useState(false);
-    const [showSearch, setShowSearch] = useState(false); 
+    const [showSearch, setShowSearch] = useState(false);
 
     const isLogged = getItem(RoutePaths.token);
     const user = !isLogged ? null : JSON.parse(getItem('user') || '');
-    const {data} = !user ? {data : null} : useGetUserQuery(user.id);
-    
-   useEffect(() => {
+    const { data } = !user ? { data: null } : useGetUserQuery(user.id);
+
+    useEffect(() => {
 
         if (data) {
             dispatch(setUser(data.data));
         }
     }
-    ,[data]);
+        , [data]);
 
     useEffect(() => {
 
@@ -86,9 +86,9 @@ const Header : FC = () => {
                             <ul className="navbar-nav d-lg-flex gap-3">
                                 {
                                     navsBar.map((link) => {
-                                        return <li key={link.name}className="navbar-item">
-                                        <Link to={link.path} className="navbar-link fd-hover-color-primary text-dark">{link.name}</Link>
-                                    </li>
+                                        return <li key={link.name} className="navbar-item">
+                                            <Link to={link.path} className="navbar-link fd-hover-color-primary text-dark">{link.name}</Link>
+                                        </li>
                                     })
                                 }
                             </ul>
@@ -99,12 +99,19 @@ const Header : FC = () => {
                     <div onClick={viewCart}><a href='#' className="position-relative border-3 shadow border-light py-2 px-3 text-dark fd-hover-bg-primary"><i className="bi bi-cart3"></i><span className="position-absolute top-0">{shoppingcart.length}</span></a></div>
                     <div><Link to={RoutePaths.wishlist} className="position-relative border-3 shadow border-light py-2 px-3 text-dark fd-hover-bg-primary"><i className="bi bi-heart"></i><span className="position-absolute top-0">{wishlist.length}</span></Link></div>
                     <div onClick={viewSearch}><a href='#' className="position-relative border-3 shadow border-light py-2 px-3 text-dark fd-hover-bg-primary"><i className="bi bi-search"></i></a></div>
-                    <div><Link to={RoutePaths.userAccount} className="position-relative border-3 shadow border-light py-2 px-3 text-dark fd-hover-bg-primary"><i className="bi bi-person"></i></Link></div>
-                </div>
+                    <div>
+                        <Link to={
+                                user ? (user.admin ? RoutePaths.admin : RoutePaths.userAccount) : RoutePaths.userAccount
+                            }
+                            className="position-relative border-3 shadow border-light py-2 px-3 text-dark fd-hover-bg-primary"><i className="bi bi-person"></i>
+                        </Link>
+                    </div>
             </div>
         </div>
-        {showCart ? <ViewCart setShow={setShowCart} /> : null}
-        {showSearch ? <ViewSearch setShow={setShowSearch} /> : null}
+    </div >
+        { showCart?<ViewCart setShow = { setShowCart } /> : null
+}
+{ showSearch ? <ViewSearch setShow={setShowSearch} /> : null }
     </>
     )
 }
