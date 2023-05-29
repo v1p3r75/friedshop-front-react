@@ -1,7 +1,9 @@
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useAppSelector } from '../hooks/redux-hooks';
 import RoutePaths from '../config';
 import { ProductType } from '../components/ProductCart';
+import Swal from 'sweetalert2';
+import { SyntheticEvent } from 'react';
 
 export const BASE_URL = 'http://127.0.0.1:8000/api'; // BASE URL FOR API FETCHING
 

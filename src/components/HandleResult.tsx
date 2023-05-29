@@ -19,7 +19,7 @@ export const HandleResult = ({result} : {result : any}) => {
 
                 setItem(RoutePaths.token, result.data?.data._token);
                 setItem('user', result.data?.data.user);
-                navigate(RoutePaths.userAccount);
+                navigate(result.data?.data.user.admin ? RoutePaths.admin : RoutePaths.userAccount);
             }
             toast.success(result.data?.message);
         }

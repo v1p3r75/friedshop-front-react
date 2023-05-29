@@ -150,7 +150,7 @@ const UserAccount = ({ currentComponent = <UserDashboard /> }: { currentComponen
             confirmButtonText: 'Yes, Logout it!'
         }).then((r) => {
             if (r.isConfirmed) {
-                removeItem('_token');
+                removeItem(RoutePaths.token);
                 removeItem('user');
                 // dispatch(logoutCurrentUser)
                 navigate(RoutePaths.home)
