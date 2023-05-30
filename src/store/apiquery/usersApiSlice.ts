@@ -20,7 +20,7 @@ export const usersApiSlice = createApi({
         }),
 
         getStartistics: builder.query({
-            query: () => '/startistics',
+            query: () => '/statistics',
         }),
 
         createUser: builder.mutation({
