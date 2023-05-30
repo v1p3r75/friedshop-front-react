@@ -37,7 +37,9 @@ function App() {
       <Route path={RoutePaths.blog} element={<BlogPage />}></Route>
       <Route path={RoutePaths.post} element={<PostView />}></Route>
       <Route path={RoutePaths.shopping} element={<ShoppingCart />}></Route>
-      <Route path={RoutePaths.checkout} element={<Checkout />}></Route>
+      <Route element={<PrivateRoute type={0}/>}>
+        <Route path={RoutePaths.checkout} element={<Checkout />}></Route>
+      </Route>
       <Route path={RoutePaths.contact} element={<ContactUs />}></Route>
       <Route path={RoutePaths.team} element={<TeamMembers />}></Route>
       <Route element={<RedirectIfAuthenticate />} >
