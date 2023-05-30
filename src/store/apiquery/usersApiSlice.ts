@@ -19,6 +19,10 @@ export const usersApiSlice = createApi({
             providesTags : ['Users']
         }),
 
+        getStartistics: builder.query({
+            query: () => '/startistics',
+        }),
+
         createUser: builder.mutation({
             query : (user) => ({
                 url : `/user/create`,
@@ -55,4 +59,5 @@ export const {
     useUpdateUserMutation,
     useCreateUserMutation,
     useDeleteUserMutation,
+    useGetStartisticsQuery
  } = usersApiSlice;
