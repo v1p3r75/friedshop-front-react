@@ -1,4 +1,4 @@
-import React, { FC, SyntheticEvent, useEffect, useState } from 'react'
+import React, { FC, SyntheticEvent, useEffect, useRef, useState } from 'react'
 import { Link, Route } from 'react-router-dom'
 import { SocialsNetworks } from '../../components/SocialsNetworks'
 import ViewCart from '../../components/ViewCart'
@@ -64,7 +64,7 @@ const Header: FC = () => {
     };
 
     return (<>
-        <div className="header bg-white shadow">
+        <div className="header bg-white shadow sticky-top">
             <div className="d-lg-flex justify-content-between font-light fd-bg-secondary px-5 py-2">
                 <div className="d-flex header-contacts gap-3">
                     <span><i className='bi bi-envelope fd-color-primary'></i>&nbsp; elfriedv16@gmail.com</span>

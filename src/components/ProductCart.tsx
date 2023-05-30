@@ -29,7 +29,7 @@ const ProductCart = (props: ProductType) => {
                 {!props.reduction ?
                     <a className="position-absolute top-0 start-0 fd-btn p-custorm z-1">SALE</a>
                     :
-                    <a className="position-absolute top-0 start-0 fd-btn-red z-1"> {props.reduction} </a>
+                    <a className="position-absolute top-0 start-0 fd-btn-red z-1"> {props.reduction} %</a>
                 }
                 <div className="d-flex gap-3">
                     <div className="position-relative h-100 w-25 product-img">

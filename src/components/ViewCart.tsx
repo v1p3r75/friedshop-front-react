@@ -25,8 +25,8 @@ const ViewCart = ({setShow} : {setShow : Function}) => {
 
     return (
         <>
-            <div className="position-absolute w-100 h-100 top-0 start-0" style={{zIndex : '1', backgroundColor: 'rgba(0,0,0,0.75)'}}></div>
-            <div className='position-absolute d-flex flex-column justify-content-between gap-2 fw-bold top-0 end-0 w-25 p-3 bg-white h-100 text-black' style={{zIndex : '2'}}>
+            <div className="position-fixed w-100 h-100 top-0 start-0 end-0" style={{zIndex : 2000, backgroundColor: 'rgba(0,0,0,0.75)'}}></div>
+            <div className='position-fixed d-flex flex-column justify-content-between gap-2 fw-bold top-0 end-0 w-25 p-3 bg-white h-100 text-black' style={{zIndex : 2500}}>
                 <h4 className="fw-bold w-100">SHOPPING CART <span className="float-end cursor-pointer" onClick={hideCart}><i className="bi bi-x"></i></span></h4><hr />
                 <div className="h-50 overflow-auto">
                     { productCart && productCart.length > 0 ?
