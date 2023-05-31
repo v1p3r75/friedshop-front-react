@@ -19,7 +19,12 @@ const ViewCart = ({setShow} : {setShow : Function}) => {
     }
 
     useEffect(() => {
+        
         document.body.classList.add('overflow-hidden');
+
+        return () => {
+            document.body.classList.remove('overflow-hidden');
+        };
     }, []);
 
 
