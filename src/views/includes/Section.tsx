@@ -217,7 +217,7 @@ const Section = () => {
                   </div>
                 </div><hr />
                 <div>
-                  <ProductOfDay {...dailyTest}/>
+                  <ProductOfDay />
                 </div>
               </div>
               <div className="top-rated bg-white w-25 border-1 border fd-hover-border-primary p-3">

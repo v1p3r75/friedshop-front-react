@@ -4,34 +4,44 @@ import Reviews from './Reviews';
 import { Link } from 'react-router-dom';
 import AddToCart from './AddToCart';
 import { ProductType } from './ProductCart';
+import { useGetRandomProductQuery } from '../store/apiquery/productApiSlice';
+import Spinner from './Spinner';
+import { link } from '../Utils/Generals';
 
-const ProductOfDay = (props: ProductType) => {
+const ProductOfDay = () => {
 
+    const { data: product, isLoading } = useGetRandomProductQuery("");
 
     return (
-        <div className="d-flex gap-3">
-            <div className="w-25">
-                <Link to={"/product/1"}>
-                    <img src={props.img} alt={props.name} className="w-100 h-100" />
-                </Link>
-            </div>
-            <div className="w-75">
-                <DateCount />
-                <Link to={"/product/1"} className="product-name my-2 fw-bold text-dark">{props.name}</Link>
-                <div className="d-flex gap-1 mt-2">
-                    <h3 className="fd-color-primary fw-bold">${props.price}</h3>
-                    <h6 className="align-self-end" style={{ textDecoration: "line-through" }}>${props.old_price}</h6>
-                </div>
-                <div className="my-3 d-flex gap-2"><Reviews rating={props.reviews} /><span className='fd-color-primary'>(25 Reviews)</span></div>
-                <div className="product-desc fw-bold opacity-75">
-                    <p>{props.desc}</p>
-                </div>
-                <div className='d-flex gap-2'>
-                    <NumberCount product={props} min={1} />
-                    <AddToCart product={props} divClass='align-self-center'/>
-                </div>
-            </div>
-        </div>
+        <>
+            {
+                !isLoading ?
+                    <div className="d-flex gap-3">
+                        <div className="w-25">
+                            <Link to={"/product/" + product.data[0].id}>
+                                <img src={link(product.data[0].img)} alt={product.data[0].name} className="w-100 h-100" />
+                            </Link>
+                        </div>
+                        <div className="w-75">
+                            <DateCount />
+                            <Link to={"/product/" + product.data[0].id} className="product-name my-2 fw-bold text-dark">{product.data[0].name}</Link>
+                            <div className="d-flex gap-1 mt-2">
+                                <h3 className="fd-color-primary fw-bold">${product.data[0].price}</h3>
+                                <h6 className="align-self-end" style={{ textDecoration: "line-through" }}>${product.data[0].old_price}</h6>
+                            </div>
+                            <div className="my-3 d-flex gap-2"><Reviews rating={product.data[0].reviews} /><span className='fd-color-primary'>(25 Reviews)</span></div>
+                            <div className="product-desc fw-bold opacity-75">
+                                <p>{product.data[0].desc}</p>
+                            </div>
+                            <div className='d-flex gap-2'>
+                                <NumberCount product={product.data[0]} min={1} />
+                                <AddToCart product={product.data[0]} divClass='align-self-center' />
+                            </div>
+                        </div>
+                    </div> :
+                    <Spinner />
+            }
+        </>
     )
 
 }

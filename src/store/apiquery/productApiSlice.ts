@@ -25,6 +25,11 @@ export const productApiSlice = createApi({
             providesTags : ['Products']
         }),
 
+        getRandomProduct : builder.query({
+            query : () => `/product/types/random`,
+            providesTags : ['Products']
+        }),
+
         createProduct: builder.mutation({
             query : (product) => ({
                 url : `/product/create`,
@@ -59,6 +64,7 @@ export const {
     useGetAllProductsQuery,
     useGetProductQuery,
     useSearchProductQuery,
+    useGetRandomProductQuery,
     useUpdateProductMutation,
     useCreateProductMutation,
     useDeleteProductMutation,

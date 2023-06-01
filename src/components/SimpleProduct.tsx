@@ -3,6 +3,7 @@ import { ProductType } from './ProductCart'
 import { deleteProductInCart } from '../store/productSlice'
 import { useAppDispatch } from '../hooks/redux-hooks'
 import { link } from '../Utils/Generals'
+import { Link } from 'react-router-dom'
 
 
 const SimpleProduct = ({product} : {product : ProductType}) => {
@@ -13,10 +14,14 @@ const SimpleProduct = ({product} : {product : ProductType}) => {
   return (
     <div className="d-flex w-100 gap-3 h-25 mb-3 bg-white">
             <div className="w-25 border-1 border fd-hover-border-primary">
-                <img src={link(product.img)} alt={product.name} className="w-100 h-100"/>
+                <Link to={'/product/' + product.id}>
+                  <img src={link(product.img)} alt={product.name} className="w-100 h-100"/>
+                </Link>
             </div>
             <div className="w-75">
-                <span className="product-name my-2 fw-bold text-dark">{product.name}</span>
+                <Link to={'/product/' + product.id}>
+                  <span className="product-name my-2 fw-bold text-dark">{product.name}</span>
+                </Link>
                 <div className='d-flex justify-content-between'>
                     <div className="d-flex mt-2 gap-2">
                         <span className="fd-color-primary fw-bold me-1">{product.price}</span>
