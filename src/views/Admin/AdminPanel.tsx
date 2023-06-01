@@ -20,7 +20,7 @@ const AdminPanel = ({ currentComponent }: { currentComponent: React.ReactNode })
     e.preventDefault();
     Swal.fire({
       title: 'Are you sure?',
-      text: "Are you sure to delete this product ?",
+      text: "Are you sure to logout ?",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

@@ -27,7 +27,7 @@ const AllCategory = () => {
 
   const {isLoading, data : categoryList, isError }  = useGetAllCategoriesQuery("api/categories");
 
-  return <div className="all-category w-25 shadow border-1 border-light p-0">
+  return <div className="all-category col-3 d-none d-xl-block shadow border-1 border-light p-0">
     <h6 className="fd-bg-primary p-3 fw-bold rounded-top-3">ALL CATEGORIES</h6>
     { !isLoading && !isError ? 
       <div className="category-list d-flex flex-column gap-4 py-2 px-3">
@@ -45,7 +45,7 @@ const About : FC = () => {
   return (
     <div className="section-info p-2 py-4 rounded-3 my-5 border-2 border-color-light shadow text-black" style={{ minHeight: '100px' }}>
       <div className="container-fluid">
-        <div className="row">
+        <div className="row ">
           <div className="col-3 d-flex gap-2">
             <div className='w-25 text-center align-self-center'><i className="bi bi-bus-front fa-2x bg-"></i></div>
             <div><h6 className='fw-bold'>Free Shipping</h6><span className="font-light opacity-75">Free UK shipping when you spend £30.</span></div>
@@ -191,9 +191,9 @@ const Section = () => {
   return (
     <section>
       <div className="container-fluid">
-        <div className="row d-flex justify-content-between px-5 my-5 gap-3">
+        <div className="row px-5 my-5 justify-content-between">
           <AllCategory />
-          <div className="fd-slideshow w-70 p-0">
+          <div className="fd-slideshow col-xl-8 col-sm-12 col-md-12 p-0">
             <SlideShow />
           </div>
         </div>
