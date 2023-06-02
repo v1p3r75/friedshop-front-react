@@ -12,6 +12,10 @@ const AdminPanel = ({ currentComponent }: { currentComponent: React.ReactNode })
   useEffect(() => {
 
     document.querySelectorAll('html,body, #root').forEach((e) => e.classList.add('h-100', 'overflow-hidden'));
+
+    return () => {
+      document.querySelectorAll('html,body, #root').forEach((e) => e.classList.remove('h-100', 'overflow-hidden'));
+    }
   }, [])
 
   const navigate = useNavigate()
