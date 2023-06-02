@@ -8,7 +8,7 @@ import Testimonial from '../../components/Testimonial';
 import  {CategoryType, apiSlidesInfo, blogInfo, testimonialInfo, productsTest, dailyTest, sortProduct} from '../VirtualData';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/redux-hooks';
-import { useGetAllProductsQuery } from '../../store/apiquery/productApiSlice';
+import { useGetAllProductsQuery, useGetBestProductsQuery } from '../../store/apiquery/productApiSlice';
 import Spinner from '../../components/Spinner';
 import { useGetAllCategoriesQuery } from '../../store/apiquery/categoryApiSlice';
 import RoutePaths from '../../config';
@@ -145,12 +145,20 @@ const PopularProducts = ( {grid = 3, type = 'grid'} : {grid? : number | boolean,
 
 const SortProducts = () => {
 
-  return (
-    <div>
-      {
-        sortProduct.map((product) => <ProductSort {...product} key={product.id}/>)
-      }
-    </div>
+  const { data : products, isLoading } = useGetBestProductsQuery('');
+
+  return (<>
+    {
+      !isLoading ? 
+      <div>
+        {
+          products.data.map((product : { products: ProductType}) => <ProductSort {...product.products} key={product.products.id}/>)
+        }
+      </div>
+    :
+      <Spinner />
+    }
+    </>
   );
 }
 
