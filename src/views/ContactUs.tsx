@@ -42,7 +42,7 @@ const ContactUs = () => {
                     <div><a href="#" className="fd-btn w-25 text-center">SEND MESSAGE</a></div>
                 </form>
             </div>
-            <div className="position-relative contact-banner p-4 w-25" style={{backgroundImage : "url('/src/assets/img/contact.jpg')", backgroundSize: 'cover', backgroundRepeat : 'no-repeat'}}>
+            <div className="position-relative contact-banner p-4 w-25" style={{backgroundImage : "url('/img/contact.jpg')", backgroundSize: 'cover', backgroundRepeat : 'no-repeat'}}>
                 <div className="position-absolute w-100 h-100 top-0 start-0" style={{zIndex : '1', backgroundColor: 'rgba(123,175,0,0.45)'}}></div>
             </div>
         </div>

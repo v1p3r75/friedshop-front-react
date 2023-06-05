@@ -76,10 +76,10 @@ const Promotion : FC = () => {
       <div className="container-fluid">
         <div className="row">
           <div className="col-6 ps-0">
-            <div><img className="w-100 h-100" src="/src/assets/img/banner1-1.jpg" alt="promotion 1" /></div>
+            <div><img className="w-100 h-100" src="/img/banner1-1.jpg" alt="promotion 1" /></div>
           </div>
           <div className="col-6 pe-0">
-            <div><img className="w-100 h-100" src="/src/assets/img/banner1-2.jpg" alt="promotion 1" /></div>
+            <div><img className="w-100 h-100" src="/img/banner1-2.jpg" alt="promotion 1" /></div>
           </div>
         </div>
       </div>
@@ -93,7 +93,7 @@ const Promotion2 = () => {
   return <div className='promotion-2 position-relative my-5' style={{height :"450px"}}>
     <div className="position-relative promotion-2-image h-100">
         <span className='position-absolute top-0 end-0 start-0 bottom-0 rounded-4' style={{backgroundColor : 'rgba(0,0,0,0.3)'}}></span>
-        <img src="/src/assets/img/banner.jpg" alt="banner promo" className='w-100 h-100 rounded-4'/>
+        <img src="/img/banner.jpg" alt="banner promo" className='w-100 h-100 rounded-4'/>
     </div>
     <div className="promotion-text position-absolute w-25" style={{top : '15%', right : '15%'}}>
       <h2>SUMMER SALE</h2>
@@ -109,7 +109,7 @@ const Promotion3 = () => {
   return <div className='promotion-3 position-relative w-25 shadow'>
     <div className="position-relative promotion-2-image h-100">
         <span className='position-absolute top-0 end-0 start-0 bottom-0' style={{backgroundColor : 'rgba(0,0,0,0.3)'}}></span>
-        <img src="/src/assets/img/banner2.jpg" alt="banner promo" className='w-100 h-100'/>
+        <img src="/img/banner2.jpg" alt="banner promo" className='w-100 h-100'/>
     </div>
     <div className="promotion-text position-absolute w-100 p-2" style={{top : '5%'}}>
       <h4>85% Hat Free</h4>

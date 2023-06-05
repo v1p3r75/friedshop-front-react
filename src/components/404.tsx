@@ -6,7 +6,7 @@ const NotFound = () => {
 
   return (
     <div className='w-50 mx-auto text-black' style={{margin : '100px 0'}}>
-        <img src="/src/assets/img/404.png" alt="" className="w-100 h-100" />
+        <img src="/img/404.png" alt="" className="w-100 h-100" />
         <div className="text-center fw-bold">
           <h1 className="mt-3">Oops! Page Not Found.</h1>
           <p className="opacity-75 my-4">The page you are looking for is not avaible or doesn't belong to this website!</p>

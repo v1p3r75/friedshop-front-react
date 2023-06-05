@@ -5,7 +5,7 @@ import RoutePaths from '../../config'
 const AdminHeader = () => {
     return (
         <div className="header bg-white text-black shadow d-flex justify-content-between px-5 py-2">
-            <div className="img align-self-center"><Link to={"/admin"}><img src="/src/assets/img/logo.png" alt="" /></Link></div>
+            <div className="img align-self-center"><Link to={"/admin"}><img src="/img/logo.png" alt="" /></Link></div>
             <div className="welcome-msg align-self-center">
                 <h5 className="fw-bold opacity-75">Welcome To Admin Dashboard</h5>
             </div>

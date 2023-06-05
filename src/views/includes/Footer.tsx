@@ -72,7 +72,7 @@ const Footer = () => {
                     </div>
                 </div><hr />
                 <div className="d-flex justify-content-between">
-                    <p><img src="/src/assets/img/payment.png" alt="" /></p>
+                    <p><img src="/img/payment.png" alt="" /></p>
                     <p className="opacity-75">Copyright &copy; 2023 By <span className='fw-bold'>Elfried Fortunatus KIDJE</span></p>
                 </div>
             </div>

@@ -22,7 +22,7 @@ const Testimonial = (props : TestimonialType) => {
                     </div>
                 </div>
                 <div>
-                    <img src="/src/assets/img/qoute.png" alt="" />
+                    <img src="/img/qoute.png" alt="" />
                 </div>
             </div>
             <p className='my-3 opacity-75 fw-bold'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam velit, amet consequatur illum culpa a ut dolorum cum. Debitis molestias tempora ut nostrum dicta mollitia officia illum, eos nobis eligendi!</p>
