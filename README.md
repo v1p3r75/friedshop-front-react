@@ -1,1 +1,1 @@
-# FriedShop : A Website e-commerce built with ReactJS
+# FriedShop : A e-commerce website built with ReactJS
