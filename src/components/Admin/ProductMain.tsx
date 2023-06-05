@@ -1,4 +1,4 @@
-import React, { useState, SyntheticEvent, useEffect, useRef } from 'react'
+import React, { useState, SyntheticEvent, useEffect, useRef, ChangeEvent } from 'react'
 import { ProductType } from '../ProductCart'
 import { useCreateProductMutation, useDeleteProductMutation, useGetAllProductsQuery, useUpdateProductMutation } from '../../store/apiquery/productApiSlice';
 import { link } from '../../Utils/Generals';
@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import Spinner from '../Spinner';
 import { HandleResult } from '../HandleResult';
 import { useGetAllCategoriesQuery } from '../../store/apiquery/categoryApiSlice';
+import { CategoryType } from '../../views/VirtualData';
 
 let imageIsChanged = false;
 
@@ -81,7 +82,7 @@ const UpdateProduct = ({product}: {product : ProductType}) => {
 						<select name="categorie_id" className='form-select w-100'>
 							<option value="">Select Category</option>
                             {
-								categories && categories.data.map(category => (
+								categories && categories.data.map((category : CategoryType) => (
                                     <option key={category.id} value={category.id}
 										selected={product.categorie_id == category.id ? true : false}>
 										{category.name}
@@ -120,8 +121,8 @@ const UpdateProduct = ({product}: {product : ProductType}) => {
 
 const AddOrEditProduct = ({ product }: { product: null | ProductType }) => {
 
-	const [image, setImage] = useState<Blob>();
-	const [data, setData] = useState<ProductType | null>(null);
+	const [image, setImage] = useState<Blob | null>(null);
+	const [data, setData] = useState({});
 
 	const { data : categories } = useGetAllCategoriesQuery('api/categories')
 
@@ -141,7 +142,7 @@ const AddOrEditProduct = ({ product }: { product: null | ProductType }) => {
 	const handleValue = (e: SyntheticEvent) => {
 
 		const target = e.target as HTMLInputElement | HTMLTextAreaElement;
-		setData(values => ({ ...values, [target.name]: target.value }));
+		setData(values => ({ ...values, [target.name]: target.value}));
 
 	}
 
@@ -163,8 +164,9 @@ const AddOrEditProduct = ({ product }: { product: null | ProductType }) => {
 					<label className='w-50'>
 						<span>Image</span>
 						<input type="file" name="img" className="form-control w-100 rounded-0 p-2" placeholder='Product Image'
-							onChange={(e: SyntheticEvent) => {
-								setImage((e.target as HTMLInputElement).files[0])
+							onChange={(e: ChangeEvent<HTMLInputElement>) => {
+								const file = e.target.files && e.target.files[0];
+								setImage(file)
 							}} accept='image/*' />
 					</label>
 				</div>
@@ -192,7 +194,7 @@ const AddOrEditProduct = ({ product }: { product: null | ProductType }) => {
 						<select name="categorie_id" className='form-select w-100'>
 							<option value="">Select Category</option>
                             {
-								categories && categories.data.map(category => (
+								categories && categories.data.map((category : CategoryType) => (
                                     <option key={category.id} value={category.id}>{category.name}</option>
                                 ))
 							}

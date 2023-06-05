@@ -25,16 +25,16 @@ export const UserDashboard = () => {
 export const UserOrders = () => {
 
     const user: User = useAppSelector(state => state.user);
-    let content: React.ReactHTMLElement<HTMLElement>;
+    // let content: React.ReactHTMLElement<HTMLElement> = <></>;
     const { data: commands, isLoading } = useGetCommandQuery(user.id);
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        commands ? commands.data.map((command: any) => {
-            console.log(command)
-        }) : null;
+    //     commands ? commands.data.map((command: any) => {
+    //         content = command
+    //     }) : null;
 
-    }, [commands])
+    // }, [commands])
 
     return (
         <div className="user-orders p-3 border border-2 text-black">
@@ -53,7 +53,10 @@ export const UserOrders = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {content}
+                                {
+                                    isLoading ? <Spinner /> :
+                                    JSON.stringify(commands.data)
+                                }
                             </tbody>
                         </table> :
 

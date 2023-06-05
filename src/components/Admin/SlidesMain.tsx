@@ -70,8 +70,8 @@ const UpdateSlide = ({ slide }: { slide: Slide }) => {
 const AddOrEditSlide = ({ slide }: { slide: null | Slide }) => {
 
 
-  const [image, setImage] = useState<Blob>();
-  const [data, setData] = useState<Slide>();
+  const [image, setImage] = useState<Blob | null>(null);
+  const [data, setData] = useState({});
 
 
   const [createSlide, result] = useCreateSlideMutation();
@@ -106,8 +106,10 @@ const AddOrEditSlide = ({ slide }: { slide: null | Slide }) => {
         <div className='mt-4'>
           <label className='w-100'>
             <span>Image</span>
-            <input type="file" name="image" className="form-control w-100 rounded-0 p-2" onChange={(e: SyntheticEvent) => {
-              setImage((e.target as HTMLInputElement).files[0])
+            <input type="file" name="image" className="form-control w-100 rounded-0 p-2"
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                const file = e.target.files && e.target.files[0];
+              setImage(file)
             }} accept='image/*' />
           </label>
           <label className='w-100 mt-4'>

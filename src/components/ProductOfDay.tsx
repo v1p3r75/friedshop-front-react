@@ -3,19 +3,18 @@ import NumberCount from './NumberCount';
 import Reviews from './Reviews';
 import { Link } from 'react-router-dom';
 import AddToCart from './AddToCart';
-import { ProductType } from './ProductCart';
 import { useGetRandomProductQuery } from '../store/apiquery/productApiSlice';
 import Spinner from './Spinner';
 import { link } from '../Utils/Generals';
 
 const ProductOfDay = () => {
 
-    const { data: product, isLoading } = useGetRandomProductQuery("");
+    const { data: product, isLoading, isError } = useGetRandomProductQuery("");
 
     return (
         <>
             {
-                !isLoading ?
+                !isLoading && !isError ?
                     <div className="d-flex gap-3">
                         <div className="w-25">
                             <Link to={"/product/" + product.data[0].id}>

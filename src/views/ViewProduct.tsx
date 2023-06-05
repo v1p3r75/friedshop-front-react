@@ -11,7 +11,7 @@ import { useGetProductQuery } from "../store/apiquery/productApiSlice"
 const ViewProduct = () => {
 
   const params = useParams()
-  const { isLoading, data : details , isSuccess, isError } = useGetProductQuery(params.id);
+  const { isLoading, data : details , isSuccess, isError } = useGetProductQuery(params.id || '');
 
 
   return (

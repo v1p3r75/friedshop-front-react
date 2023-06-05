@@ -58,7 +58,7 @@ const UpdateCategory = ({category}: {category : CategoryType}) => {
 
 const AddOrEditCategory = ({ category }: { category: null | CategoryType }) => {
 
-  const [data, setData] = useState<CategoryType>();
+  const [data, setData] = useState({});
 
 	const [createCategory, result] = useCreateCategoryMutation();
 
@@ -74,7 +74,7 @@ const AddOrEditCategory = ({ category }: { category: null | CategoryType }) => {
 
 	const handleValue = (e: SyntheticEvent) => {
 
-		const target = e.target as HTMLInputElement | HTMLTextAreaElement;
+		const target = e.target as HTMLInputElement;
 		setData(values => ({ ...values, [target.name]: target.value }));
 
 	}

@@ -145,11 +145,11 @@ const PopularProducts = ( {grid = 3, type = 'grid'} : {grid? : number | boolean,
 
 const SortProducts = () => {
 
-  const { data : products, isLoading } = useGetBestProductsQuery('');
+  const { data : products, isLoading, isError } = useGetBestProductsQuery('');
 
   return (<>
     {
-      !isLoading ? 
+      !isLoading && !isError ? 
       <div>
         {
           products.data.map((product : { products: ProductType}) => <ProductSort {...product.products} key={product.products.id}/>)
