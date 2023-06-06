@@ -40,7 +40,7 @@ const ViewSearch = ({ setShow }: { setShow: Function }) => {
     return (
         <>
             <div className="position-fixed w-100 h-100 top-0 start-0" style={{ zIndex: 2000, backgroundColor: 'rgba(0,0,0,0.75)' }}></div>
-            <div className='position-fixed fw-bold top-0 end-0 w-25 p-3 bg-white h-100 text-black' style={{ zIndex: 2500 }}>
+            <div className='position-fixed fw-bold top-0 end-0 col-12 col-lg-3 p-3 bg-white h-100 text-black' style={{ zIndex: 2500 }}>
                 <h4 className="fw-bold w-100">SEARCH <span className="float-end cursor-pointer" onClick={hideSearch}><i className="bi bi-x"></i></span></h4><hr />
                 <div className="overflow-auto">
                     <div className='w-100 d-flex'>

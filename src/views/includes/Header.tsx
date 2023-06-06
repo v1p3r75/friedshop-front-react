@@ -65,18 +65,18 @@ const Header: FC = () => {
 
     return (<>
         <div className="header bg-white shadow sticky-top">
-            <div className="d-lg-flex justify-content-between font-light fd-bg-secondary px-5 py-2">
-                <div className="d-flex header-contacts gap-3">
+            <div className="d-lg-flex justify-content-between font-light fd-bg-secondary px-3 py-2 px-lg-5">
+                <div className="d-flex header-contacts d-none d-lg-block gap-3">
                     <span><i className='bi bi-envelope fd-color-primary'></i>&nbsp; elfriedv16@gmail.com</span>
                     <span><i className="bi bi-geo-alt fd-color-primary"></i>&nbsp; Cotonou, Bénin</span>
                 </div>
-                <div className='d-flex header-socials-lang'>
+                <div className='d-flex justify-content-between header-socials-lang'>
                     <SocialsNetworks />
                     <Lang />
                 </div>
             </div>
-            <div className="navigation font-regular d-flex flex-wrap justify-content-between mx-5 py-4">
-                <nav className='navbar navbar-expand-lg'>
+            <div className="navigation font-regular d-flex flex-wrap justify-content-between px-3 px-lg-5 py-4">
+                <nav className='navbar col-12 col-lg-7 navbar-expand-lg'>
                     <Link to={"/"} className='navbar-brand me-5'><img src="/img/logo.png" alt="Logo" /></Link>
                     <button className="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#headerNavbar">
                         <span className="navbar-icon-toggler"><i className="bi bi-list"></i></span>
@@ -95,7 +95,7 @@ const Header: FC = () => {
                         </div>
                     </nav>
                 </nav>
-                <div className="d-flex gap-2 align-self-center">
+                <div className="d-flex col-12 col-lg-3 gap-2 my-2 my-lg-0 align-self-center justify-content-end">
                     <div onClick={viewCart}><a href='#' className="position-relative border-3 shadow border-light py-2 px-3 text-dark fd-hover-bg-primary"><i className="bi bi-cart3"></i><span className="position-absolute top-0">{shoppingcart.length}</span></a></div>
                     <div><Link to={RoutePaths.wishlist} className="position-relative border-3 shadow border-light py-2 px-3 text-dark fd-hover-bg-primary"><i className="bi bi-heart"></i><span className="position-absolute top-0">{wishlist.length}</span></Link></div>
                     <div onClick={viewSearch}><a href='#' className="position-relative border-3 shadow border-light py-2 px-3 text-dark fd-hover-bg-primary"><i className="bi bi-search"></i></a></div>
