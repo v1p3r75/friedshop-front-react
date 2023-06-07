@@ -12,7 +12,7 @@ const Testimonial = (props : TestimonialType) => {
     
   
     return (
-        <div className="testimonial shadow bg-white w-50 py-3 px-4">
+        <div className="testimonial shadow bg-white col-12 col-lg-6 py-3 px-4">
             <div className="d-flex justify-content-between">
                 <div className='d-flex gap-2'>
                     <div><img src={props.authorImg} className="rounded-5" style={{width : '50px', height : '50px'}}/></div>
