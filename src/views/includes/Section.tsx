@@ -72,16 +72,12 @@ const About: FC = () => {
 const Promotion: FC = () => {
 
   return (
-    <div className="section-promotion " style={{ minHeight: '170px' }}>
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-12 col-lg-6 p-0 shadow">
-            <img className="w-100 h-100" src="/img/banner1-1.jpg" alt="promotion 1" />
-          </div>
-          <div className="col-12 col-lg-6 p-0 mt-3 mt-lg-0 shadow">
-            <img className="w-100 h-100" src="/img/banner1-2.jpg" alt="promotion 1" />
-          </div>
-        </div>
+    <div className="section-promotion d-grid grid-0 grid-lg-2 gap-2" style={{ minHeight: '170px' }}>
+      <div className="p-0 shadow">
+        <img className="w-100 h-100" src="/img/banner1-1.jpg" alt="promotion 1" />
+      </div>
+      <div className="p-0 mt-3 mt-lg-0 shadow">
+        <img className="w-100 h-100" src="/img/banner1-2.jpg" alt="promotion 1" />
       </div>
     </div>
   );
@@ -95,18 +91,18 @@ const Promotion2 = () => {
       <span className='position-absolute top-0 end-0 start-0 bottom-0 rounded-4' style={{ backgroundColor: 'rgba(0,0,0,0.3)' }}></span>
       <img src="/img/banner.jpg" alt="banner promo" className='w-100 h-100 rounded-4' />
     </div>
-    <div className="promotion-text position-absolute col-5" style={{ top: '15%', right: '15%' }}>
+    <div className="promotion-text position-absolute col-5" style={{ top: '25%', right: '2%' }}>
       <h2>SUMMER SALE</h2>
       <h1 className='fw-bold'><span className='fd-color-primary'>39%</span> OFF</h1>
       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab explicabo voluptatem iste, sequi qua.</p>
-      <a href="#" className='fd-btn w-50 rounded-5 text-center'>Shop now <i className="bi bi-arrow-right"></i></a>
+      <Link to={RoutePaths.shop} className='fd-btn w-50 rounded-5 text-center'>Shop now <i className="bi bi-arrow-right"></i></Link>
     </div>
   </div>
 }
 
 const Promotion3 = () => {
 
-  return <div className='promotion-3 position-relative col-12 col-lg-3 shadow'>
+  return <div className='promotion-3 position-relative shadow'>
     <div className="position-relative promotion-2-image h-100">
       <span className='position-absolute top-0 end-0 start-0 bottom-0' style={{ backgroundColor: 'rgba(0,0,0,0.3)' }}></span>
       <img src="/img/banner2.jpg" alt="banner promo" className='w-100 h-100' />
@@ -115,7 +111,7 @@ const Promotion3 = () => {
       <h4>85% Hat Free</h4>
       <h3>Low-Fat Meet</h3>
       <h4 className='fw-bold my-3'>Started at <span className='fd-color-primary'>$79.99</span></h4>
-      <a href="#" className='fd-btn w-50 rounded-5 text-center'>Shop now <i className="bi bi-arrow-right"></i></a>
+      <Link to={RoutePaths.shop} className='fd-btn w-75 rounded-5 text-center'>Shop now <i className="bi bi-arrow-right"></i></Link>
     </div>
   </div>
 }
@@ -137,7 +133,7 @@ const PopularProducts = ({ grid = 3, type = 'grid' }: { grid?: number | boolean,
 
 
   return (
-    <div className={type === 'list' ? "test" : "d-grid grid-" + grid + " gap-5"}>
+    <div className={type === 'list' ? "test" : "d-grid gap-3 grid-0 grid-lg-" + grid}>
       {content}
     </div>
   )
@@ -165,7 +161,7 @@ const SortProducts = () => {
 const BlogAndNews = ({ grid = 3 }: { grid?: number }) => {
 
   return (
-    <div className={'d-grid d-none col-12 grid-' + grid + ' justify-content-space-between gap-3'}>
+    <div className={"d-grid gap-3 grid-0 grid-lg-" + grid + ' mb-0 mb-lg-2 justify-content-space-between gap-3'}>
       {
         blogInfo.map((blog) => <Blog {...blog} key={blog.blod_id} />)
       }
@@ -176,7 +172,7 @@ const BlogAndNews = ({ grid = 3 }: { grid?: number }) => {
 const Testimonials = () => {
 
   return (
-    <div className='d-flex flex-wrap justify-content-between my-5'>
+    <div className='d-grid grid-lg-2 grid-0 gap-3 my-5'>
       {
         testimonialInfo.map((testimonial) => <Testimonial {...testimonial} key={testimonial.authorName} />)
       }
@@ -187,9 +183,9 @@ const Testimonials = () => {
 const MakeCall = () => {
 
   return (
-    <div className='make-call d-flex flex-wrap fw-bold justify-content-between fd-bg-primary w-100 py-4 px-5 my-5' style={{ minHeight: '60px' }}>
+    <div className='make-call d-flex flex-wrap fw-bold justify-content-between fd-bg-primary w-100 py-4 px-2 px-lg-5 my-5' style={{ minHeight: '60px' }}>
       <h3>Get A Free Service Or Make A Call</h3>
-      <div className='align-self-center'><a href="#" className='bg-white fd-color-primary py-3 px-4'><i className="bi bi-phone me-1"></i>MAKE A CALL</a></div>
+      <div className='align-self-center mt-3 mt-lg-0'><a href="#" className='bg-white fd-color-primary py-3 px-4'><i className="bi bi-phone me-1"></i>MAKE A CALL</a></div>
     </div>
   )
 }
@@ -199,9 +195,9 @@ const Section = () => {
   return (
     <section>
       <div className="container-fluid">
-        <div className="row px-5 my-5 justify-content-between">
+        <div className="row px-3 px-lg-5 py-4 my-5 justify-content-between" style={{height : '400px'}}>
           <AllCategory />
-          <div className="fd-slideshow col-xl-8 col-sm-12 col-md-12 p-0">
+          <div className="fd-slideshow col-xl-8 col-sm-12 col-md-12 p-0 h-100">
             <SlideShow />
           </div>
         </div>
@@ -209,14 +205,14 @@ const Section = () => {
           <About />
           <Promotion />
           <div className="popular-products text-black my-5">
-            <div className="d-flex justify-content-between mb-5">
+            <div className="d-flex flex-wrap justify-content-between mb-5">
               <h4>Popular Products</h4>
               <div><Link to={RoutePaths.shop} className="fd-btn fw-bold">View All <i className="bi bi-arrow-right"></i></Link></div>
             </div>
             <PopularProducts grid={4} />
           </div>
-          <div className="day-deals-rated d-flex flex-wrap text-black gap-3" style={{ minHeight: "400px" }}>
-            <div className="day-deals col-12 col-lg-9 bg-white p-3 border-1 border">
+          <div className="day-deals-rated row justify-content-between text-black" style={{ minHeight: "400px" }}>
+            <div className="day-deals col-12 col-lg-8 bg-white p-3 mb-2 mb-lg-0 border-1 border">
               <div className="d-flex justify-content-between border-bottom-2">
                 <h5>Deals Hot Of The Day</h5>
                 <div className="deals-direction d-flex gap-2">
@@ -234,16 +230,16 @@ const Section = () => {
             </div>
           </div>
           <Promotion2 />
-          <div className="product-types d-flex flex-wrap gap-3 my-5" style={{ minHeight: "300px" }}>
-            <div className="top-rated text-black bg-white col-12 col-lg-3 border-1 border fd-hover-border-primary p-3">
+          <div className="product-types d-grid grid-lg-4 grid-0 gap-3 my-5" style={{ minHeight: "300px" }}>
+            <div className="top-rated text-black bg-white border-1 border fd-hover-border-primary p-3">
               <h5>Hot Deals</h5><hr />
               <SortProducts />
             </div>
-            <div className="top-rated text-black bg-white col-12 col-lg-3 border-1 border fd-hover-border-primary p-3">
+            <div className="top-rated text-black bg-white border-1 border fd-hover-border-primary p-3">
               <h5>Top Rated Products</h5><hr />
               <SortProducts />
             </div>
-            <div className="top-rated text-black bg-white col-12 col-lg-3 border-1 border fd-hover-border-primary p-3">
+            <div className="top-rated text-black bg-white border-1 border fd-hover-border-primary p-3">
               <h5>Best Seller</h5><hr />
               <SortProducts />
             </div>
@@ -254,19 +250,19 @@ const Section = () => {
               <h4>Featured Products</h4>
               <div><a href="#" className="fd-btn fw-bold">View All <i className="bi bi-arrow-right"></i></a></div>
             </div>
-            <PopularProducts grid={4} /> 
+            <PopularProducts grid={4} />
           </div>
         </div>
         <MakeCall />
-        <div className="blog-news text-black px-5 my-5">
-          <div className="d-flex justify-content-between mb-5">
+        <div className="blog-news text-black px-3 px-lg-5 my-5">
+          <div className="d-flex flex-wrap justify-content-between mb-5">
             <h4>Latest Blog & News</h4>
             <div><a href="#" className="fd-btn fw-bold">View All <i className="bi bi-arrow-right"></i></a></div>
           </div>
           <BlogAndNews />
         </div>
-        <div className="testimonials text-black px-5 my-5">
-          <div className="d-flex justify-content-between">
+        <div className="testimonials text-black px-3 px-lg-5 my-5">
+          <div className="d-flex flex-wrap justify-content-between">
             <h4>Our Awesome Testimonial</h4>
             <div><a href="#" className="fd-btn fw-bold">View All <i className="bi bi-arrow-right"></i></a></div>
           </div>

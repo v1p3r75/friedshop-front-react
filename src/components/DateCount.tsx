@@ -44,7 +44,7 @@ const DateCount = () => {
     }
 
     return (
-        <div className="d-flex gap-2 text-center my-3">
+        <div className="d-flex flex-wrap justify-content-center  justify-content-lg-start gap-2 text-center my-3">
             <div className="fd-bg-primary py-1 px-3 bg-black fw-bold">
                 <span className="text-white">-{remainingTime.days}</span>
                 <br />

@@ -15,13 +15,13 @@ const ProductOfDay = () => {
         <>
             {
                 !isLoading && !isError ?
-                    <div className="d-flex gap-3">
-                        <div className="w-25">
+                    <div className="row">
+                        <div className="col-12 col-lg-3">
                             <Link to={"/product/" + product.data[0].id}>
                                 <img src={link(product.data[0].img)} alt={product.data[0].name} className="w-100 h-100" />
                             </Link>
                         </div>
-                        <div className="w-75">
+                        <div className="col-12 col-lg-9">
                             <DateCount />
                             <Link to={"/product/" + product.data[0].id} className="product-name my-2 fw-bold text-dark">{product.data[0].name}</Link>
                             <div className="d-flex gap-1 mt-2">
