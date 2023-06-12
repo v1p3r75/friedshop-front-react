@@ -5,7 +5,7 @@ import ViewCart from '../../components/ViewCart'
 import ViewSearch from '../../components/ViewSearch'
 import Lang from '../../components/Lang'
 import RoutePaths from '../../config'
-import { cartKeyName, getItem, wishlistKeyName } from '../../Utils/Generals'
+import { cartKeyName, getItem, toggleLinkClass, wishlistKeyName } from '../../Utils/Generals'
 import { ProductType } from '../../components/ProductCart'
 import { fillProductsList, fillShoppingCart, fillWishList } from '../../store/productSlice'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks'
@@ -86,8 +86,8 @@ const Header: FC = () => {
                             <ul className="navbar-nav d-lg-flex gap-3">
                                 {
                                     navsBar.map((link) => {
-                                        return <li key={link.name} className="navbar-item">
-                                            <Link to={link.path} className="navbar-link fd-hover-color-primary text-dark">{link.name}</Link>
+                                        return <li key={link.name} className="navbar-item align-self-center">
+                                            <Link to={link.path} className={"navbar-link fd-hover-color-primary " + toggleLinkClass(link.path, 'fd-underline') + " text-dark"} >{link.name}</Link>
                                         </li>
                                     })
                                 }

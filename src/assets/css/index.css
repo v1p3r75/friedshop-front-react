@@ -33,6 +33,7 @@ a {color: #fff!important; text-decoration: none!important;}
 .fd-nav-active{background-color: var(--fd-color-primary)!important; color : #fff!important}
 .cursor-disabled {cursor: no-drop!important;}
 .others-imgs {width : 80px; height : 80px;}
+.fd-underline { border-bottom: 3px solid var(--fd-color-primary);}
 /* .scroller {scrollbar-color: var(--fd-color-silver) var(--fd-color-dark); scrollbar-width: thin;} */
 .spinner { border: 10px solid #fff; border-top: 10px solid #fff; border-radius: 50%; width: 20px; height: 20px; animation: spin 1s linear infinite; }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } } 
