@@ -22,7 +22,7 @@ const WishList: FC = () => {
         <>
             <Header />
             <Banner page='Wishlist' path={['Home', 'Wishlist']} />
-            <div className="wishlist-view my-5 px-5">
+            <div className="wishlist-view my-5 px-3 px-lg-5">
                 <div className="table-responsive">
                     <table className="table table-default text-center table-bordered">
                         <thead>
