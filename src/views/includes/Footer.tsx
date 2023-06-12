@@ -9,7 +9,7 @@ const Footer = () => {
     return (
         <footer className='mt-5'>
             <NewsLetter />
-            <div className='footer-content bg-black gap-3 p-5'>
+            <div className='footer-content bg-black gap-3 px-3 px-lg-5 py-5'>
                 <div className="f-content d-flex flex-wrap justify-content-space-between">
                     <div className="contacts w-20">
                         <h5 className='my-5'>Our Address</h5>
@@ -62,17 +62,17 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className='my-5'>
-                    <div className="d-flex gap-3">
+                    <div className="d-flex flex-wrap gap-3">
                         <h6 className='fw-bold'>Food & Vegetabe: </h6>
                         <p className='opacity-50'><span>Carrots | </span><span>Broccoli | </span><span>Patato | </span><span>Carrots | </span><span>Broccoli | </span><span>Patato | </span><span>Carrots | </span><span>Broccoli | </span><span>Patato | </span></p>
                     </div>
-                    <div className="d-flex gap-3">
+                    <div className="d-flex flex-wrap gap-3">
                         <h6 className='fw-bold'>Health & Beauthy: </h6>
                         <p className='opacity-50'><span>Skin Kare | </span><span>Body Shower | </span><span>Makeup | </span></p>
                     </div>
                 </div><hr />
-                <div className="d-flex justify-content-between">
-                    <p><img src="/img/payment.png" alt="" /></p>
+                <div className="d-flex flex-wrap justify-content-between">
+                    <p><img src="/img/payment.png" alt="" className='w-100'/></p>
                     <p className="opacity-75">Copyright &copy; 2023 By <span className='fw-bold'>Elfried Fortunatus KIDJE</span></p>
                 </div>
             </div>
