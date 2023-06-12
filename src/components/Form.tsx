@@ -32,7 +32,7 @@ const LoginForm = () => {
 
 
     return (
-        <div className="login-form  bg-white shadow w-30 mx-auto my-5 text-black p-3" style={{ minHeight: '500px' }}>
+        <div className="login-form  bg-white shadow col-11 col-lg-4 mx-auto my-5 text-black p-3" style={{ minHeight: '500px' }}>
             <h3 className="fw-bold text-center">Sign In</h3>
             <form action="" onSubmit={handleSubmit}>
                 <div className="d-flex gap-2 sign-oauth my-4 text-white text-center">
@@ -97,7 +97,7 @@ const SignUpForm = () => {
     }
 
     return (
-        <div className="login-form  bg-white shadow w-30 mx-auto my-5 text-black p-3" style={{ minHeight: '500px' }}>
+        <div className="login-form  bg-white shadow col-11 col-lg-4 mx-auto my-5 text-black p-3" style={{ minHeight: '500px' }}>
             <h3 className="fw-bold text-center">Register Account</h3>
             <form action="" onSubmit={handleSubmit}>
                 <div className="d-flex gap-2 sign-oauth my-4 text-white text-center">
@@ -159,7 +159,7 @@ const ResetPassword = () => {
     }
 
     return (
-        <div className="login-form  bg-white shadow w-30 mx-auto my-5 text-black p-3" style={{ minHeight: '300px' }}>
+        <div className="login-form  bg-white shadow col-11 col-lg-4 mx-auto my-5 text-black p-3" style={{ minHeight: '300px' }}>
             <h3 className="fw-bold text-center">Forgot Password</h3>
             <form action="">
                 <div className="my-4">
