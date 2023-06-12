@@ -14,7 +14,7 @@ const TeamMembers = () => {
         
         <Banner page='Page Members' path={['Home', 'Page Members']} />
 
-        <div className="my-5 px-5 d-grid grid-3">
+        <div className="my-5 px-3 px-lg-5 d-grid grid-lg-3 grid-2 gap-2">
             {
                 teams.map((team) => <Member {...team} key={team.team_id}/>)
             }
