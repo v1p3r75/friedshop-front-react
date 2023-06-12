@@ -26,7 +26,7 @@ const ShoppingCart = () => {
     <>
       <Header />
       <Banner page='Shopping Cart' path={['Home', 'Shopping Cart']} />
-      <div className="px-5 my-5">
+      <div className="px-3 px-lg-5 my-5">
         <div className="table-responsive">
           <table className="table table-default text-center table-bordered">
             <thead>
@@ -68,8 +68,8 @@ const ShoppingCart = () => {
           <div><Link to={RoutePaths.cart} className='fd-btn'>UPDATE CART</Link></div>
         </div>
         {shopping && shopping.length > 0 ?
-          <div className="coupon-total d-flex gap-2 text-dark">
-            <div className="coupon w-75 p-4 border border-1">
+          <div className="coupon-total row justify-content-between gap-2 text-dark">
+            <div className="coupon col-12 col-lg-8 p-4 border border-1">
               <h5 className="fw-bold">Use Coupon Code</h5>
               <hr />
               <div className='my-3'>
@@ -78,9 +78,9 @@ const ShoppingCart = () => {
                   <input type="text" className='w-100 form-control rounded-0 border' placeholder='XXX' />
                 </label>
               </div>
-              <div className="submit w-25 shadow"><a href="#" className="fd-btn text-center">APPLY</a></div>
+              <div className="submit w-50 shadow"><a href="#" className="fd-btn text-center">APPLY</a></div>
             </div>
-            <div className="total p-4 border border-1 w-25">
+            <div className="total p-4 border border-1 col-12 col-lg-3">
               <h5 className="fw-bold">Order Total</h5>
               <hr />
               <div><span className='fw-bold'>Sutotal :</span><span className='float-end opacity-75'>{total}</span></div>

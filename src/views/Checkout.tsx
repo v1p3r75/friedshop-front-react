@@ -27,8 +27,8 @@ const Checkout = () => {
         <>
             <Header />
             <Banner page='Checkout' path={['Home', 'Checkout']} />
-            <div className="checkout-page d-flex gap-3 justify-content-between px-5 my-5 text-black">
-                <form action="" method="post" className="checkout-service p-3 bg-white w-75 border border-1">
+            <div className="checkout-page row gap-3 justify-content-between px-3 px-lg-5 my-5 text-black">
+                <form action="" method="post" className="checkout-service p-3 bg-white col-12 col-lg-8 border border-1">
                     <h4 className='fw-bold'>Billing Details</h4>
                     <hr />
                     <HandleResult result={result} />
@@ -83,7 +83,7 @@ const Checkout = () => {
                         <textarea name="orderNotes" cols={100} rows={10} className='w-100 p-2 border'></textarea>
                     </div>
                 </form>
-                <div className="w-25 checkout-validate">
+                <div className="col-12 col-lg-3 checkout-validate">
                     <div className="bg-white p-3 border border-1">
                         <h5 className="fw-bold">Checkout Summary</h5><hr />
                         <div className="opacity-75">
