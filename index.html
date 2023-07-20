@@ -1,17 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/icon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FriedShop - Easily shop online</title>
-  </head>
-  <body>
-    <div id="root" class="postition-relative">
-      <div style="width: 20%; height: 100px; margin: 40vh auto;">
-        <img src="/loader.svg" alt="loader" style="width: 100%; height: 100%">
-      </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/icon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FriedShop - Easily shop online</title>
+  <link rel="manifest" href="/friedshop.webmanifest">
+  <meta name="description" content="Faites vos achats en ligne en toute sécurité.">
+</head>
+
+<body>
+  <div id="root" class="postition-relative">
+    <div style="width: 20%; height: 100px; margin: 40vh auto;">
+      <img src="/loader.svg" alt="loader" style="width: 100%; height: 100%">
     </div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+  </div>
+  <script type="module" src="/src/main.tsx"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./service-worker.js')
+        .then(function (registration) {
+          console.log('Service Worker enregistré avec succès:', registration);
+        })
+        .catch(function (error) {
+          console.log('Erreur lors de l\'enregistrement du Service Worker:', error);
+        });
+    }
+  </script>
+</body>
+
 </html>
