@@ -5,11 +5,11 @@ import { ProductType } from '../components/ProductCart';
 import Swal from 'sweetalert2';
 import { SyntheticEvent } from 'react';
 
-// export const BASE_URL = 'http://friedshop-back-laravel.test/api/'; // BASE URL FOR API FETCHING
-export const BASE_URL = 'https://friedshop.kabirou-alassane.com/api'; // BASE URL FOR API FETCHING
+export const BASE_URL = 'http://localhost:8000/api/'; // BASE URL FOR API FETCHING
+// export const BASE_URL = 'https://friedshop.kabirou-alassane.com/api'; // BASE URL FOR API FETCHING
 
-export const BASE_STORAGE_URL = 'https://friedshop.kabirou-alassane.com/storage/'; // BASE URL FOR FETCHING MEDIA (image, video, etc.)
-// export const BASE_STORAGE_URL = 'http://friedshop-back-laravel.test/storage/'; // BASE URL FOR FETCHING MEDIA (image, video, etc.)
+// export const BASE_STORAGE_URL = 'https://friedshop.kabirou-alassane.com/storage/'; // BASE URL FOR FETCHING MEDIA (image, video, etc.)
+export const BASE_STORAGE_URL = 'http://localhost:8000/storage/'; // BASE URL FOR FETCHING MEDIA (image, video, etc.)
 
 const active = "d-block p-3 fd-nav-active"; // WHERE MENU IS ACTIVE CLASS 
 
@@ -94,4 +94,18 @@ export const buildCheckoutData = () => {
     })
 
     return {user_id: user.id, commands : checkoutData};
+}
+
+export const inject_headers = () => {
+
+    const _token = getItem(RoutePaths.token) || "";
+
+    const tokenWithoutQuotes = _token.replace('Bearer ', '').replace(/"/g, '');
+
+    const headers = new Headers();
+
+    headers.set('Accept', 'application/json');
+    headers.set('Authorization', `Bearer ${tokenWithoutQuotes}`);
+
+    return headers;
 }

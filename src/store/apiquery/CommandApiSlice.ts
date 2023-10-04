@@ -1,10 +1,10 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-import { BASE_URL } from '../../Utils/Generals';
+import { BASE_URL, inject_headers } from '../../Utils/Generals';
 
 export const commandApiSlice = createApi({
     
     reducerPath : 'api/commands',
-    baseQuery : fetchBaseQuery({baseUrl : BASE_URL}),
+    baseQuery : fetchBaseQuery({baseUrl : BASE_URL, headers : inject_headers()}),
     tagTypes : ['Commands'],
 
     endpoints : (builder) => ({
