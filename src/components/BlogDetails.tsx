@@ -32,8 +32,8 @@ const BlogDetails = (props : BlogType) => {
        <div className="tags">
         <div className='d-flex gap-2 flex-wrap'><span className="fw-bold align-self-end">Tags :</span>{ tags.map((tag) => <Tag {...tag} key={tag.tag_id} />) }</div>
        </div>
-       <div className="p-share d-flex gap-2 text-black mt-5">
-        <h6 className='fw-bold'>Share :</h6>
+       <div className="p-share d-flex flex-wrap gap-2 text-black mt-5">
+        <h6 className='fw-bold'>Share </h6>
         <SocialsNetworks addClass='text-black border border-1 p-2 px-3'/>
        </div>
     </div>

@@ -16,11 +16,11 @@ const PostView = () => {
     <>
         <Header />
         <Banner page='Blog Details' path={['Home', 'Blog Details']} />
-        <div className="shop d-flex gap-3 my-3 text-black p-5"> 
-          <div className="post-section w-75"> 
+        <div className="shop d-flex flex-wrap gap-3 my-3 text-black p-3 p-lg-5"> 
+          <div className="post-section col-12 col-lg-8"> 
             <BlogDetails {...blogInfo[0]} />
           </div>
-          <aside className='w-25'>
+          <aside className='col-12 col-lg-3'>
             <SearchBar />
             <div className="category-list text-black bg-white w-100 border border-1 fd-hover-border-primary p-3 my-5">
               <h5>Categories</h5><hr />
