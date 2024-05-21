@@ -6,9 +6,9 @@ import Swal from 'sweetalert2';
 import { SyntheticEvent } from 'react';
 
 // export const BASE_URL = 'http://localhost:8000/api/'; // BASE URL FOR API FETCHING
-export const BASE_URL = 'https://friedshop.kabirou-alassane.com/api'; // BASE URL FOR API FETCHING
+export const BASE_URL = 'https://friedshop.username-blakvghost.com/api'; // BASE URL FOR API FETCHING
 
-export const BASE_STORAGE_URL = 'https://friedshop.kabirou-alassane.com/storage/'; // BASE URL FOR FETCHING MEDIA (image, video, etc.)
+export const BASE_STORAGE_URL = 'https://friedshop.username-blakvghost.com/storage/'; // BASE URL FOR FETCHING MEDIA (image, video, etc.)
 // export const BASE_STORAGE_URL = 'http://localhost:8000/storage/'; // BASE URL FOR FETCHING MEDIA (image, video, etc.)
 
 const active = "d-block p-3 fd-nav-active"; // WHERE MENU IS ACTIVE CLASS 
